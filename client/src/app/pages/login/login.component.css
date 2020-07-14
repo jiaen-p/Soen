@@ -2,8 +2,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.img_login{
-    margin-left: 70%;
+body{
+    background: linear-gradient(to left top, var(--shadow-color), var(--primary-color) 20%, var(--primary-color));
 }
 
 #container{
@@ -13,13 +13,14 @@
     margin-top: 50px;
 }
 
-.btn_home{
-    background-color: var(--primary-color);
-    font-size: 25px;
-    padding: 10px;
-    border-style: none;
+.home{
+    font-size: 40pt;
     color: var(--secondary-color);
+}
+
+.home_box{
     margin-bottom: 30px;
+    margin-top: 50px;
 }
 
 .title{
@@ -27,21 +28,32 @@
 }
 
 .form{
-    padding: 10px;
+    padding: 20px;
+    font-size: 10pt;
+    margin-top: 15px;
+}
+
+.form-control{
+    box-shadow: 4px 5px 5px var(--secondary-color);
+}
+
+.container_form{
+    box-shadow: 3px 5px 5px var(--secondary-color);
+    padding: 40px 50px;
+    align-items: center;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.form-check{
+    text-align: center;
+    margin-top: 15px;
     font-size: 10pt;
 }
 
-
-.container_form{
-    box-shadow: 4px 6px 6px var(--shadow-color);
-    padding: 20px 50px;
-    align-items: center;
-    background-color: var(--shadow-color);
-}
-
 .btn_go{
-    color: white;
-    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    background-color: var(--fourth-color);
     border-radius: 10px;
     border-style: none;
     padding: 12px 20px;
@@ -52,6 +64,7 @@
 .register{
     font-size: 9pt;
     margin-top: 15px;
+    text-align: center;
 }
 
 .pie_formulario{

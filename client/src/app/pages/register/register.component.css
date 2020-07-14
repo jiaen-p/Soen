@@ -1,8 +1,9 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
+
 body{
-    background: linear-gradient(to left top, var(--secondary-color), var(--primary-color) 20%, var(--shadow-color));
+    background: linear-gradient(to left top, var(--shadow-color), var(--primary-color) 20%, var(--primary-color));
 }
 
 #container{
@@ -13,7 +14,7 @@ body{
 }
 
 .home{
-    font-size: 25px;
+    font-size: 40pt;
     color: var(--secondary-color);
 }
 
@@ -26,16 +27,45 @@ body{
     margin-bottom: 30px;
 }
 
+.profile{
+    margin-bottom: 10px;
+    background-color: var(--primary-color);
+    border-bottom: none;
+    border-right: none;
+    border-color: var(--primary-color);
+    padding: 5px;
+    font-size: 14pt;
+}
+
+.profile:hover{
+    color: var(--secondary-color);
+    font-weight: bold;
+    border-color: var(--shadow-color)
+}
+
+
 .form{
-    padding: 10px;
+    padding: 20px;
     font-size: 10pt;
+    margin-top: 15px;
+}
+
+.form-control{
+    box-shadow: 4px 5px 5px var(--secondary-color);
 }
 
 .container_form{
-    box-shadow: 4px 6px 6px var(--secondary-color);
-    padding: 20px 50px;
+    box-shadow: 3px 5px 5px var(--secondary-color);
+    padding: 40px 50px;
     align-items: center;
-    background-color: var(--shadow-color);
+    background-color: var(--primary-color);
+    border-radius: 5px;
+}
+
+.form-check{
+    text-align: right;
+    margin-top: 15px;
+    font-size: 10pt;
 }
 
 .btn_go{
