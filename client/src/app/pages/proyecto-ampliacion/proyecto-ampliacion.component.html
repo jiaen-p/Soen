@@ -1,0 +1,22 @@
+<div>
+    <a routerLink="/proyectos" class="volver"><i class="fas fa-arrow-circle-left"></i></a>
+    <div class="cuadro_info">
+        <h2 >{{proyecto_ampliacion.nombre}}</h2>
+        <br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="logo col-lg-3">
+                    <img *ngIf="proyecto_ampliacion.img_url" [src]="proyecto_ampliacion.img_url" alt="random img from lorem picsum">
+                    <h3 >{{proyecto_ampliacion.empresa}}</h3>
+                </div>
+                <div class="col-lg-9 descripcion">
+                    <p >{{proyecto_ampliacion.descripcion}}</p>
+                </div>
+            </div>
+        </div>
+        <p >finaliza el {{proyecto_ampliacion.fecha_fin.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})}}</p>
+        <p >{{proyecto_ampliacion.capital_restante}}€ financiados de {{proyecto_ampliacion.capital_total}}€</p>
+        <a class="btn btn-primary" [routerLink]="['/chat']" [queryParams]="{id: proyecto_ampliacion.empresa}">Contactar</a>
+        <a class="btn btn-primary seguir" (click)="addFav()">Seguir</a>
+    </div>
+</div>

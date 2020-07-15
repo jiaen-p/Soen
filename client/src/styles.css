@@ -5,10 +5,18 @@
 }
   
 :root{
-    --primary-color: #ffb6b9;
-    --secondary-color: #fff1e6;
-    --shadow-color: #ffc7c2;
-    --fourth-color: #ffd8ce;
-    --fifth-color: #ffe6da;
-  }
+    /* --primary-color: #C2C8C5;
+    --secondary-color: #ddddda;
+    --shadow-color: #94b0b7;
+    --fourth-color: #7697a0;
+    --fifth-color: #4a707a; */
+    --primary-color: #FFFFFF;
+    --secondary-color: #27187E;
+    --shadow-color: #758BFD;
+    --fourth-color: #FF8600;
+    --fifth-color: rgb(0, 82, 150);
+}
   
+/* body{
+    background-color: var(--fifth-color);
+} */
