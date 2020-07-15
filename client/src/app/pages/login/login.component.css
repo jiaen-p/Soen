@@ -1,5 +1,6 @@
 *{
     font-family: 'Poppins', sans-serif;
+    color: var(--secondary-color)
 }
 
 body{
@@ -27,18 +28,20 @@ body{
     margin-bottom: 30px;
 }
 
-.form{
+.form-group{
     padding: 20px;
     font-size: 10pt;
     margin-top: 15px;
 }
 
 .form-control{
-    box-shadow: 4px 5px 5px var(--secondary-color);
+    box-shadow: 2px 2px 2px var(--shadow-color);
+    border-top: none;
+    border-left: none;
 }
 
 .container_form{
-    box-shadow: 3px 5px 5px var(--secondary-color);
+    box-shadow: 3px 3px 3px var(--shadow-color);
     padding: 40px 50px;
     align-items: center;
     background-color: var(--primary-color);
@@ -52,13 +55,20 @@ body{
 }
 
 .btn_go{
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
     color: var(--primary-color);
-    background-color: var(--fourth-color);
-    border-radius: 10px;
-    border-style: none;
-    padding: 12px 20px;
+    font-weight: bold;
+    background-color: var(--shadow-color);
+    width: 100%;
+    display: block;
     margin-top: 20px;
-    font-size: 15px;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px var(--primary-color);
+    cursor: pointer;
 }
 
 .register{

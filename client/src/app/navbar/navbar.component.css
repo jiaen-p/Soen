@@ -17,15 +17,17 @@ a{
 
 a:hover{
     color: var(--fourth-color);
-    
+
+}
+
+#line{
+    border-left: 4px solid var(--fourth-color);
+    height: 30px;
+    position: absolute;
+    margin-left: 145px;
+    margin-top: 5px;
 }
 
 .nav2 ul{
     margin-left: 30px;
-}
-
-#login_register{
-    height: 4px;
-    width: 1px;
-    color: var(--fourth-color);
 }

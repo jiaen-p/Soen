@@ -2,13 +2,13 @@
   <!-- Navbar -->
   <nav class="navbar justify-content-center fixed-top col-lg-12 navbar-light">
 
-    <a class="navbar-brand col-lg-3" href="#">
+    <a routerLink="/home"  class="navbar-brand col-lg-3">
       <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top"
         alt="" loading="lazy">
       Soen
     </a>
 
-    <div class="collapse col-lg-8" id="navbarToggleExternalContent">
+    <div class="navbarToggleExternalContent col-lg-8" id="navbarToggleExternalContent">
 
       <div class="nav1">
         <ul class="nav float-left">
@@ -21,17 +21,17 @@
       <div class="nav2">
         <ul class="nav float-right">
           <li class="nav-item">
-            <a class="nav-link" href="#">Inicia sesión</a>
+            <a routerLink="/login" class="nav-link">Inicia sesión</a>
           </li>
-          <div id="login_register"></div>
+          <div id="line"></div>
           <li class="nav-item">
-            <a class="nav-link" href="#">Regístrate</a>
+            <a routerLink="/register" class="nav-link" href="#">Regístrate</a>
           </li>
         </ul>
       </div>
     </div>
     <div class="clearfix"></div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+    <button class="navbar-toggler d-xl-none d-lg-none d-md-none" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
         aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
