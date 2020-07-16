@@ -7,12 +7,24 @@ import { AppComponent } from './app.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 import { ProyectoAmpliacionComponent } from './pages/proyecto-ampliacion/proyecto-ampliacion.component';
 import { ChatComponent } from './pages/chat/chat.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     ProyectosComponent,
     ProyectoAmpliacionComponent,
-    ChatComponent
+    ChatComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    NavbarComponent,
+    FooterComponent
+
   ],
   imports: [
     BrowserModule,
