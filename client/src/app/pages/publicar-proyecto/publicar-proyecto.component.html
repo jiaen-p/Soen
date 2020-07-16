@@ -1,0 +1,42 @@
+<div  class="row" >
+    <div class="col-md-6" >
+        <h1>Soen</h1>
+           
+      </div>
+    <div class="col-md-6" >
+       <h3>Barra de navegación</h3>
+           
+      </div>
+</div>
+<div>
+    <br><h2 style="text-align: center;">Aquí puedes publicar tu proyecto... </h2><br><br>
+    <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="nombre" placeholder="Nombre" #nombre>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="empresa" placeholder="Empresa" #empresa>
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="capital_total" placeholder="Capital total" #capital_total>
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control" id="fecha_fin" placeholder="Fecha límite" #fecha_fin>
+          </div>
+          <div class="form-group">
+            <textarea type="text" class="form-control" id="descripcion" placeholder="Descripción" #descripcion></textarea>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="img_url" placeholder="URL de imagen" #img_url>
+          </div>
+          <div class="form-group">
+            <select class="form-control" id="sector" #sector>
+                <option value="Sector">Sector</option>
+                <option value="Sector1">Sector1</option>
+                <option value="Sector2">Sector2</option>
+                <option value="Sector3">Sector3</option>
+              </select>
+            </div>       
+        <br><button type="button" class="btn btn-primary" style="background-color: var(--secondary-color);" (click)=save(nombre,empresa,capital_total,fecha_fin,descripcion,img_url,sector)>Submit</button>
+      </form>
+</div>
