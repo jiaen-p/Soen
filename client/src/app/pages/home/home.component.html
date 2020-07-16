@@ -40,23 +40,32 @@
         <div class="carousel-inner" role="listbox">
 
           <!-- First slide -->
-          <div class="carousel-item active">
+          <div class="carousel-item active" >
 
             <div class="col-lg-6" style="float:left">
               <div class="card mb-2">
                 <span class="tag">En campaña</span>
-                <img class="card-img-top" src="/assets/images/road.jpg" alt="Card image cap">
+                <img class="card-img-top" [src]="proyectos_destacados[0].img_url" alt="Card image cap">
                 <div class="card-body">
-                  <h4 class="card-title">Trucksters <img class="icon-eur" src="/assets/images/euro.png"></h4>
-                  <p class="card-text">Con una aplicación propia basada en anlgoritmos proveen servicios de logistica en
-                    modo de relevos para que los conductores pasen menos tiempo fuera de casa. Trucksters tiene un
-                    impacto social y medioambiental.</p>
-                  <a class="btn_carousel">Conocer más > </a>
+                  <h4 class="card-title">{{proyectos_destacados[0].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
+                  <p class="card-text">{{proyectos_destacados[0].descripcion.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[0].id)" >Conocer más > </a>
                 </div>
               </div>
             </div>
 
             <div class="col-lg-6" style="float:left">
+              <div class="card mb-2">
+                <span class="tag">Finalizado</span>
+                <img class="card-img-top" [src]="proyectos_destacados[1].img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{proyectos_destacados[1].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
+                  <p class="card-text">{{proyectos_destacados[1].descripcion.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[1].id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-lg-6" style="float:left">
               <div class="card mb-2">
                 <span class="tag">Finalizado</span>
                 <img class="card-img-top" src="/assets/images/fotovoltaica.jpg" alt="Card image cap">
@@ -68,14 +77,36 @@
                   <a class="btn_carousel">Conocer más > </a>
                 </div>
               </div>
-            </div>
+            </div> -->
 
           </div>
 
           <!-- Second slide -->
           <div class="carousel-item">
 
-            <div class="col-md-6" style="float:left">
+            <div class="col-lg-6" style="float:left">
+              <div class="card mb-2">
+                <span class="tag">En campaña</span>
+                <img class="card-img-top" [src]="proyectos_destacados[2].img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{proyectos_destacados[2].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
+                  <p class="card-text">{{proyectos_destacados[2].descripcion.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[2].id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6" style="float:left">
+              <div class="card mb-2">
+                <span class="tag">Finalizado</span>
+                <img class="card-img-top" [src]="proyectos_destacados[3].img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title">{{proyectos_destacados[3].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
+                  <p class="card-text">{{proyectos_destacados[3].descripcion.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[3].id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-6" style="float:left">
               <div class="card mb-2">
                 <span class="tag">En campaña</span>
                 <img class="card-img-top" src="/assets/images/rural.jpg" alt="Card image cap">
@@ -102,7 +133,7 @@
                   <a class="btn_carousel">Conocer más > </a>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -122,10 +153,10 @@
   </div>
     <!-- Perfomance & rofiles -->
 
-    <div>
+    <!-- <div>
       <img>
 
-    </div>
+    </div> -->
 
 
     <!-- Leading companies -->

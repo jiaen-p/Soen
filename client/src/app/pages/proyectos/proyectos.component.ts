@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../models/proyecto';
 import { ProyectosService } from '../../shared/proyectos.service'
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -15,7 +17,7 @@ export class ProyectosComponent implements OnInit {
   public search:string = ''
 
 
-  constructor(public proyectos:ProyectosService) {
+  constructor(public proyectos:ProyectosService, private router:Router, private usuario:UsuarioService) {
   }
   // añadir/quitar de favorito 
   toggle(id:number):void{
@@ -69,5 +71,13 @@ export class ProyectosComponent implements OnInit {
       })
       this.filtrado = filter
     } 
+  }
+  // comprobar si es usuario
+  masInfo(id:number){
+    if(this.usuario.miPerfil){
+      this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id } })
+    } else {
+      this.router.navigate(['/register'])
+    }
   }
 }

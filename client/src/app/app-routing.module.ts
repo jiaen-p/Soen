@@ -7,6 +7,10 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ProyectosInvertidosComponent } from './pages/proyectos-invertidos/proyectos-invertidos.component';
+import { ProyectosInteresComponent } from './pages/proyectos-interes/proyectos-interes.component';
+import { MisProyectosComponent } from './pages/mis-proyectos/mis-proyectos.component';
 
 
 const routes: Routes = [
@@ -16,7 +20,11 @@ const routes: Routes = [
   {path:"chat", component: ChatComponent},
   {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent}
+  {path: "register", component: RegisterComponent},
+  {path:"dashboard", component:DashboardComponent},
+  {path:"proyectos/invertidos", component: ProyectosInvertidosComponent},
+  {path:"proyectos/interes", component: ProyectosInteresComponent},
+  {path:"dashboard/mis_proyectos", component: MisProyectosComponent}
 ];
 
 @NgModule({

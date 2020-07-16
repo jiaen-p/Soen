@@ -1,13 +1,3 @@
-<div  class="row" >
-    <div class="col-md-6" >
-        <h1>Soen</h1>
-           
-      </div>
-    <div class="col-md-6" >
-       <h3>Barra de navegación</h3>
-           
-      </div>
-</div>
 <div>
     <br><h2 style="text-align: center;">Aquí puedes publicar tu proyecto... </h2><br><br>
     <form>
@@ -31,10 +21,10 @@
           </div>
           <div class="form-group">
             <select class="form-control" id="sector" #sector>
-                <option value="Sector">Sector</option>
-                <option value="Sector1">Sector1</option>
-                <option value="Sector2">Sector2</option>
-                <option value="Sector3">Sector3</option>
+                <option value="" disabled>Sector</option>
+                <option value="fintech">Fin tech</option>
+                <option value="transporte">Transporte</option>
+                <option value="inteligencia artificial">inteligencia artificial</option>
               </select>
             </div>       
         <br><button type="button" class="btn btn-primary" style="background-color: var(--secondary-color);" (click)=save(nombre,empresa,capital_total,fecha_fin,descripcion,img_url,sector)>Submit</button>

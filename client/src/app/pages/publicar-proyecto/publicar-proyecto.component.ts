@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../models/proyecto'
+import { ProyectosService } from 'src/app/shared/proyectos.service';
 
 @Component({
   selector: 'app-publicar-proyecto',
@@ -7,7 +8,7 @@ import { Proyecto } from '../../models/proyecto'
   styleUrls: ['./publicar-proyecto.component.css']
 })
 export class PublicarProyectoComponent implements OnInit {
-  public newProyecto: Proyecto = new Proyecto;
+  public newProyecto: Proyecto = new Proyecto();
   public newNombre: string;
   public newEmpresa: string;
   public newCapital_total: number;
@@ -18,7 +19,7 @@ export class PublicarProyectoComponent implements OnInit {
   public newId: number;
   public newSector: string;
  
-  constructor() { }
+  constructor(private proyectos:ProyectosService) { }
 
   save(nombre: HTMLInputElement, empresa: HTMLInputElement,capital_total: HTMLInputElement,fecha_fin: HTMLInputElement,descripcion: HTMLInputElement,img_url: HTMLInputElement, sector: HTMLInputElement){
     this.newNombre = nombre.value;
@@ -32,8 +33,7 @@ export class PublicarProyectoComponent implements OnInit {
     this.newSector = sector.value;
     this.newProyecto =  {nombre:this.newNombre, empresa:this.newEmpresa,capital_total: this.newCapital_total,capital_restante: this.newCapital_restante,fecha_fin: this.newFecha_fin,descripcion: this.newDescripcion,img_url: this.newImg_url,id: this.newId,sector: this.newSector}
     console.log(this.newProyecto)
-  
-   
+    this.proyectos.proyectos.unshift(this.newProyecto)
   }
   ngOnInit(): void {
   }

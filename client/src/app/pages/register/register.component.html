@@ -11,11 +11,11 @@
     <div class="container_form col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6">
       <div class="profiles col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6">
         <div>
-          <button click="profile_select()" class="float-left" [ngClass]="profile ? 'profile_true' : 'profile' "
+          <button (click)="isEmpresa = !isEmpresa" class="float-left profile" [ngClass]="isEmpresa ? 'profile_true' :  null"
             aria-pressed="true">Soy empresa</button>
         </div>
         <div>
-          <button click="profile_select()" class="float-right" [ngClass]="profile ? 'profile_true' : 'profile' "
+          <button (click)="isEmpresa = !isEmpresa" class="float-right profile" [ngClass]="!isEmpresa ? 'profile_true' : null"
           aria-pressed="true">Soy inversor</button>&nbsp;
         </div>
       </div>
