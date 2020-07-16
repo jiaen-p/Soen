@@ -1,0 +1,57 @@
+<body>
+  <div id="container">
+
+    <!-- Logo o nombre de la empresa para redireccionar a Inicio -->
+    <div class=home_box>
+      <a routerLink="/home" class="home">Soen</a>
+    </div>
+
+    <!-- Formulario Login -->
+    <div class="container_form col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-6">
+      <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;
+          <label for="email">Correo electrónico:</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" required>
+          <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+            <div *ngIf="email.errors?.required">La cuenta de correo es obligatoria</div><br>
+            <div *ngIf="email.errors?.email">Dirección de correo incorrecta</div>
+          </div>
+        </div>
+
+        <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <i class="fa fa-unlock" aria-hidden="true"></i>&nbsp;
+          <label for="password">Contraseña:</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="user.password" #password="ngModel" [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }" minlength="5" required>
+          <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback"></div>
+            <div *ngIf="password.errors?.minlength">La clave debe tener como mínimo x caracteres</div>
+        </div>
+        
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="autoSizingCheck2">
+          <label class="form-check-label" for="autoSizingCheck2">Mantener la sesión iniciada</label>
+        </div>
+
+        <button type="submit" class="btn_go col-lg-12 col-md-12 col-xs-12">Continuar</button>
+        <div class="register">
+          <p>¿Aún no tienes cuenta? <a routerLink="/register">Regístrate</a></p>
+        </div>
+
+    </form>
+  </div>
+
+    <div class="pie_formulario col-lg-4 col-md-6 col-sm-6 col-xs-6">
+      <div class="col">
+        <a routerLink="/home" class="float-left">
+          <i class="fas fa-copyright"></i>
+          Soen
+        </a>
+        <a class="float-right">Privacidad</a>
+      </div>
+    </div>
+
+  </div>
+
+
+</body>

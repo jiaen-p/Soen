@@ -1,0 +1,111 @@
+
+body{
+    margin-top: 50px;
+    font-size: 14pt;
+    
+}
+
+@media only screen and (min-width: 800px){
+    body{
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+}
+
+h4{
+    text-align: center;
+}
+
+.btn_carousel{
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    background-color: var(--secondary-color);
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px var(--primary-color);
+    cursor: pointer;
+}
+
+.btn_carousel:hover{
+    background-color: var(--fourth-color);
+
+}
+
+#object{
+    margin-top: 70px;
+}
+
+.why{
+    margin-top: 50px;
+}
+
+#multi-item{
+    padding: 50px; 
+}
+
+.card{
+    border-radius: 40px;
+}
+
+.card .tag{
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    color: #fff;
+    width: 170px;
+    height: 30px;
+    font-size: 10pt;
+    padding: 5px 50px 5px 10px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 25px;
+    background-color: var(--fourth-color);
+}
+
+.card-img-top{
+    padding: 10px;
+    border-radius: 40px;
+
+}
+
+.card-numbers{
+    justify-content: center;
+    text-align: center;
+}
+
+#accountant{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.icon-eur{
+    margin-left: 230px;
+}
+
+.card-title{
+    margin-bottom: 20px;
+    margin-left: 0px;
+}
+
+.row-accountant-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-accountant-numbers{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 30px;
+}
+
+#accountant{
+    padding: 30px;
+    
+}

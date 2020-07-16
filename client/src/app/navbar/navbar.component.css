@@ -1,0 +1,55 @@
+header{
+    background-image: url("/assets/images/header.png");
+    background-size: cover;
+    height: 300px;
+
+}
+
+
+.navbar{
+    text-decoration: none;
+    height: 150px;
+    cursor: pointer;
+    font-size: 14pt;
+    
+}
+
+.navbar-brand{
+    font-size: 50pt;
+
+}
+
+.navbar-toggler{
+   border-radius: 10px;
+   border-color: var(--secondary-color);
+}
+
+ul li a{
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+ul li a:hover{
+    color: var(--fourth-color);
+}
+
+.items1{
+    margin-left: 200px;
+
+}
+
+.items2{
+    margin-left: 275px;
+
+}
+
+/*
+#line{
+    border-left: 4px solid var(--fourth-color);
+    height: 30px;
+    position: absolute;
+    margin-left: 145px;
+    margin-top: 5px;
+}
+*/
+
