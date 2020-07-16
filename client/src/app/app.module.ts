@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
 import { ProyectoAmpliacionComponent } from './pages/proyecto-ampliacion/proyecto-ampliacion.component';
+import { ChatComponent } from './pages/chat/chat.component';
 @NgModule({
   declarations: [
     AppComponent,
     ProyectosComponent,
-    ProyectoAmpliacionComponent
+    ProyectoAmpliacionComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
