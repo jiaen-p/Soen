@@ -1,17 +1,69 @@
-
-body{
-    margin-top: 50px;
-    font-size: 14pt;
-    
+.object{
+    /* align-items: center; */
+    justify-content: center;
 }
-
-@media only screen and (min-width: 800px){
-    body{
-        margin-left: 100px;
-        margin-right: 100px;
+#object h1{
+    text-align: center;
+    font-size: 5rem;
+    /* position: absolute; */
+    font-weight: bolder;
+}
+@media(max-width: 550px){
+    #object h1{
+        font-size: 3rem;
     }
 }
+#object h1:first-child{
+    right:40px;
+}
+#object h1:last-child{
+    top: 400px;
+    right: 50px;
+}
+.img_p img{
+    width: 100%;
+    max-width: 600px;
+}
 
+.why{
+    margin: 60px auto;
+    max-width: 1400px;
+}
+
+.proyecto{
+    max-width: 1400px;
+}
+
+#accountant{
+    /* margin-top: 50px;
+    margin-bottom: 50px; */
+    display: inline-flex;
+    margin: 50px auto;
+    width: 100%;
+    justify-items: center;
+}
+#accountant div{
+    align-self: center;
+
+}
+#accountant p{
+    padding: 10px 40px;
+}
+#accountant div img {
+    width: 100%;
+}
+#accountant div:first-child{
+    padding: 0 60px;
+}
+.logo-companie{
+    justify-items: center;
+}
+.img{
+    align-self: flex-end;
+}
+.img img{
+    width: 100%;
+}
 h4{
     text-align: center;
 }
@@ -42,9 +94,7 @@ h4{
     margin-top: 70px;
 }
 
-.why{
-    margin-top: 50px;
-}
+
 
 #multi-item{
     padding: 50px; 
@@ -79,10 +129,7 @@ h4{
     text-align: center;
 }
 
-#accountant{
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
+
 
 .icon-eur{
     margin-left: 230px;
@@ -99,11 +146,7 @@ h4{
     align-items: center;
 }
 
-.row-accountant-numbers{
-    display: flex;
-    justify-content: right;
-    margin-bottom: 30px;
-}
+
 
 #accountant{
     padding: 30px;
