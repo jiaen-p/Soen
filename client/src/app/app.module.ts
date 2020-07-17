@@ -21,6 +21,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empresa.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegistroEmpresaComponent
 
   ],
   imports: [
