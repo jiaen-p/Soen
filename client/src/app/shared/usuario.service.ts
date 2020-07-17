@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
-import {} from '../models/tipo-perfil.enum'
 @Injectable({
   providedIn: 'root'
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from '../../models/proyecto'
 import { ProyectosService } from 'src/app/shared/proyectos.service';
+import { Sectores } from 'src/app/models/sectores.enum';
 
 @Component({
   selector: 'app-publicar-proyecto',
@@ -31,8 +32,7 @@ export class PublicarProyectoComponent implements OnInit {
     this.newImg_url = img_url.value;
     this.newId = 0;
     this.newSector = sector.value;
-    this.newProyecto =  {nombre:this.newNombre, empresa:this.newEmpresa,capital_total: this.newCapital_total,capital_restante: this.newCapital_restante,fecha_fin: this.newFecha_fin,descripcion: this.newDescripcion,img_url: this.newImg_url,id: this.newId,sector: this.newSector}
-    console.log(this.newProyecto)
+    this.newProyecto =  {nombre:this.newNombre, empresa:this.newEmpresa,capital_total: this.newCapital_total,capital_restante: this.newCapital_restante,fecha_fin: this.newFecha_fin,descripcion: this.newDescripcion,img_url: this.newImg_url,id: this.newId,sector: <Sectores>this.newSector}
     this.proyectos.proyectos.unshift(this.newProyecto)
   }
   ngOnInit(): void {
