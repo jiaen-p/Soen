@@ -1,5 +1,6 @@
 #menuEmpresa{
-    margin-left: 10px;
+    width: 100%;
+    height: 100%;
   }
   li{
     list-style:  none;
@@ -7,4 +8,10 @@
   a{
     color: var(--secondary-color);
     text-decoration:none
+  }
+  .nav-item > a:hover {
+    color:var( --fourth-color)
+  }
+  .activo{
+    color:var( --fourth-color)
   }

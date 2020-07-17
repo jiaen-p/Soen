@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UsuarioService } from 'src/app/shared/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-proyectos',
@@ -8,7 +8,11 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class MisProyectosComponent implements OnInit {
 
-  constructor(private usuario:UsuarioService) { }
+  constructor(public router: Router) { }
+
+  actualizarProyecto(){
+    this.router.navigate(["/dashboard/actualizar"],{queryParams:{id:1}})
+  }
 
   ngOnInit(): void {
   }

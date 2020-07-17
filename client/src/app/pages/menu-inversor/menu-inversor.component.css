@@ -9,3 +9,9 @@
     color: var(--secondary-color);
     text-decoration:none
   }
+  .nav-item > a:hover {
+    color:var( --fourth-color)
+  }
+  .activo{
+    color:var( --fourth-color)
+  }

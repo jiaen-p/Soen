@@ -1,4 +1,4 @@
-    
+<h1 style="text-align: center;">Inversor</h1>
 <div id="menuInversor">
     <nav class="navbar navbar-expand-xl navbar-light bg-light">
         
@@ -10,13 +10,10 @@
         
         <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link">Inversor</a>
+              <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/invertidos'}" routerLink="/proyectos/invertidos">Proyectos invertidos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/proyectos/invertidos">Proyectos invertidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/proyectos/interes">Proyectos de interés</a>
+              <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/interes'}" routerLink="/proyectos/interes">Proyectos de interés</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink="/proyectos">Descubrir proyectos</a>
