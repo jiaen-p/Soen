@@ -15,6 +15,7 @@ width: 100px;
 position:absolute;
 bottom:10px;
 right:105px;
+color: var(--primary-color);
 
 }
 #btn2{
@@ -23,4 +24,5 @@ right:105px;
     position:absolute;
     bottom:10px;
     right:0px;
+    color: var(--primary-color);
     }

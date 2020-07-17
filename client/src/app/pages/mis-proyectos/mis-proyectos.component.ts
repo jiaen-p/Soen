@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-proyectos',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisProyectosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router: Router) { }
+
+  actualizarProyecto(){
+    this.router.navigate(["/dashboard/actualizar"],{queryParams:{id:1}})
+  }
 
   ngOnInit(): void {
   }

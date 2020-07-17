@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     console.log(form.value);
     // realizar autentificacion con el servidor y cambiar autentificado a true
     // asignar el perfil de usuario al servicio de usuario
-    this.usuario.login(new Usuario(50, "mi perfil", "https://picsum.photos/400", "inversor"))
+    this.usuario.login(new Usuario(50, "mi perfil", "https://picsum.photos/400", "empresa"))
     // asignar el tipo de perfil con el nuevo usuario del login
     this.autentificado = true
     if(this.autentificado){

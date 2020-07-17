@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proyectos-invertidos',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProyectosInvertidosComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router:Router) { }
+
+  masInfo(){
+    this.router.navigate(["/proyectos/proyecto"],{queryParams:{id:2}})
+  }
 
   ngOnInit(): void {
   }
