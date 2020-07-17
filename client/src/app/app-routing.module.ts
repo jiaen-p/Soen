@@ -11,6 +11,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProyectosInvertidosComponent } from './pages/proyectos-invertidos/proyectos-invertidos.component';
 import { ProyectosInteresComponent } from './pages/proyectos-interes/proyectos-interes.component';
 import { MisProyectosComponent } from './pages/mis-proyectos/mis-proyectos.component';
+import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path:"dashboard", component:DashboardComponent},
   {path:"proyectos/invertidos", component: ProyectosInvertidosComponent},
   {path:"proyectos/interes", component: ProyectosInteresComponent},
-  {path:"dashboard/mis_proyectos", component: MisProyectosComponent}
+  {path:"dashboard/mis_proyectos", component: MisProyectosComponent},
+  {path:"dashboard/actualizar", component: ActualizarComponent}
 ];
 
 @NgModule({

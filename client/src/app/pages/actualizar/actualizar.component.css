@@ -1,0 +1,10 @@
+.actualizar{
+    text-align: center;
+    margin: 30px auto;
+    max-width: 1200px;
+}
+.btn-primary{
+    background-color: var(--secondary-color);
+    border-color: unset;
+    color: white;
+}

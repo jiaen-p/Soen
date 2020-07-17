@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-mis-proyectos',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MisProyectosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private usuario:UsuarioService) { }
 
   ngOnInit(): void {
   }

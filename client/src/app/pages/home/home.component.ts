@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { Proyecto } from 'src/app/models/proyecto';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +11,13 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   public proyectos_destacados: Proyecto[] = []
-  public isUser:boolean = false
-  constructor(public proyectos: ProyectosService, private router:Router) { 
+  constructor(public proyectos: ProyectosService, private router:Router, private usuario: UsuarioService) { 
     this.proyectos_destacados = proyectos.proyectos.slice(0,4)
   }
 
   conocerMas(id:number){
     console.log(id)
-    if(this.isUser){
+    if(this.usuario.miPerfil){
       this.router.navigate([`/proyectos/proyecto`], { queryParams: { id: id } })
     } else {
       this.router.navigate(["/register"])

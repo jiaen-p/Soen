@@ -41,8 +41,10 @@ export class ChatComponent implements OnInit {
   }
 
   enviarMensaje(){
-    this.servicio_mensajeria.enviarMensaje(new Mensajes(101, this.usuario.miPerfil.id, this.conversacion_usuario_seleccionado, this.enviar_mensaje, new Date()), this.conversacion_activo)
-    this.enviar_mensaje = ''
+    if(this.enviar_mensaje){
+      this.servicio_mensajeria.enviarMensaje(new Mensajes(101, this.usuario.miPerfil.id, this.conversacion_usuario_seleccionado, this.enviar_mensaje, new Date()), this.conversacion_activo)
+      this.enviar_mensaje = ''
+    }
   }
 
   borrarConversacion(){
