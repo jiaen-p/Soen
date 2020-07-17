@@ -71,6 +71,10 @@ body{
     cursor: pointer;
 }
 
+.btn_go:hover{
+    background-color: var(--fourth-color);
+}
+
 .register{
     font-size: 9pt;
     margin-top: 15px;

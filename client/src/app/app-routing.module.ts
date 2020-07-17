@@ -18,7 +18,7 @@ const routes: Routes = [
   {path:"proyectos/proyecto", component: ProyectoAmpliacionComponent},
   {path:"publicar", component: PublicarProyectoComponent},
   {path:"chat", component: ChatComponent},
-  {path: "", component: HomeComponent},
+  {path: "home", component: HomeComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path:"dashboard", component:DashboardComponent},
