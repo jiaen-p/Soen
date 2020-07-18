@@ -51,6 +51,27 @@ ul li a:hover{
     margin-top: 20px;
 }
 
+.modal-lg{
+    max-width: 80% !important;
+}
+
+.step{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.modal-content p{
+    padding: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.number{
+    font-size: 40pt;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
 @media (max-width: 340px){
     .navbar{
         font-size: 12pt;
