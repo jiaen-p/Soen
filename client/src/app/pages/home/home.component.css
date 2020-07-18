@@ -82,6 +82,7 @@ ul{
         padding: 20px 40px;
         margin-top: 0px;
         margin-left: 10px;
+        font-size: 1rem;
     }
 }
 
@@ -105,16 +106,14 @@ ul{
 
 #accountant p{
     padding: 10px 10px;
-    margin-top: 20px;
+    margin-top: 30px;
     font-size: 1rem;
     color: black;
     font-weight: bold;
     text-transform: uppercase;
+    margin-bottom: 30px;
 }
 
-.percentage{
-    margin: auto;
-}
 
 #accountant div img {
     width: 100%;
@@ -131,24 +130,20 @@ ul{
     align-items: center;
 }
 
-.circle{
-    width: 150px;
-    height: 120px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background: var(--secondary-color);
-    margin: auto;
+.box{
+    background: linear-gradient(to bottom right, var(--shadow-color), var(--primary-color));
+    border-style: none;
+    border-radius: 30px;
+    width: 60%;
+    display: inline-block;
 }
 
-.circle1{
-    width: 150px;
-    height: 120px;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    background: var(--shadow-color);
-    margin: auto;
+.box1{
+    background: linear-gradient(to bottom right, var(--shadow-color), var(--primary-color));
+    border-style: none;
+    border-radius: 30px;
+    width: 60%;
+    display: inline-block;
 }
 
 .logo-companie{
@@ -160,7 +155,7 @@ ul{
 .img img{
     width: 100%;
 }
-h4{
+h2{
     text-align: center;
     margin-top: 50px;
     font-size: 2rem;
