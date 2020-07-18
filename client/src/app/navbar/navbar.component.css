@@ -5,13 +5,11 @@ header{
 
 }
 
-
 .navbar{
     text-decoration: none;
     height: 150px;
     cursor: pointer;
-    font-size: 14pt;
-    
+    font-size: 14pt;  
 }
 
 .navbar-brand{
@@ -27,21 +25,73 @@ header{
 ul li a{
     text-decoration: none;
     color: var(--secondary-color);
+    text-align: right;
 }
 
 ul li a:hover{
     color: var(--fourth-color);
 }
 
+.nav-link{
+    background: none;
+    color: var(--secondary-color);
+    border-style: none;
+    padding: 10px;
+}
+
+.nav-link:hover{
+    color: var(--fourth-color);
+}
+
 .items1{
-    margin-left: 200px;
-
+    float:right;
 }
 
-.items2{
-    margin-left: 275px;
-
+.collapse{
+    margin-top: 20px;
 }
+
+@media (max-width: 340px){
+    .navbar{
+        font-size: 12pt;
+    }
+
+    .navbar-brand{
+        font-size: 30pt;
+    }
+
+    a.nav-link{
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 660px){
+    header{
+        background-image: none;
+    }
+
+    .collapse{
+        font-size: 9pt;
+    }
+}
+
+@media (min-width: 1000px){
+    .items1{
+        display: flex;
+        margin-left: 50px;
+    }
+
+    .items2{
+        margin-left: 80px;
+    }
+
+    .navbar{
+        margin-left: 60px; 
+    }
+}
+
+
+
 
 /*
 #line{

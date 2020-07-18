@@ -10,7 +10,7 @@
 }
 @media(max-width: 550px){
     #object h1{
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 #object h1:first-child{
@@ -19,6 +19,7 @@
 #object h1:last-child{
     top: 400px;
     right: 50px;
+    margin-bottom: 30px;
 }
 .img_p img{
     width: 100%;
@@ -28,6 +29,60 @@
 .why{
     margin: 60px auto;
     max-width: 1400px;
+}
+
+.why h2{
+    text-align: left;
+    font-size: 3rem;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    color: #212529;
+    font-weight: bolder;
+}
+
+@media(max-width: 450px){
+    .why h2{
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}
+
+ul{
+    cursor:pointer; 
+    list-style: none; 
+}
+
+.list li{
+    padding: .4em .4em .4em 2em;
+    margin: .5em 0;
+    background: var(--shadow-color);
+    border-radius: .3em;
+    transition: all .3s ease-out;   
+}
+
+@media(max-width: 459px){
+    li{
+        padding: 10px;
+    }
+}
+
+.list li:hover{
+    background: var(--fourth-color);
+}
+
+.reasons{
+    margin-left: 150px;
+    margin-top: 30px;
+    padding: 50px;
+    font-size: 2rem;
+}
+
+@media(max-width: 459px){
+    .reasons{
+        padding: 20px 40px;
+        margin-top: 0px;
+        margin-left: 10px;
+    }
 }
 
 .proyecto{
@@ -42,19 +97,60 @@
     width: 100%;
     justify-items: center;
 }
+
 #accountant div{
     align-self: center;
 
 }
+
 #accountant p{
-    padding: 10px 40px;
+    padding: 10px 10px;
+    margin-top: 20px;
+    font-size: 1rem;
+    color: black;
+    font-weight: bold;
+    text-transform: uppercase;
 }
+
+.percentage{
+    margin: auto;
+}
+
 #accountant div img {
     width: 100%;
+    margin-bottom: 20px;
 }
 #accountant div:first-child{
     padding: 0 60px;
+    text-align: center;
 }
+
+.row-accountant-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle{
+    width: 150px;
+    height: 120px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: var(--secondary-color);
+    margin: auto;
+}
+
+.circle1{
+    width: 150px;
+    height: 120px;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    background: var(--shadow-color);
+    margin: auto;
+}
+
 .logo-companie{
     justify-items: center;
 }
@@ -66,6 +162,8 @@
 }
 h4{
     text-align: center;
+    margin-top: 50px;
+    font-size: 2rem;
 }
 
 .btn_carousel{
@@ -92,12 +190,6 @@ h4{
 
 #object{
     margin-top: 70px;
-}
-
-
-
-#multi-item{
-    padding: 50px; 
 }
 
 .card{
@@ -132,7 +224,7 @@ h4{
 
 
 .icon-eur{
-    margin-left: 230px;
+    float: left;
 }
 
 .card-title{
@@ -140,15 +232,5 @@ h4{
     margin-left: 0px;
 }
 
-.row-accountant-img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
-
-#accountant{
-    padding: 30px;
-    
-}

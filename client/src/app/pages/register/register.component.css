@@ -33,14 +33,16 @@ body{
     background-color: var(--primary-color);
     border-bottom: none;
     border-right: none;
+    border-width: 3px;
     border-color: var(--primary-color);
-    padding: 5px;
+    padding: 10px;
     font-size: 12pt;
 }
 
 .profile:hover{
     border-color: var(--secondary-color);
     color: var(--fourth-color);
+    font-weight: bold;
 }
 
 .form-group{
