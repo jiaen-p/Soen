@@ -72,6 +72,22 @@ ul li a:hover{
     color: var(--secondary-color);
 }
 
+@media (min-width: 768px) {
+    .modal-lg .modal-dialog {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .modal-lg .modal-dialog {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .modal-lg .modal-dialog {
+       width: 1170px;
+    }
+  }
+
 @media (max-width: 340px){
     .navbar{
         font-size: 12pt;
