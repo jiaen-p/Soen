@@ -37,3 +37,6 @@ color: var(--primary-color);
         background-color: var(--fourth-color);
         color: black
     }
+.proyectos{
+    margin-bottom: 50px;
+}

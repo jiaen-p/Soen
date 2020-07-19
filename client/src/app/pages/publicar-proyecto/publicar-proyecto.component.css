@@ -11,3 +11,6 @@ form{
     background-color: var(--fourth-color);
     color: black;
 }
+.formulario{
+    margin-bottom: 50px;
+}

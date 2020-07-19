@@ -48,7 +48,7 @@
 }
 
 ul{
-    cursor:pointer; 
+    /* cursor:pointer;  */
     list-style: none; 
 }
 
@@ -216,9 +216,9 @@ h2{
     text-align: center;
 }
 
-.icon-eur{
+/* .icon-eur{
     float: left;
-}
+} */
 
 .card-title{
     margin-bottom: 20px;
@@ -226,6 +226,11 @@ h2{
 }
 
 .container_companies{
-    margin-bottom: 50px;
+    margin: 50px 100px;
 }
 
+.caja-carousel{
+    max-width: 800px;
+    /* background-color: var(--shadow-color); */
+    margin: 0 auto;
+}

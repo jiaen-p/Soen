@@ -12,6 +12,7 @@ import { ProyectosInvertidosComponent } from './pages/proyectos-invertidos/proye
 import { ProyectosInteresComponent } from './pages/proyectos-interes/proyectos-interes.component';
 import { MisProyectosComponent } from './pages/mis-proyectos/mis-proyectos.component';
 import { ActualizarComponent } from './pages/actualizar/actualizar.component';
+import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empresa.component';
 
 
 const routes: Routes = [
@@ -19,14 +20,15 @@ const routes: Routes = [
   {path:"proyectos/proyecto", component: ProyectoAmpliacionComponent},
   {path:"publicar", component: PublicarProyectoComponent},
   {path:"chat", component: ChatComponent},
-  {path: "", component: HomeComponent},
-  {path: "login", component: LoginComponent},
-  {path: "register", component: RegisterComponent},
+  {path:"", component: HomeComponent},
+  {path:"login", component: LoginComponent},
+  {path:"register", component: RegisterComponent},
   {path:"dashboard", component:DashboardComponent},
   {path:"proyectos/invertidos", component: ProyectosInvertidosComponent},
   {path:"proyectos/interes", component: ProyectosInteresComponent},
   {path:"dashboard/mis_proyectos", component: MisProyectosComponent},
-  {path:"dashboard/actualizar", component: ActualizarComponent}
+  {path:"dashboard/actualizar", component: ActualizarComponent},
+  {path:"register/bussiness", component: RegistroEmpresaComponent}
 ];
 
 @NgModule({

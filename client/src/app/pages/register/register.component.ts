@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from "../../models/user";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import { User } from "../../models/user";
 export class RegisterComponent implements OnInit {
   public user: User;
   public isEmpresa:boolean = false;
-  constructor() {
+  constructor(private router: Router) {
     this.user = new User();
   }
 
@@ -17,10 +18,12 @@ export class RegisterComponent implements OnInit {
   onSubmit(form)
   {
     console.log(form.value);
+    this.router.navigate(["/register/bussiness"], {queryParams: {bussness_info: form.value}})
     // ir a endpoint de registro en el backend
   }
 
   ngOnInit(): void {
+
   }
 
 }
