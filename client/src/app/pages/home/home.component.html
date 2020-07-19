@@ -1,71 +1,75 @@
 <div class="container-fluid">
 
-    <!-- Object -->
-    <div class="row object">
-      <div class="col-md-auto">
-        <div id="object">
-          <h1>Conexiones de hoy,</h1>
-          <h1>Éxitos de mañana</h1>
-        </div>
-      </div>
-      <div class="img_p col-md-auto">
-        <img src="assets/images/landing.svg" >
+  <!-- Object -->
+  <div class="row object">
+    <div class="col-md-auto">
+      <div id="object">
+        <h1>Conexiones de hoy,</h1>
+        <h1>éxitos de mañana</h1>
       </div>
     </div>
-
-    <!-- Why -->
-    <div class="row why">
-      <p>Nuestro objetivo es que las empresas que se mantienen gracias a rondas de financiación, y otras de nuevo crecimiento, tenga mejor acceso a fuentes de inversión.
-         Que la falta de capital no sea un empedimento para el desarrollo de vuestros proyectos.
-      </p>
+    <div class="img_p col-md-auto">
+      <img src="assets/images/landing.svg">
     </div>
+  </div>
+
+  <!-- Why -->
+  <div class="row why">
+    <h2>¿Por qué Soen?</h2>
+    <div class="reasons">
+      <ul class="list">
+        <li>Porque la falta de capital no puede ser un impedimento para <strong>poner en marcha grandes ideas</strong>.
+        </li>
+        <li>Porque en Soen pensamos que esas ideas deben tener un <strong>mejor acceso a fuentes de inversión</strong>.
+        </li>
+        <li>Porque, si eres inversor, <strong>encontrarás todos los proyectos de futuro</strong> en el mismo lugar.</li>
+      </ul>
+    </div>
+  </div>
 
 
-    <!-- Project -->
-    <div class="row why">
-      <div id="multi-item" class="carousel slide carousel-multi-item" data-ride="carousel">
+  <!-- Project -->
+  <div class="row why">
+    <div id="multi-item" class="carousel slide carousel-multi-item" data-ride="carousel">
 
-        <!--Controls-->
+      <!--Controls-->
 
 
 
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-          <li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
-          <li data-target="#multi-item-example" data-slide-to="1"></li>
+      <!-- Indicators -->
 
-        </ol>
+      <!-- Slides -->
+      <div class="carousel-inner" role="listbox">
 
-        <!-- Slides -->
-        <div class="carousel-inner" role="listbox">
+        <!-- First slide -->
+        <div class="carousel-item active">
 
-          <!-- First slide -->
-          <div class="carousel-item active" >
-
-            <div class="col-lg-6" style="float:left">
-              <div class="card mb-2">
-                <span class="tag">En campaña</span>
-                <img class="card-img-top" [src]="proyectos_destacados[0].img_url" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">{{proyectos_destacados[0].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
-                  <p class="card-text">{{proyectos_destacados[0].descripcion.slice(0,220)}} ...</p>
-                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[0].id)" >Conocer más > </a>
-                </div>
+          <div class="col-lg-6" style="float:left">
+            <div class="card mb-2">
+              <span class="tag">En campaña</span>
+              <img class="card-img-top" [src]="proyectos_destacados[0].img_url" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{proyectos_destacados[0].empresa}}<img class="icon-eur"
+                    src="/assets/images/euro.png"></h4>
+                <p class="card-text">{{proyectos_destacados[0].descripcion.slice(0,220)}} ...</p>
+                <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[0].id)">Conocer más > </a>
               </div>
             </div>
+          </div>
 
-            <div class="col-lg-6" style="float:left">
-              <div class="card mb-2">
-                <span class="tag">Finalizado</span>
-                <img class="card-img-top" [src]="proyectos_destacados[1].img_url" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">{{proyectos_destacados[1].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
-                  <p class="card-text">{{proyectos_destacados[1].descripcion.slice(0,220)}} ...</p>
-                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[1].id)">Conocer más > </a>
-                </div>
+          <div class="col-lg-6" style="float:left">
+            <div class="card mb-2">
+              <span class="tag">Finalizado</span>
+              <img class="card-img-top" [src]="proyectos_destacados[1].img_url" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{proyectos_destacados[1].empresa}}<img class="icon-eur"
+                    src="/assets/images/euro.png"></h4>
+                <p class="card-text">{{proyectos_destacados[1].descripcion.slice(0,220)}} ...</p>
+                <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[1].id)">Conocer más > </a>
               </div>
             </div>
-            <!-- <div class="col-lg-6" style="float:left">
+          </div>
+          <!-- <div class="col-lg-6" style="float:left">
               <div class="card mb-2">
                 <span class="tag">Finalizado</span>
                 <img class="card-img-top" src="/assets/images/fotovoltaica.jpg" alt="Card image cap">
@@ -79,34 +83,36 @@
               </div>
             </div> -->
 
+        </div>
+
+        <!-- Second slide -->
+        <div class="carousel-item">
+
+          <div class="col-lg-6" style="float:left">
+            <div class="card mb-2">
+              <span class="tag">En campaña</span>
+              <img class="card-img-top" [src]="proyectos_destacados[2].img_url" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{proyectos_destacados[2].empresa}}<img class="icon-eur"
+                    src="/assets/images/euro.png"></h4>
+                <p class="card-text">{{proyectos_destacados[2].descripcion.slice(0,220)}} ...</p>
+                <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[2].id)">Conocer más > </a>
+              </div>
+            </div>
           </div>
-
-          <!-- Second slide -->
-          <div class="carousel-item">
-
-            <div class="col-lg-6" style="float:left">
-              <div class="card mb-2">
-                <span class="tag">En campaña</span>
-                <img class="card-img-top" [src]="proyectos_destacados[2].img_url" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">{{proyectos_destacados[2].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
-                  <p class="card-text">{{proyectos_destacados[2].descripcion.slice(0,220)}} ...</p>
-                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[2].id)">Conocer más > </a>
-                </div>
+          <div class="col-lg-6" style="float:left">
+            <div class="card mb-2">
+              <span class="tag">Finalizado</span>
+              <img class="card-img-top" [src]="proyectos_destacados[3].img_url" alt="Card image cap">
+              <div class="card-body">
+                <h4 class="card-title">{{proyectos_destacados[3].empresa}}<img class="icon-eur"
+                    src="/assets/images/euro.png"></h4>
+                <p class="card-text">{{proyectos_destacados[3].descripcion.slice(0,220)}} ...</p>
+                <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[3].id)">Conocer más > </a>
               </div>
             </div>
-            <div class="col-lg-6" style="float:left">
-              <div class="card mb-2">
-                <span class="tag">Finalizado</span>
-                <img class="card-img-top" [src]="proyectos_destacados[3].img_url" alt="Card image cap">
-                <div class="card-body">
-                  <h4 class="card-title">{{proyectos_destacados[3].empresa}}<img class="icon-eur" src="/assets/images/euro.png"></h4>
-                  <p class="card-text">{{proyectos_destacados[3].descripcion.slice(0,220)}} ...</p>
-                  <a class="btn_carousel" (click)="conocerMas(proyectos_destacados[3].id)">Conocer más > </a>
-                </div>
-              </div>
-            </div>
-            <!-- <div class="col-md-6" style="float:left">
+          </div>
+          <!-- <div class="col-md-6" style="float:left">
               <div class="card mb-2">
                 <span class="tag">En campaña</span>
                 <img class="card-img-top" src="/assets/images/rural.jpg" alt="Card image cap">
@@ -134,48 +140,57 @@
                 </div>
               </div>
             </div> -->
-          </div>
         </div>
       </div>
     </div>
-
-
-    <!-- Accountant -->
-    <div id="accountant" class="row">
-      <div class="col-md-6">
-          <p>Inversores</p>
-          <p>Proyectos</p>
-          <p>Dinero total invertido</p>
-      </div>
-      <div class="col-md-6">
-        <img src="./assets/images/accountant.jpg">
-      </div>
   </div>
-    <!-- Perfomance & rofiles -->
 
-    <!-- <div>
+
+  <!-- Accountant -->
+  <div id="accountant" class="row">
+    <div class="col-md-6">
+        <p>Inversores registrados:</p>
+        <div class="box">
+          <p>3239023</p>
+        </div>
+        <p>Proyectos publicados:</p>
+        <div class="box">
+          <p>3239023</p>
+        </div>
+        <p>Dinero total invertido:</p>
+        <div class="box1">
+          <p>23923</p>
+        </div>
+    </div>
+    <div class="col-md-6">
+      <img src="./assets/images/accountant.jpg">
+    </div>
+  </div>
+  <!-- Perfomance & rofiles -->
+
+  <!-- <div>
       <img>
 
     </div> -->
 
 
-    <!-- Leading companies -->
-    <div class="container_companies">
-      <h4>Empresas que ya han confiado en Soen para sus proyectos:</h4><br><br>
+  <!-- Leading companies -->
+  <div class="container_companies">
+    <h4>Empresas que ya han confiado en Soen para sus proyectos:</h4><br><br>
 
-      <div class="row col-lg-12 col-md-12 col-sm-10 col-xs-10 logo_companie">
-        <div class="img col-lg-3 col-md-6 logo_companie">
-          <img src="assets/images/trucksters.png">
-        </div>
-        <div class="img col-lg-3 col-md-6">
-          <img src="assets/images/rated.png">
-        </div>
-        <div class="img col-lg-3 col-md-6">
-          <img src="assets/images/nilgo.png">
-        </div>
-        <div class="img col-lg-3 col-md-6">
-          <img src="assets/images/rated.png">
-        </div>
+    <div class="row col-lg-12 col-md-12 col-sm-10 col-xs-10 logo_companie">
+      <div class="img col-lg-3 col-md-6 logo_companie">
+        <img src="assets/images/trucksters.png">
+      </div>
+      <div class="img col-lg-3 col-md-6">
+        <img src="assets/images/rated.png">
+      </div>
+      <div class="img col-lg-3 col-md-6">
+        <img src="assets/images/nilgo.png">
+      </div>
+      <div class="img col-lg-3 col-md-6">
+        <img src="assets/images/rated.png">
       </div>
     </div>
   </div>
+</div>

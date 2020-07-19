@@ -5,13 +5,11 @@ header{
 
 }
 
-
 .navbar{
     text-decoration: none;
     height: 150px;
     cursor: pointer;
-    font-size: 14pt;
-    
+    font-size: 14pt;  
 }
 
 .navbar-brand{
@@ -27,21 +25,110 @@ header{
 ul li a{
     text-decoration: none;
     color: var(--secondary-color);
+    text-align: right;
 }
 
 ul li a:hover{
     color: var(--fourth-color);
 }
 
+.nav-link{
+    background: none;
+    color: var(--secondary-color);
+    border-style: none;
+    padding: 10px;
+}
+
+.nav-link:hover{
+    color: var(--fourth-color);
+}
+
 .items1{
-    margin-left: 200px;
-
+    float:right;
 }
 
-.items2{
-    margin-left: 275px;
-
+.collapse{
+    margin-top: 20px;
 }
+
+.modal-lg{
+    max-width: 80% !important;
+}
+
+.step{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.modal-content p{
+    padding: 30px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.number{
+    font-size: 40pt;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+@media (min-width: 768px) {
+    .modal-lg .modal-dialog {
+      width: 750px;
+    }
+  }
+  @media (min-width: 992px) {
+    .modal-lg .modal-dialog {
+      width: 970px;
+    }
+  }
+  @media (min-width: 1200px) {
+    .modal-lg .modal-dialog {
+       width: 1170px;
+    }
+  }
+
+@media (max-width: 340px){
+    .navbar{
+        font-size: 12pt;
+    }
+
+    .navbar-brand{
+        font-size: 30pt;
+    }
+
+    a.nav-link{
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 660px){
+    header{
+        background-image: none;
+    }
+
+    .collapse{
+        font-size: 9pt;
+    }
+}
+
+@media (min-width: 1000px){
+    .items1{
+        display: flex;
+        margin-left: 50px;
+    }
+
+    .items2{
+        margin-left: 80px;
+    }
+
+    .navbar{
+        margin-left: 60px; 
+    }
+}
+
+
+
 
 /*
 #line{

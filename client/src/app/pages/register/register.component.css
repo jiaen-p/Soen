@@ -33,15 +33,22 @@ body{
     background-color: var(--primary-color);
     border-bottom: none;
     border-right: none;
+    border-width: 3px;
     border-color: var(--primary-color);
-    padding: 5px;
+    padding: 10px;
     font-size: 12pt;
+}
+
+.profile:hover{
+    border-color: var(--secondary-color);
+    color: var(--fourth-color);
+    font-weight: bold;
 }
 
 .form-group{
     padding: 20px;
     font-size: 10pt;
-    margin-top: 15px;
+    margin-top: 40px;
 }
 
 .form-control{
@@ -52,7 +59,7 @@ body{
 
 .container_form{
     box-shadow: 3px 3px 3px var(--shadow-color);
-    padding: 40px 50px;
+    padding: 50px 40px;
     align-items: center;
     background-color: var(--primary-color);
     border-radius: 5px;
@@ -79,6 +86,10 @@ body{
     border-radius: 1.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px var(--primary-color);
     cursor: pointer;
+}
+
+.btn_go:hover{
+    background-color: var(--fourth-color);
 }
 
 .register{
