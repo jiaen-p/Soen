@@ -23,7 +23,7 @@
 }
 .img_p img{
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
 }
 
 .why{
@@ -40,7 +40,7 @@
     font-weight: bolder;
 }
 
-@media(max-width: 450px){
+@media(max-width: 459px){
     .why h2{
         font-size: 1.5rem;
         text-align: center;
@@ -215,8 +215,6 @@ h2{
     justify-content: center;
     text-align: center;
 }
-
-
 
 .icon-eur{
     float: left;

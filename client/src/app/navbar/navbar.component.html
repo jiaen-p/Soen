@@ -2,58 +2,62 @@
 <header>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a routerLink="/home" class="navbar-brand">Soen</a>
+      <a routerLink="/" class="navbar-brand">Soen</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="items1">
+        <div class="items1 d-flex">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" routerLink="./proyectos">Proyectos activos</a>
             </li>
-          </ul>
-          <button type="button" class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">¿Cómo
-            funciona?</button>
-
-          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                <div class="step">
-                  <img src="./assets/images/compartir.jpg" alt="publicar" width="400px">
-                  <p><span class="number">1. C</span>omparte la idea de proyecto en la que estás trabajando y fija la ronda de financiación que
-                    necesitas para que tenga éxito. Si eres inversor, <strong>busca un proyecto que conecte con tus intereses</strong> en
-                    el buscador de proyectos activos.</p>
-                </div>
-                <div class="step">
-                  <img src="./assets/images/comunicarse.jpg" alt="conectar" width="400px">
-                  <p><span class="number">2. E</span>spera a que alguna persona interesada quiera invertir en tu proyecto y se comunique contigo. Si
-                    eres esa persona, <strong>encuentra el proyecto y marca el chat</strong> para hablar directamente con la empresa.</p>
-                </div>
-                <div class="step">
-                  <img src="./assets/images/acuerdo.jpg" alt="acuerdo" width="400px">
-                  <p><span class="number">3. U</span>na vez hayáis conseguido cerrar la ronda que necesitabas gracias a estas conexiones, podréis
-                    seguir apoyándoos en Soen para <strong>continuar creciendo.</strong></p>
+            <li class="nav-item">
+              <a type="button" class="nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">¿Cómo
+                funciona?</a>
+    
+              <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="step">
+                      <img src="./assets/images/compartir.jpg" alt="publicar" width="400px">
+                      <p><span class="number">1. C</span>omparte la idea de proyecto en la que estás trabajando y fija la ronda de financiación que
+                        necesitas para que tenga éxito. Si eres inversor, <strong>busca un proyecto que conecte con tus intereses</strong> en
+                        el buscador de proyectos activos.</p>
+                    </div>
+                    <div class="step">
+                      <img src="./assets/images/comunicarse.jpg" alt="conectar" width="400px">
+                      <p><span class="number">2. E</span>spera a que alguna persona interesada quiera invertir en tu proyecto y se comunique contigo. Si
+                        eres esa persona, <strong>encuentra el proyecto y marca el chat</strong> para hablar directamente con la empresa.</p>
+                    </div>
+                    <div class="step">
+                      <img src="./assets/images/acuerdo.jpg" alt="acuerdo" width="400px">
+                      <p><span class="number">3. U</span>na vez hayáis conseguido cerrar la ronda que necesitabas gracias a estas conexiones, podréis
+                        seguir apoyándoos en Soen para <strong>continuar creciendo.</strong></p>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="items2" *ngIf="!user">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/login">Inicia sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/register">Regístrate</a>
-              </li>
-            </ul>
-          </div>
-          <div class="items2" *ngIf="user">
-            <img [src]=user.profile_img_url>
+            </li>
+            <li class="nav-item login" *ngIf="!usuario.miPerfil">
+              <a class="nav-link" routerLink="/login">Inicia sesión</a>
+            </li>
+            <li class="nav-item signup" *ngIf="!usuario.miPerfil">
+              <a class="nav-link" routerLink="/register">Regístrate</a>
+            </li>
+          </ul>
+        </div>
+        <div class="items2 img login-signup" *ngIf="usuario.miPerfil">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="caja" [src]=usuario.miPerfil.profile_img_url>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/dashboard">Dashboard</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Logout</a>
           </div>
         </div>
       </div>

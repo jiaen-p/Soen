@@ -8,7 +8,6 @@ header{
 .navbar{
     text-decoration: none;
     height: 150px;
-    cursor: pointer;
     font-size: 14pt;  
 }
 
@@ -72,21 +71,21 @@ ul li a:hover{
     color: var(--secondary-color);
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .modal-lg .modal-dialog {
       width: 750px;
     }
-  }
-  @media (min-width: 992px) {
+}
+@media (min-width: 992px) {
     .modal-lg .modal-dialog {
-      width: 970px;
+        width: 970px;
     }
-  }
-  @media (min-width: 1200px) {
+}
+@media (min-width: 1200px) {
     .modal-lg .modal-dialog {
-       width: 1170px;
+        width: 1170px;
     }
-  }
+}
 
 @media (max-width: 340px){
     .navbar{
@@ -125,7 +124,7 @@ ul li a:hover{
     .navbar{
         margin-left: 60px; 
     }
-}
+} */
 
 
 
@@ -140,3 +139,26 @@ ul li a:hover{
 }
 */
 
+/* --------- con user */
+
+.img img{
+    border-radius: 50%;
+    width: 80px;
+    justify-self: right;
+    padding: 0;
+    border: 1px solid var(--secondary-color);
+}
+@media (min-width: 1140px){
+    .login-signup{
+        position: absolute;
+        right: 100px;
+    }
+    .login{
+        position: absolute;
+        right: 250px;
+    }
+    .signup{
+        position: absolute;
+        right: 100px;
+    }
+}
