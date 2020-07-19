@@ -2,3 +2,12 @@ form{
     margin-left: 100px;
     width: 80%;
 }
+
+#btn{
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+#btn:hover{
+    background-color: var(--fourth-color);
+    color: black;
+}
