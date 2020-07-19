@@ -4,7 +4,10 @@
     max-width: 1200px;
 }
 .btn-primary{
-    background-color: var(--secondary-color);
-    border-color: unset;
-    color: white;
+background-color: var(--secondary-color);
+border-color: transparent;
+color: white;
+}
+.btn-primary:hover{
+background-color: var(--fourth-color);
 }
