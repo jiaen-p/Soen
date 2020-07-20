@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { Proyecto } from '../models/proyecto';
 import { ProyectosService } from './proyectos.service';
+import { HttpClient } from '@angular/common/http';
+import { User } from '../models/user';
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
   public miPerfil:Usuario = null
-  constructor(private proyectos: ProyectosService) {
+  private url:string = 'http://localhost:4000/user'
+  public userinfo:User = new User()
+  constructor(private proyectos: ProyectosService, private http: HttpClient) {
     
   }
   // metodo que busca en bbdd info sobre otros usuarios
@@ -15,8 +19,14 @@ export class UsuarioService {
     // generar usuario
     return new Usuario(id, "usuario" + id, "https://picsum.photos/200", "empresa")
   }
-  login(usuario:Usuario){
-    this.miPerfil = usuario
+  login(user:User){
+    return this.http.post(this.url, user)
+  }
+  registerInversor(user: User){
+    console.log(user)
+    // completar el request cuando esté la pagina de formulario
+    // return this.http.post(this.url+"/register/investor",{user: this.userinfo, investor: user})
+
   }
   getProyectos():Proyecto[]{
     return this.proyectos.getProyectosUsuario(this.miPerfil.id)

@@ -12,12 +12,9 @@ import { Usuario } from 'src/app/models/usuario';
 
 export class LoginComponent implements OnInit {
 
-  public user;
+  public user: User = new User();
   public autentificado:boolean = false
-  constructor(private router:Router, private usuario:UsuarioService) 
-  {
-    this.user = new User();
-  }
+  constructor(private router:Router, private usuario:UsuarioService) {  }
 
 
   onSubmit(form)
@@ -25,12 +22,12 @@ export class LoginComponent implements OnInit {
     console.log(form.value);
     // realizar autentificacion con el servidor y cambiar autentificado a true
     // asignar el perfil de usuario al servicio de usuario
-    this.usuario.login(new Usuario(50, "mi perfil", "https://picsum.photos/400", "inversor"))
-    // asignar el tipo de perfil con el nuevo usuario del login
-    this.autentificado = true
-    if(this.autentificado){
-      this.router.navigate(["/dashboard"])
-    }
+    this.usuario.login(form.value).subscribe(res => {
+      if(res){
+        // asignar el tipo de perfil con el nuevo usuario del login
+        this.router.navigate(["/dashboard"])
+      }
+    })
   }
 
   ngOnInit(): void {

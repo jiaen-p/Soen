@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../models/empresa'
 import { Sectores } from 'src/app/models/sectores.enum';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-registro-empresa',
@@ -24,7 +25,7 @@ export class RegistroEmpresaComponent implements OnInit {
 
   
  
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private usuario: UsuarioService) { }
 
   save(nombre: HTMLInputElement, direccion: HTMLInputElement, nif: HTMLInputElement, telefono: HTMLInputElement,fax: HTMLInputElement,email: HTMLInputElement,web: HTMLInputElement, descripcion: HTMLInputElement, img_url: HTMLInputElement, sector: HTMLInputElement){
     this.newNombre = nombre.value;
@@ -42,16 +43,12 @@ export class RegistroEmpresaComponent implements OnInit {
     console.log(this.newEmpresa);
 
     // redireccion a login
-
+    
     this.router.navigate(['/login'])
   }
 
 
   ngOnInit(): void {
-
-    this.route.queryParams.subscribe(query => {
-      console.log(query.bussness_info)
-    })
   }
 
 }

@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:"proyectos/interes", component: ProyectosInteresComponent},
   {path:"dashboard/mis_proyectos", component: MisProyectosComponent},
   {path:"dashboard/actualizar", component: ActualizarComponent},
-  {path:"register/bussiness", component: RegistroEmpresaComponent}
+  {path:"register/enterprise", component: RegistroEmpresaComponent}
 ];
 
 @NgModule({
