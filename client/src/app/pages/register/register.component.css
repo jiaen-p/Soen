@@ -24,7 +24,6 @@ body{
 }
 
 .profile{
-    margin-bottom: 20px;
     background-color: var(--primary-color);
     border-bottom: none;
     border-right: none;
@@ -39,6 +38,7 @@ body{
     color: var(--fourth-color);
     font-weight: bold;
 }
+
 
 .form-group{
     padding: 20px;
@@ -100,3 +100,65 @@ body{
 .selected{
     text-decoration: underline;
 }
+
+
+@media (max-width: 400px){
+    .profile{
+        font-size: 10pt;
+    }
+}
+
+@media (max-width: 350px){
+    .profiles{
+        font-size: 9pt;
+    }
+
+    .form-group{
+        padding: 10px;
+        font-size: 9pt;
+        margin-top: 40px;
+    }
+
+    .container_form{
+        padding: 20px 40px;
+    }
+
+    .form-check {
+        margin-bottom: 0;
+        font-size: 9pt;
+    }
+
+    .btn_go{
+        font-size: 9pt;
+    }
+
+    .pie_formulario{
+        font-size: 10pt;
+    }
+}
+
+@media (min-width: 760px){
+    .form-group{
+        padding: 20px;
+        font-size: 12pt;
+        margin-top: 50px;
+    }
+
+    .container_form{
+        padding: 50px 10px;
+    }
+
+}
+
+@media (max-width: 330px){
+    .profiles{
+        width: 50%;
+        margin: auto;
+    }
+
+    .form-group{
+        margin-top: 20px;
+    }
+
+}
+
