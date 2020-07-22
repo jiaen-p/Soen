@@ -23,6 +23,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empresa.component';
+import { RegistroInversorComponent } from './pages/registro-inversor/registro-inversor.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empr
     FooterComponent,
     DashboardComponent,
     ActualizarComponent,
-    RegistroEmpresaComponent
+    RegistroEmpresaComponent,
+    RegistroInversorComponent
 
   ],
   imports: [

@@ -3,7 +3,7 @@
 
     <!-- Logo o nombre de la empresa para redireccionar a Inicio -->
     <div class=home_box>
-      <a class="home">Soen</a>
+      <a class="home">Sign up</a>
     </div>
 
     <!-- Formulario Login -->
@@ -11,11 +11,11 @@
     <div class="container_form col-xl-6 col-lg-6 col-md-8 col-xs-12">
       <div class="profiles md-auto">
         <div>
-          <button (click)="isEmpresa = !isEmpresa" class="float-left profile" [ngClass]="isEmpresa ? 'selected' :  null"
+          <button (click)="isEmpresa = true" class="float-left profile" [ngClass]="isEmpresa ? 'selected' :  null"
             aria-pressed="true">Soy empresa</button>
         </div>
         <div>
-          <button (click)="isEmpresa = !isEmpresa" class=" float-right profile" [ngClass]="!isEmpresa ? 'selected' : null"
+          <button (click)="isEmpresa = false" class="float-right profile" [ngClass]="!isEmpresa ? 'selected' : null"
           aria-pressed="true">Soy inversor</button>&nbsp;
         </div>
       </div>
