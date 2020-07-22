@@ -18,12 +18,8 @@ export class ProyectoAmpliacionComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    // coger valor de id pasado por el url
-    this.route.queryParams.subscribe(params => {
-      this.id = params['id']
-      // buscamos el proyecto correspondiente en el servicio
-      this.proyecto_ampliacion = this.proyecto.getProyecto(this.id)
-    })
+    
+   
   }
 
   addFav(){

@@ -20,6 +20,6 @@ export class UsuarioService {
     this.miPerfil = usuario
   }
   getProyectos():Proyecto[]{
-    return this.proyectos.getProyectosUsuario(this.miPerfil.id)
+    return //this.proyectos.getProyectosUsuario(this.miPerfil.id)
   }
 }

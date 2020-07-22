@@ -10,6 +10,7 @@ import { Sectores } from 'src/app/models/sectores.enum';
 })
 export class PublicarProyectoComponent implements OnInit {
   public newProyecto: Proyecto = new Proyecto();
+  public newProject_id: number
   public newProject_name: string
   public newDescription: string
   public newTotal_amount: number
@@ -24,6 +25,7 @@ export class PublicarProyectoComponent implements OnInit {
   constructor(private proyectos:ProyectosService) { }
 
   save(project_name: HTMLInputElement, description: HTMLInputElement,total_amount: HTMLInputElement,end_date: HTMLInputElement,project_img_url: HTMLInputElement, sector: HTMLInputElement){
+    this.newProject_id = 0;
     this.newProject_name = project_name.value;
     this.newDescription = description.value;
     this.newTotal_amount = Number(total_amount.value);
@@ -32,7 +34,7 @@ export class PublicarProyectoComponent implements OnInit {
     this.newProject_img_url = project_img_url.value
     this.newSector = sector.value;
     this.newUpdate = "";
-    this.newProyecto =  {project_name:this.newProject_name, description:this.newDescription, total_amount: this.newTotal_amount,remaining_abount: this.newRemaining_abount,end_date: this.newEnd_date,project_img_url: this.newProject_img_url,sector: <Sectores>this.newSector,update:this.newUpdate}
+    this.newProyecto =  {project_id: this.newProject_id, project_name:this.newProject_name, description:this.newDescription, total_amount: this.newTotal_amount,remaining_abount: this.newRemaining_abount,end_date: this.newEnd_date,project_img_url: this.newProject_img_url,sector: <Sectores>this.newSector,update:this.newUpdate}
     this.proyectos.proyectos.unshift(this.newProyecto)
   }
   ngOnInit(): void {
