@@ -10,7 +10,7 @@ import { Location } from '@angular/common'
   styleUrls: ['./proyecto-ampliacion.component.css']
 })
 export class ProyectoAmpliacionComponent implements OnInit {
-
+  public proyecto_ampliacion = null
   public proyecto: Proyecto
   public proyectos: Proyecto[]
   

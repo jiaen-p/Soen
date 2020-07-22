@@ -17,6 +17,6 @@
         <p >finaliza el {{proyecto_ampliacion.fecha_fin.toLocaleDateString('es-ES', {day:'numeric', month:'long', year:'numeric'})}}</p>
         <p >{{proyecto_ampliacion.capital_restante}}€ financiados de {{proyecto_ampliacion.capital_total}}€</p>
         <a class="btn btn-primary" [routerLink]="['/chat']" [queryParams]="{id: proyecto_ampliacion.empresa}">Contactar</a>
-        <a class="btn btn-primary seguir" (click)="addFav()">Seguir</a>
+        <a class="btn btn-primary seguir" (click)="addFav(null,null)">Seguir</a>
     </div>
 </div>

@@ -12,7 +12,7 @@ export class PublicarProyectoComponent implements OnInit {
  
   constructor(private apiService:ProyectosService) { }
 
-  save(project_id: string, project_name: string, description: string, total_amount:number, remaining_amount:number, end_date: Date, project_img_url:string, sector: string, update_: number)
+  save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string)
   {
     this.apiService.postProyecto(new Proyecto()).subscribe((data) =>
     {
