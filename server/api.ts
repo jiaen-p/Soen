@@ -34,6 +34,7 @@ connection.connect(function(err)
 
 // API
 
+// Registro de un usuario que es empresa
 app.post("/user/register/company",
     function(req, resp)
     {
@@ -67,6 +68,7 @@ app.post("/user/register/company",
     }
     );
 
+// Registro de un usuario que es inversor
 app.post("/user/register/investor",
     function(req, resp)
     {
@@ -99,7 +101,7 @@ app.post("/user/register/investor",
     }
     );
 
-
+// Login de usuario si es empresa o inversor
 app.post("/user/login",
     function(req, resp)
     {
@@ -159,7 +161,7 @@ app.post("/user/login",
     );
 
 
-
+// Modificar usuario
 app.put("/user",
     function(req, resp)
     {
@@ -176,9 +178,46 @@ app.put("/user",
         );       
     }
     );
-    
 
+// Obtener proyectos
+app.get("/projects",
+    function(req, resp)
+    {
+        let sql = "SELECT * FROM Proyectos";
+        connection.query(sql, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
+
+// Obtener proyectos por id de proyecto
 app.get("/projects/:id",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT * FROM Proyectos WHERE project_id = ?";
+        connection.query(sql, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
+    
+// Obtener proyectos por id de usuario
+app.get("/projects/user/:id",
     function(req, resp)
     {
         let id = req.params.id;
@@ -196,7 +235,45 @@ app.get("/projects/:id",
     }
     );
 
+// Obtener proyectos favoritos asociados a inversor
+app.get("/projects/investor/:id",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT *  FROM Favoritos WHERE investor_id = ?";
+        connection.query(sql, id, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
 
+// Añadir proyecto favorito a un inversor
+app.post("/projects/favorites/:id",
+function(req, resp)
+{
+    let params = [req.body.investor_id, req.body.projects_id]
+    let sql = "INSERT INTO Favoritos (investor_id, project_id) " + "VALUES (?, ?)";
+    connection.query(sql, params, function (err, result)
+        {
+            if(err){
+                console.log(err); 
+                resp.sendStatus(500);
+            } else{
+                resp.send(result);
+            }   
+        }
+    );
+}
+);
+
+// Añadir proyecto
 app.post("/projects",
     function(req, resp)
     {
@@ -215,6 +292,7 @@ app.post("/projects",
     }
     );
 
+// Modificar proyecto
 app.put("/projects",
     function(req, resp)
     {
@@ -233,6 +311,7 @@ app.put("/projects",
     } 
     );
 
+// Borrar un proyecto
 app.delete("/projects",
     function(req, resp)
     {
@@ -251,7 +330,7 @@ app.delete("/projects",
     }
     );
 
-// conversación y me da los mensajes de la conversación
+// Relación conversación y mensajes
 app.get("/conversation/:id",
     function(req, resp)
     {
@@ -270,8 +349,7 @@ app.get("/conversation/:id",
     }
     );
 
-//añadir conversacion nueva
-
+// Añadir conversacion nueva
 app.post("/conversation",
     function(req, resp)
     {
@@ -290,7 +368,7 @@ app.post("/conversation",
     }
     );
 
-//modificar mensaje
+// Modificar mensaje
 
 app.put("/message",
 function(req, resp)
@@ -311,7 +389,7 @@ function(req, resp)
 );
 
 
-// borrar conversación
+// Borrar conversación
 app.delete("/conversation",
     function(req, resp)
     {

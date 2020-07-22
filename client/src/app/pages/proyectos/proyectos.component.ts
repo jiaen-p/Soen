@@ -17,7 +17,7 @@ export class ProyectosComponent implements OnInit {
   public search:string = ''
 
 
-  constructor(public proyectos:ProyectosService, private router:Router, private usuario:UsuarioService) {
+  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
   }
   // añadir/quitar de favorito 
   toggle(id:number):void{
