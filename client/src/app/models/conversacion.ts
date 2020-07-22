@@ -1,6 +1,6 @@
-import { Mensajes } from './mensajes';
-
 export class Conversacion {
-    public mensaje: Mensajes[] = []
-    public img_url:string
+    public conversation_id: number
+    public sender: number
+    public receiver: number
+    constructor(){}
 }

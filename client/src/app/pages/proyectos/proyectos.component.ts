@@ -74,7 +74,7 @@ export class ProyectosComponent implements OnInit {
   }
   // comprobar si es usuario
   masInfo(id:number){
-    if(this.usuario.miPerfil){
+    if(this.usuario.empresa || this.usuario.inversor){
       this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id } })
     } else {
       this.router.navigate(['/register'])

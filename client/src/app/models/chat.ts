@@ -1,5 +1,7 @@
 import { Conversacion } from './conversacion';
 
 export class Chat {
-    public chat: Conversacion[] = []
+    public conversation_id: number
+    public message_id: number
+    constructor(){}
 }
