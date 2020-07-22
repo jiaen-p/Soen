@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Proyecto } from 'src/app/models/proyecto';
+import { ProyectosService } from 'src/app/shared/proyectos.service';
 
 @Component({
   selector: 'app-proyectos-invertidos',
@@ -8,10 +10,18 @@ import { Router } from '@angular/router';
 })
 export class ProyectosInvertidosComponent implements OnInit {
 
-  constructor(public router:Router) { }
+  public projects: Proyecto[]
 
-  masInfo(){
-    this.router.navigate(["/proyectos/proyecto"],{queryParams:{id:2}})
+  constructor(public router:Router, private apiService: ProyectosService) { }
+
+  // Coge los proyectos asociados al usuario por su id
+  investorProjects(id:number)
+  {
+    this.apiService.getProyectoUsuario(id).subscribe((data) =>
+    {
+      console.log(this.projects = data[0]);
+    }
+    )
   }
 
   ngOnInit(): void {

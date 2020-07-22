@@ -19,7 +19,9 @@ export class UsuarioService {
   login(usuario:Usuario){
     this.miPerfil = usuario
   }
+  /*
   getProyectos():Proyecto[]{
     return //this.proyectos.getProyectosUsuario(this.miPerfil.id)
   }
+  */
 }

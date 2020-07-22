@@ -9,33 +9,16 @@ import { Sectores } from 'src/app/models/sectores.enum';
   styleUrls: ['./publicar-proyecto.component.css']
 })
 export class PublicarProyectoComponent implements OnInit {
-  public newProyecto: Proyecto = new Proyecto();
-  public newProject_id: number
-  public newProject_name: string
-  public newDescription: string
-  public newTotal_amount: number
-  public newRemaining_abount: number
-  public newEnd_date: Date
-  public newProject_img_url: string
-  public newSector: string;
-  public newUpdate: string
  
+  constructor(private apiService:ProyectosService) { }
 
- 
-  constructor(private proyectos:ProyectosService) { }
-
-  save(project_name: HTMLInputElement, description: HTMLInputElement,total_amount: HTMLInputElement,end_date: HTMLInputElement,project_img_url: HTMLInputElement, sector: HTMLInputElement){
-    this.newProject_id = 0;
-    this.newProject_name = project_name.value;
-    this.newDescription = description.value;
-    this.newTotal_amount = Number(total_amount.value);
-    this.newRemaining_abount = 0;
-    this.newEnd_date = end_date.valueAsDate;
-    this.newProject_img_url = project_img_url.value
-    this.newSector = sector.value;
-    this.newUpdate = "";
-    this.newProyecto =  {project_id: this.newProject_id, project_name:this.newProject_name, description:this.newDescription, total_amount: this.newTotal_amount,remaining_abount: this.newRemaining_abount,end_date: this.newEnd_date,project_img_url: this.newProject_img_url,sector: <Sectores>this.newSector,update:this.newUpdate}
-    this.proyectos.proyectos.unshift(this.newProyecto)
+  save(project_id: string, project_name: string, description: string, total_amount:number, remaining_amount:number, end_date: Date, project_img_url:string, sector: string, update_: number)
+  {
+    this.apiService.postProyecto(new Proyecto()).subscribe((data) =>
+    {
+      console.log(data);
+    }
+    )
   }
   ngOnInit(): void {
   }
