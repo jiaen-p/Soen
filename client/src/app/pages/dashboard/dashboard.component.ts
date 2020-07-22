@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { Perfil } from 'src/app/models/tipo-perfil.enum';
 import { Router } from '@angular/router';
@@ -13,7 +13,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.usuario.miPerfil.tipo_perfil === 'empresa'){
+    console.log(this.usuario)
+    if(this.usuario.empresa){
       this.router.navigate(['/dashboard/mis_proyectos'])
     } else {
       this.router.navigate(['proyectos/invertidos'])

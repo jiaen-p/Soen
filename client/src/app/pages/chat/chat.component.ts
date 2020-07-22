@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MensajesService } from '../../shared/mensajes.service'
-import { UsuarioService } from 'src/app/shared/usuario.service';
+import { UsuarioService } from 'src/app/shared/usuario.service'
+import { ChatService } from '../../shared/chat.service'
+import { Chat } from '../../models/chat'
 import { Mensajes } from 'src/app/models/mensajes';
 @Component({
   selector: 'app-chat',
@@ -8,6 +10,8 @@ import { Mensajes } from 'src/app/models/mensajes';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
+  public conversaciones: Chat = null
+  // --------------------------------------
   public nombre_deseado:string = ''
   public conversacion: Mensajes[] = []
   public conversacion_activo: number = 0
@@ -16,7 +20,7 @@ export class ChatComponent implements OnInit {
   public mensajes: Mensajes[][] = []
   public antes_filtrar: Mensajes[][] = []
 
-  constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService) {
+  constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService, private chat:ChatService) {
     Object.assign(this.mensajes, servicio_mensajeria.mensajes)
     Object.assign(this.antes_filtrar, servicio_mensajeria.mensajes)
   }
@@ -42,7 +46,7 @@ export class ChatComponent implements OnInit {
 
   enviarMensaje(){
     if(this.enviar_mensaje){
-      this.servicio_mensajeria.enviarMensaje(new Mensajes(101, this.usuario.miPerfil.id, this.conversacion_usuario_seleccionado, this.enviar_mensaje, new Date()), this.conversacion_activo)
+      // this.servicio_mensajeria.enviarMensaje()
       this.enviar_mensaje = ''
     }
   }
@@ -53,10 +57,16 @@ export class ChatComponent implements OnInit {
   }
 // 
   ngOnInit(): void {
-    this.conversacion_usuario_seleccionado = this.mensajes[this.conversacion_activo][0].sender === this.usuario.miPerfil.id ? this.mensajes[this.conversacion_activo][0].receiver : this.mensajes[this.conversacion_activo][0].sender
+    // obtener datos de conversacion
+    console.log(this.usuario.user_id)
+    this.chat.getConversation(this.usuario.user_id).subscribe(data => {
+      console.log(data)
+    })
+    // this.conversacion_usuario_seleccionado = this.mensajes[this.conversacion_activo][0].sender === this.usuario.miPerfil.id ? this.mensajes[this.conversacion_activo][0].receiver : this.mensajes[this.conversacion_activo][0].sender
   }
 
   private id_otro_usuario(index:number):number{
-    return this.mensajes[index][0].sender === this.usuario.miPerfil.id ? this.mensajes[index][0].receiver : this.mensajes[index][0].sender
+    // return this.mensajes[index][0].sender === this.usuario.miPerfil.id ? this.mensajes[index][0].receiver : this.mensajes[index][0].sender
+    return null
   }
 }

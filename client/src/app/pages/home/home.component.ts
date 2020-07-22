@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 export class HomeComponent implements OnInit {
   public proyectos_destacados: Proyecto[] = []
   constructor(public proyectos: ProyectosService, private router:Router, private usuario: UsuarioService) { 
-    this.proyectos_destacados = proyectos.proyectos.slice(0,4)
+    // this.proyectos_destacados = proyectos.proyectos.slice(0,4)
   }
 
   conocerMas(id:number){

@@ -19,16 +19,16 @@ export class MisProyectosComponent implements OnInit {
 
   updateProject(project_id: number, project_name: string, description: string, total_amount: number, remaining_amount: number, end_date: Date, project_img_url: string, sector: string, update_: number) {
 
-      this.apiService.putProyecto(new Proyecto(project_id, project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_)).subscribe((data) => {
-        console.log(data);
-      })
+      // this.apiService.putProyecto(new Proyecto(project_id, project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_)).subscribe((data) => {
+      //   console.log(data);
+      // })
     }
     
 
   deleteProject(id: number) {
-    this.apiService.deleteProyecto(id).subscribe((data) => {
-      console.log(data);
-    })
+    // this.apiService.deleteProyecto(id).subscribe((data) => {
+    //   console.log(data);
+    // })
   }
 
   ngOnInit(): void {}

@@ -28,7 +28,7 @@
             <input type="text" class="form-control" placeholder="Nombre proyecto o empresa" #buscador="ngModel" [(ngModel)]="search" (keyup)="filtrarPorNombre()">
         </div>
         <div *ngFor="let proyecto of filtrado" class="card w-100 proyecto">
-            <a class="fav" (click)="toggle(proyecto.id)">
+            <a class="fav" *ngIf="usuario.miPerfil" (click)="toggle(proyecto.id)">
                 <i class='fa-star'  [ngClass]="user_fav.includes(proyecto.id) ? 'fas' : 'far'" [id]="'id_proyecto_'+proyecto.id" ></i>
             </a>
             <div class="card-body">

@@ -5,8 +5,8 @@
             <input type="text" placeholder="Search" [(ngModel)]='nombre_deseado' (keyup)="filtrar_chat()">
         </div>
         <div id="conversation-list">
-            <div *ngFor="let mensaje of mensajes, let i = index" class="conversation" [class]="conversacion_activo === i ? 'active' : null" (click)="ver_conversacion(i)">
-                <img [src]="servicio_mensajeria.getInfoUser(mensaje[0].sender === usuario.miPerfil.id ? mensaje[0].receiver : mensaje[0].sender).profile_img_url" alt="Will smith"/>
+            <div *ngFor="let conversacion of conversaciones, let i = index" class="conversation" [class]="conversacion_activo === i ? 'active' : null" (click)="ver_conversacion(i)">
+                <img [src]="servicio_mensajeria.getInfoUser(conversacion.sender === usuario.miPerfil.id ? mensaje[0].receiver : mensaje[0].sender).profile_img_url" alt="Will smith"/>
                 <div class="title-text">
                     {{servicio_mensajeria.getInfoUser(mensaje[0].sender === usuario.miPerfil.id ? mensaje[0].receiver : mensaje[0].sender).username}}
                 </div>

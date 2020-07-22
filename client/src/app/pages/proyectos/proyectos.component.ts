@@ -27,61 +27,61 @@ export class ProyectosComponent implements OnInit {
       let index = this.user_fav.indexOf(id)
       this.user_fav.splice(index,1)
       res = 'far'
-      this.inversorSrevice.deleteProyectosInteres(1,id)
+      // this.inversorSrevice.deleteProyectosInteres(1,id)
     } else {
       this.user_fav.push(id)
-      this.inversorSrevice.postProyectosInteres(1,id) 
+      // this.inversorSrevice.postProyectosInteres(1,id) 
     }
     // cambia el icono segun estado, no funciona con ngclass
     document.getElementById('id_proyecto_'+id).setAttribute("data-prefix", res)
   }
   ngOnInit(): void {
     // asignar valores a los arrays con datos obtenidos del service
-    Object.assign(this.filtrado, this.proyectos.proyectos)
-    Object.assign(this.filtradoPorRango, this.proyectos.proyectos)
+    // Object.assign(this.filtrado, this.proyectos.proyectos)
+    // Object.assign(this.filtradoPorRango, this.proyectos.proyectos)
   }
 
   filtrar(sector:string = null, max:number = null, min:number = null, fecha:string = null){
-    Object.assign(this.filtrado,this.proyectos)
+    // Object.assign(this.filtrado,this.proyectos)
     // comprobamos si el filtro está vacio o no
-    if(sector || max || min || fecha){
-      // barremos el array de filtrado para filtrar aquellos que no cumplen con la condicion
-      let borrar:Proyecto[] = []
-      this.filtrado.forEach(proyecto => {
-        if ((min && proyecto.total_amount < Number(min))  || (max && proyecto.total_amount > Number(max)) || (sector && sector != proyecto.sector) || (fecha && new Date(fecha) > proyecto.end_date)){
-        } else {
-          borrar.push(proyecto)
-        }
-      })
-      // actualizar array
-      this.filtrado = borrar
-    } else {
-      // recuperar el array inicial
-      Object.assign(this.filtrado, this.proyectos.proyectos)
-    }
-    Object.assign(this.filtradoPorRango, this.filtrado)
+    // if(sector || max || min || fecha){
+    //   // barremos el array de filtrado para filtrar aquellos que no cumplen con la condicion
+    //   let borrar:Proyecto[] = []
+    //   this.filtrado.forEach(proyecto => {
+    //     if ((min && proyecto.total_amount < Number(min))  || (max && proyecto.total_amount > Number(max)) || (sector && sector != proyecto.sector) || (fecha && new Date(fecha) > proyecto.end_date)){
+    //     } else {
+    //       borrar.push(proyecto)
+    //     }
+    //   })
+    //   // actualizar array
+    //   this.filtrado = borrar
+    // } else {
+    //   // recuperar el array inicial
+    //   Object.assign(this.filtrado, this.proyectos.proyectos)
+    // }
+    // Object.assign(this.filtradoPorRango, this.filtrado)
   }
 
   //ERROR proyecto.empresa se ha modificado modelo Proyectos 
-  /*filtrarPorNombre(){
-    this.filtrado = this.filtradoPorRango
-    if(this.search){
-      let filter:Proyecto[] = []
-      this.filtrado.forEach(proyecto => {
-        // por cada proyecto que incluya los terminos en nombre de empresa o proyecto, se añade al array de filter
-        if(proyecto.project_name.includes(this.search) || proyecto.empresa.includes(this.search)){
-          filter.push(proyecto)
-        }
-      })
-      this.filtrado = filter
-    } 
-  }*/
+  filtrarPorNombre(){
+    // this.filtrado = this.filtradoPorRango
+    // if(this.search){
+    //   let filter:Proyecto[] = []
+    //   this.filtrado.forEach(proyecto => {
+    //     // por cada proyecto que incluya los terminos en nombre de empresa o proyecto, se añade al array de filter
+    //     if(proyecto.project_name.includes(this.search) || proyecto.empresa.includes(this.search)){
+    //       filter.push(proyecto)
+    //     }
+    //   })
+    //   this.filtrado = filter
+  } 
+  
   // comprobar si es usuario
   masInfo(id:number){
-    if(this.usuario.miPerfil){
-      this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id } })
-    } else {
-      this.router.navigate(['/register'])
-    }
+    // if(this.usuario.empresa || this.usuario.inversor){
+    //   this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id } })
+    // } else {
+    //   this.router.navigate(['/register'])
+    // }
   }
 }

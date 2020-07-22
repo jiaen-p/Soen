@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(["/register/enterprise"])
     } else {
       // console.log("Inversor", form.value)
-      this.router.navigate(['register/investor'])
+      this.router.navigate(['/register/investor'])
     }
     // ir a endpoint de registro en el backend
   }

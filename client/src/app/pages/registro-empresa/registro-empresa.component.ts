@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../models/empresa'
 import { Sectores } from 'src/app/models/sectores.enum';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-registro-empresa',
@@ -24,7 +25,7 @@ export class RegistroEmpresaComponent implements OnInit {
 
   
  
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private usuario: UsuarioService) { }
 
   save(nombre: HTMLInputElement, direccion: HTMLInputElement, nif: HTMLInputElement, telefono: HTMLInputElement,fax: HTMLInputElement,email: HTMLInputElement,web: HTMLInputElement, descripcion: HTMLInputElement, img_url: HTMLInputElement, sector: HTMLInputElement){
     this.newNombre = nombre.value;
@@ -39,19 +40,20 @@ export class RegistroEmpresaComponent implements OnInit {
     this.newId = 0;
     this.newSector = sector.value;
     this.newEmpresa =  {nombre:this.newNombre, direccion: this.newDireccion, nif: this.newNif, telefono: this.newTelefono, fax: this.newFax,email: this.newEmail, web: this.newWeb, descripcion: this.newDescripcion, img_url: this.newImg_url,id: this.newId,sector: <Sectores>this.newSector}
-    console.log(this.newEmpresa);
+    // console.log(this.newEmpresa);
 
-    // redireccion a login
-
-    this.router.navigate(['/login'])
+    // registrar empresa
+    this.usuario.registerEmpresa(this.newEmpresa).subscribe(res => {
+      if (res === 201){
+        this.router.navigate(['/login'])
+      } else {
+        this.router.navigate(['/register'])
+      }
+    })
   }
 
 
   ngOnInit(): void {
-
-    this.route.queryParams.subscribe(query => {
-      console.log(query.bussness_info)
-    })
   }
 
 }
