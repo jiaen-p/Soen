@@ -40,11 +40,16 @@ export class RegistroEmpresaComponent implements OnInit {
     this.newId = 0;
     this.newSector = sector.value;
     this.newEmpresa =  {nombre:this.newNombre, direccion: this.newDireccion, nif: this.newNif, telefono: this.newTelefono, fax: this.newFax,email: this.newEmail, web: this.newWeb, descripcion: this.newDescripcion, img_url: this.newImg_url,id: this.newId,sector: <Sectores>this.newSector}
-    console.log(this.newEmpresa);
+    // console.log(this.newEmpresa);
 
-    // redireccion a login
-    
-    this.router.navigate(['/login'])
+    // registrar empresa
+    this.usuario.registerEmpresa(this.newEmpresa).subscribe(res => {
+      if (res === 201){
+        this.router.navigate(['/login'])
+      } else {
+        this.router.navigate(['/register'])
+      }
+    })
   }
 
 

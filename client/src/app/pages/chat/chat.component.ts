@@ -42,7 +42,7 @@ export class ChatComponent implements OnInit {
 
   enviarMensaje(){
     if(this.enviar_mensaje){
-      this.servicio_mensajeria.enviarMensaje(new Mensajes(101, this.usuario.miPerfil.id, this.conversacion_usuario_seleccionado, this.enviar_mensaje, new Date()), this.conversacion_activo)
+      // this.servicio_mensajeria.enviarMensaje()
       this.enviar_mensaje = ''
     }
   }
@@ -53,10 +53,11 @@ export class ChatComponent implements OnInit {
   }
 // 
   ngOnInit(): void {
-    this.conversacion_usuario_seleccionado = this.mensajes[this.conversacion_activo][0].sender === this.usuario.miPerfil.id ? this.mensajes[this.conversacion_activo][0].receiver : this.mensajes[this.conversacion_activo][0].sender
+    // this.conversacion_usuario_seleccionado = this.mensajes[this.conversacion_activo][0].sender === this.usuario.miPerfil.id ? this.mensajes[this.conversacion_activo][0].receiver : this.mensajes[this.conversacion_activo][0].sender
   }
 
   private id_otro_usuario(index:number):number{
-    return this.mensajes[index][0].sender === this.usuario.miPerfil.id ? this.mensajes[index][0].receiver : this.mensajes[index][0].sender
+    // return this.mensajes[index][0].sender === this.usuario.miPerfil.id ? this.mensajes[index][0].receiver : this.mensajes[index][0].sender
+    return null
   }
 }

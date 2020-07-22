@@ -4,7 +4,7 @@
         <div id="search-container">
             <input type="text" placeholder="Search" [(ngModel)]='nombre_deseado' (keyup)="filtrar_chat()">
         </div>
-        <div id="conversation-list">
+        <!-- <div id="conversation-list">
             <div *ngFor="let mensaje of mensajes, let i = index" class="conversation" [class]="conversacion_activo === i ? 'active' : null" (click)="ver_conversacion(i)">
                 <img [src]="servicio_mensajeria.getInfoUser(mensaje[0].sender === usuario.miPerfil.id ? mensaje[0].receiver : mensaje[0].sender).profile_img_url" alt="Will smith"/>
                 <div class="title-text">
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-        <!-- lado derecho -->
+        lado derecho
         <div id="chat-title">
             <span>{{servicio_mensajeria.getInfoUser(mensajes[conversacion_activo][0].sender === usuario.miPerfil.id ? mensajes[conversacion_activo][0].receiver : mensajes[conversacion_activo][0].sender).username}}</span>
             <a class="borrar" (click)="borrarConversacion()" role="button">
@@ -44,7 +44,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div id="chat-form">
             <form>
                 <input type="text" placeholder="type a message" [(ngModel)]="enviar_mensaje" [ngModelOptions]="{standalone: true}" (keyup.enter)="enviarMensaje()">

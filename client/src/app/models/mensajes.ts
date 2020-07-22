@@ -1,3 +1,7 @@
 export class Mensajes {
-    constructor(public id: number, public sender:number, public receiver:number, public mensaje:string, public fecha:Date){}
+    public message_id: number = 0
+    public mensaje:string
+    public fecha:Date
+    public user_id:number
+    constructor(){}
 }

@@ -4,6 +4,7 @@ import { Proyecto } from '../models/proyecto';
 import { ProyectosService } from './proyectos.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+import { Empresa } from '../models/empresa';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,10 +24,13 @@ export class UsuarioService {
     return this.http.post(this.url, user)
   }
   registerInversor(user: User){
-    console.log(user)
     // completar el request cuando esté la pagina de formulario
-    // return this.http.post(this.url+"/register/investor",{user: this.userinfo, investor: user})
+    return this.http.post(this.url+"/register/investor",{user: this.userinfo, investor: user})
+  }
 
+  registerEmpresa(empresa: Empresa){
+    // completar el request cuando esté la pagina de formulario
+    return this.http.post(this.url+"/register/company",{user: this.userinfo, company: empresa})
   }
   getProyectos():Proyecto[]{
     return this.proyectos.getProyectosUsuario(this.miPerfil.id)
