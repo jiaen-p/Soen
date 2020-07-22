@@ -43,10 +43,16 @@
 .formulario{
     height: 100%;
 }
-.btn-primary{
+.btn{
     background-color: var(--secondary-color);
-    border-color: unset;
-    color: white;
+    border-color: transparent;
+    border-radius: 15px;
+    color: var(--primary-color);
+}
+.btn:hover{
+    background-color: var(--fourth-color);
+
+        color: black
 }
 .fav{
     position: absolute;

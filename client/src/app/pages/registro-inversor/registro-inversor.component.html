@@ -1,0 +1,19 @@
+<div class="formulario">
+    <br><h2 style="text-align: center;">Registra como Inversor... </h2><br><br>
+    <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="name" placeholder="Nombre" #name>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" id="surname" placeholder="Apellido" #surname>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="profile_url" placeholder="Perfil URL" #profile_url>
+          </div>
+          <div class="form-group">
+            <input type="number" class="form-control" id="postal_code" placeholder="Código postal" #postal_code>
+          </div>
+              
+        <br><button type="button" class="btn btn-primary" style="background-color: var(--secondary-color);" (click)=save(name,surname,profile_url,postal_code) >Submit</button>
+      </form>
+</div>

@@ -1,14 +1,13 @@
 import { Sectores } from './sectores.enum'
 export class Proyecto {
-        public nombre: string
-        public empresa: string
-        public capital_total: number
-        public capital_restante: number
-        public fecha_fin: Date
-        public descripcion: string
-        public img_url: string
-        public id: number
+        public project_name: string
+        public description: string
+        public total_amount: number
+        public remaining_abount: number
+        public end_date: Date 
+        public project_img_url: string
         public sector: Sectores
+        public update: string
  
 
 }

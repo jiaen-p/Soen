@@ -7,6 +7,7 @@ import { ProyectosService } from './proyectos.service';
 })
 export class UsuarioService {
   public miPerfil:Usuario = null
+  public userinfo = null;
   constructor(private proyectos: ProyectosService) {
     
   }

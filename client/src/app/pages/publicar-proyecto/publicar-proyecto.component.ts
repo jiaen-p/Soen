@@ -10,32 +10,39 @@ import { Sectores } from 'src/app/models/sectores.enum';
 })
 export class PublicarProyectoComponent implements OnInit {
   public newProyecto: Proyecto = new Proyecto();
-  public newNombre: string;
-  public newEmpresa: string;
-  public newCapital_total: number;
-  public newCapital_restante: number;
-  public newFecha_fin:Date;
-  public newDescripcion: string;
-  public newImg_url: string;
-  public newId: number;
+  public newProject_name: string
+  public newDescription: string
+  public newTotal_amount: number
+  public newRemaining_abount: number
+  public newEnd_date: Date
+  public newProject_img_url: string
   public newSector: string;
+  public newUpdate: string
+ 
+
  
   constructor(private proyectos:ProyectosService) { }
 
-  save(nombre: HTMLInputElement, empresa: HTMLInputElement,capital_total: HTMLInputElement,fecha_fin: HTMLInputElement,descripcion: HTMLInputElement,img_url: HTMLInputElement, sector: HTMLInputElement){
-    this.newNombre = nombre.value;
-    this.newEmpresa = empresa.value;
-    this.newCapital_total = Number(capital_total.value);
-    this.newCapital_restante = 0;
-    this.newFecha_fin = fecha_fin.valueAsDate;
-    this.newDescripcion = descripcion.value
-    this.newImg_url = img_url.value;
-    this.newId = 0;
+  save(project_name: HTMLInputElement, description: HTMLInputElement,total_amount: HTMLInputElement,end_date: HTMLInputElement,project_img_url: HTMLInputElement, sector: HTMLInputElement){
+    this.newProject_name = project_name.value;
+    this.newDescription = description.value;
+    this.newTotal_amount = Number(total_amount.value);
+    this.newRemaining_abount = 0;
+    this.newEnd_date = end_date.valueAsDate;
+    this.newProject_img_url = project_img_url.value
     this.newSector = sector.value;
-    this.newProyecto =  {nombre:this.newNombre, empresa:this.newEmpresa,capital_total: this.newCapital_total,capital_restante: this.newCapital_restante,fecha_fin: this.newFecha_fin,descripcion: this.newDescripcion,img_url: this.newImg_url,id: this.newId,sector: <Sectores>this.newSector}
+    this.newUpdate = "";
+    this.newProyecto =  {project_name:this.newProject_name, description:this.newDescription, total_amount: this.newTotal_amount,remaining_abount: this.newRemaining_abount,end_date: this.newEnd_date,project_img_url: this.newProject_img_url,sector: <Sectores>this.newSector,update:this.newUpdate}
     this.proyectos.proyectos.unshift(this.newProyecto)
   }
   ngOnInit(): void {
   }
-
+  public project_name: string
+  public description: string
+  public total_amount: number
+  public remaining_abount: number
+  public end_date: Date 
+  public project_img_url: string
+  public sector: Sectores
+  public update: string
 }
