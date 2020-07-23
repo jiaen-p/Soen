@@ -2,6 +2,7 @@ import { Sectores } from './sectores.enum'
 export class Proyecto {
         public project_id: number
         public project_name: string
+        public company_name: string
         public description: string
         public total_amount: number
         public remaining_abount: number

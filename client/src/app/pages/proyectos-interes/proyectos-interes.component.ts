@@ -16,6 +16,7 @@ export class ProyectosInteresComponent implements OnInit {
   constructor(public router:Router, private apiService: ProyectosService) { }
 
   // Coge el id del inversor y devuelve favoritos asociados
+  /*
   Favs(id){
     this.apiService.getFav(id).subscribe((data: any[]) =>
     {
@@ -26,6 +27,7 @@ export class ProyectosInteresComponent implements OnInit {
     }
     ) 
   }
+  */
 
   ngOnInit(): void {
   }

@@ -25,6 +25,7 @@ connection.connect(function (err) {
     }
 });
 // API
+// Registro de un usuario que es empresa
 app.post("/user/register/company", function (req, resp) {
     var params = [req.body.email, req.body.password];
     var sql = "INSERT INTO Usuarios (email, password) VALUES (?, ?)";
@@ -48,6 +49,7 @@ app.post("/user/register/company", function (req, resp) {
         }
     });
 });
+// Registro de un usuario que es inversor
 app.post("/user/register/investor", function (req, resp) {
     var params = [req.body.email, req.body.password];
     var sql = "INSERT INTO Usuarios (email, password) " + "VALUES (?, ?)";
@@ -71,6 +73,7 @@ app.post("/user/register/investor", function (req, resp) {
         }
     });
 });
+// Login de usuario si es empresa o inversor
 app.post("/user/login", function (req, resp) {
     var email = req.body.email;
     var password = req.body.password;
@@ -116,6 +119,7 @@ app.post("/user/login", function (req, resp) {
         });
     }
 });
+// Modificar usuario
 app.put("/user", function (req, resp) {
     var params = [req.body.email, req.body.password, req.body.user_id];
     var sql = "UPDATE Usuarios SET email = ?, password = ? WHERE user_id = ?";
@@ -128,7 +132,65 @@ app.put("/user", function (req, resp) {
         }
     });
 });
+// Obtener proyectos
+app.get("/projects", function (req, resp) {
+    var sql = "SELECT * FROM Proyectos";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
+            resp.send(result);
+        }
+    });
+});
+// Obtiene proyectos según filtros pasados por el usuario
+app.get("/projects/filters", function (req, resp) {
+    var sector = req.body.sector;
+    var min = req.body.min;
+    var max = req.body.max;
+    var end_date = req.body.end_date;
+    var sql = "SELECT * FROM Proyectos WHERE ";
+    if (sector) {
+        sql += "sector = " + sector;
+    }
+    if (min) {
+        sql += "min < " + min;
+    }
+    if (max) {
+        sql += "max < " + max;
+    }
+    if (end_date) {
+        sql += "end_date < " + end_date;
+    }
+    connection.query(sql, function (err, result) {
+        console.log(result);
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
+            resp.send(result);
+        }
+    });
+});
+// Obtener proyectos por id de proyecto
 app.get("/projects/:id", function (req, resp) {
+    var id = req.params.id;
+    var sql = "SELECT * FROM Proyectos WHERE project_id = ?";
+    connection.query(sql, function (err, result) {
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
+            resp.send(result);
+        }
+    });
+});
+// Obtener proyectos por id de usuario
+app.get("/projects/user/:id", function (req, resp) {
     var id = req.params.id;
     var sql = "SELECT project_id FROM Proyectos JOIN IN Proyecto-Empresa ON Proyectos.project_id = Proyecto-Empresa.project_id JOIN IN Empresas ON Proyecto-Empresa.company_id = Empresas.company_id JOIN IN Usuarios ON Empresas.user_id = Usuarios.user_id JOIN IN Inversores ON Inversores.user_id = Usuarios.user_id WHERE Usuarios.user_id = ?";
     connection.query(sql, id, function (err, result) {
@@ -141,6 +203,35 @@ app.get("/projects/:id", function (req, resp) {
         }
     });
 });
+// Obtener proyectos favoritos asociados a inversor
+app.get("/projects/investor/:id", function (req, resp) {
+    var id = req.params.id;
+    var sql = "SELECT *  FROM Favoritos WHERE investor_id = ?";
+    connection.query(sql, id, function (err, result) {
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
+            resp.send(result);
+        }
+    });
+});
+// Añadir proyecto favorito a un inversor
+app.post("/projects/favorites/:id", function (req, resp) {
+    var params = [req.body.investor_id, req.body.projects_id];
+    var sql = "INSERT INTO Favoritos (investor_id, project_id) " + "VALUES (?, ?)";
+    connection.query(sql, params, function (err, result) {
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
+            resp.send(result);
+        }
+    });
+});
+// Añadir proyecto
 app.post("/projects", function (req, resp) {
     var params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_];
     var sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -154,6 +245,7 @@ app.post("/projects", function (req, resp) {
         }
     });
 });
+// Modificar proyecto
 app.put("/projects", function (req, resp) {
     var params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_, req.body.project_id];
     var sql = "UPDATE Proyectos SET project_name = ?, description = ?, total_amount = ?, remaining_amount = ?, end_date = ?, project_img_url = ?, sector = ?, update_ = ? WHERE project_id = ?";
@@ -167,6 +259,7 @@ app.put("/projects", function (req, resp) {
         }
     });
 });
+// Borrar un proyecto
 app["delete"]("/projects", function (req, resp) {
     var params = req.body.project_id;
     var sql = "DELETE FROM Proyectos WHERE project_id = ?";
@@ -180,7 +273,7 @@ app["delete"]("/projects", function (req, resp) {
         }
     });
 });
-// conversación y me da los mensajes de la conversación
+// Relación conversación y mensajes
 app.get("/conversation/:id", function (req, resp) {
     var id = req.params.id;
     var sql = "SELECT * FROM `Mensaje-Usuario` JOIN Mensajes ON `Mensaje-Usuario`.message_id = Mensajes.message_id WHERE `Mensaje-Usuario`.conversation_id = ?";
@@ -194,7 +287,7 @@ app.get("/conversation/:id", function (req, resp) {
         }
     });
 });
-//añadir conversacion nueva
+// Añadir conversacion nueva
 app.post("/conversation", function (req, resp) {
     var params = [req.body.sender, req.body.receiver];
     var sql = "INSERT INTO Conversaciones (sender, receiver) " + "VALUES (?, ?)";
@@ -208,7 +301,7 @@ app.post("/conversation", function (req, resp) {
         }
     });
 });
-//modificar mensaje
+// Modificar mensaje
 app.put("/message", function (req, resp) {
     var params = [req.body.user_id, req.body.message, req.body.date];
     var sql = "UPDATE Mensajes SET user_id = ?, message = ?, date = ? WHERE message_id = ?";
@@ -222,7 +315,7 @@ app.put("/message", function (req, resp) {
         }
     });
 });
-// borrar conversación
+// Borrar conversación
 app["delete"]("/conversation", function (req, resp) {
     var params = req.body.conversation_id;
     var sql = "DELETE FROM Conversaciones WHERE conversation_id = ?";

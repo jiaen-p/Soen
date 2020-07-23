@@ -1,3 +1,4 @@
+<!--
 <div class="row proyectos">
     <div class="col-xl-2" >
         <app-menu-empresa></app-menu-empresa>
@@ -54,5 +55,35 @@
                 <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
           </div>
         </div>
+  </div>
+</div>
+-->
+
+<div class="row proyectos">
+  <div class="col-xl-2">
+    <app-menu-empresa></app-menu-empresa>
+  </div>
+  <div class="col-xl-10 background: var(--primary-color)">
+    <br>
+    <h3 style="text-align: center;">Mis proyectos</h3>
+    <div id="proyectos" class="row ">
+      <div *ngIf="proyectos!=null">
+        <div *ngFor="let proyecto of projectsUser; let indice = index" class="col-md-8">
+          <br>
+          <h2>{{ proyecto.project_name }}</h2><br>
+          <h3>Descripción del proyecto</h3>
+          <p>{{ proyecto.description }}</p>
+          <h5>Última actualización</h5>
+          <p>(fecha de actualización) - Asunto de actualización</p>
+        </div>
+
+        <div class="col-md-4">
+          <br>
+          <h5>Capital invertido: 4000/8000€</h5><br><br><br>
+          <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
+          <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

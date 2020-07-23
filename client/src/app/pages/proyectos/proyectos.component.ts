@@ -4,6 +4,7 @@ import { ProyectosService } from '../../shared/proyectos.service'
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from '../../shared/inversor.service'
+import { Empresa } from 'src/app/models/empresa';
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -16,6 +17,7 @@ export class ProyectosComponent implements OnInit {
   public user_fav = []
   // search, vinculado directamente con el valor de la barra de busqueda
   public search:string = ''
+  public projects: Proyecto[]
 
 
   constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
@@ -35,6 +37,43 @@ export class ProyectosComponent implements OnInit {
     // cambia el icono segun estado, no funciona con ngclass
     document.getElementById('id_proyecto_'+id).setAttribute("data-prefix", res)
   }
+
+  allProjects()
+  {
+    this.apiService.getProyectos().subscribe((data: any[]) =>
+    {
+      console.log(this.projects = data[0]);
+    }
+    )
+  }
+
+  filter(sector:string = null, max:number = null, min:number = null, date:string = null)
+  {
+    this.apiService.getFilter(sector, 0, 0, "2020-02-02").subscribe((data: any[]) =>
+    {
+      console.log(data);
+    }
+    )
+  }
+
+  filterForName()
+  {
+    this.apiService.getProyectos().subscribe((data: any[]) =>
+    {
+      if(this.search){
+        let company: Empresa
+        data.forEach(project => {
+          // por cada proyecto que incluya los terminos enombre de empresa o proyecto, se añade al array dfilter
+          if(project.project_name.includes(this.search) || company.company_name.includes(this.search)){
+            this.filtrado.push(project);
+        }
+      })
+      this.filtrado = data;
+      }
+    }
+    )
+  }
+
   ngOnInit(): void {
     // asignar valores a los arrays con datos obtenidos del service
     // Object.assign(this.filtrado, this.proyectos.proyectos)
