@@ -13,9 +13,8 @@ import { Proyecto } from '../../models/proyecto'
 export class MisProyectosComponent implements OnInit {
 
   public projectsUser: Proyecto[]
-  private usuario: Usuario
 
-  constructor(public router: Router, private apiService: ProyectosService, public user:UsuarioService) {}
+  constructor(public router: Router, private apiService: ProyectosService, public usuario:UsuarioService) {}
 
   projectsForUser(id:number)
   {

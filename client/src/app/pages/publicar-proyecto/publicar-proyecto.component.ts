@@ -14,11 +14,11 @@ export class PublicarProyectoComponent implements OnInit {
 
   save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string)
   {
-    this.apiService.postProyecto(new Proyecto()).subscribe((data) =>
-    {
-      console.log(data);
-    }
-    )
+    // this.apiService.postProyecto(new Proyecto()).subscribe((data) =>
+    // {
+    //   console.log(data);
+    // }
+    // )
   }
   ngOnInit(): void {
   }

@@ -67,7 +67,7 @@
     <br>
     <h3 style="text-align: center;">Mis proyectos</h3>
     <div id="proyectos" class="row ">
-      <div *ngIf="proyectos!=null">
+      <div *ngIf="projectsUser!=null">
         <div *ngFor="let proyecto of projectsUser; let indice = index" class="col-md-8">
           <br>
           <h2>{{ proyecto.project_name }}</h2><br>

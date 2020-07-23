@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     console.log(form.value.email)
     if(form.value.email && form.value.password){
       this.usuario.login(form.value).subscribe(res => {
+        console.log(res)
         if(res){
           // asignar el tipo de perfil con el nuevo usuario del login
           if (res[0].company_id){
