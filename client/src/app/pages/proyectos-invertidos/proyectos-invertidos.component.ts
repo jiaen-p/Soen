@@ -15,13 +15,13 @@ export class ProyectosInvertidosComponent implements OnInit {
   constructor(public router:Router, private apiService: ProyectosService) { }
 
   // Coge los proyectos asociados al usuario por su id
-  investorProjects(id:number)
+  projectsForUser(id:number)
   {
-    this.apiService.getProyectoUsuario(id).subscribe((data) =>
+    this.apiService.getProyectoUser(id).subscribe((data: any[]) =>
     {
-      console.log(this.projects = data[0]);
+      console.log(this.projects = data);
     }
-    )
+  )
   }
 
   ngOnInit(): void {

@@ -24,44 +24,21 @@ export class ProyectosService {
   }
 
   //Proyectos por id usuario
-
-  getProyectoUsuario(id:number)
+  getProyectoUser(id:Number)
   {
     return this.http.get(this.url + "/user/" + id);
   }
 
-  // Proyecto favorito de un inversor
-  getFav(id:number)
-  {
-    return this.http.get(this.url + "/investor/" + id);
-  }
+  //Proyectos según filtros
 
-  postFav(id:number)
+  getFilter(sector:string, min:number, max:number, end_date:string)
   {
-    return this.http.get(this.url + "/favorites/" + id);
-  }
-
-  //Añadir proyecto
-  postProyecto(project:Proyecto)
-  {
-    return this.http.post(this.url, project);
-  }
-
-  //Modificar proyecto
-  putProyecto(project:Proyecto)
-  {
-    return this.http.put(this.url, project);
-  }
-
-  //Borrar proyecto
-  deleteProyecto(project_id)
-  {
-    const option =
+    const options =
     {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
-      body: {project_id: project_id}  
+      body: {sector: sector, min: min, max:max, end_date:end_date} 
     }
-    return this.http.request('delete', this.url, option);
+    return this.http.request('filters', this.url + "/filters", options)
   }
 
 

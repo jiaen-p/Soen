@@ -215,6 +215,43 @@ app.get("/projects",
     }
     );
 
+// Obtiene proyectos según filtros pasados por el usuario
+app.get("/projects/filters",
+    function(req, resp)
+    {
+        let sector = req.body.sector;
+        let min = req.body.min;
+        let max = req.body.max; 
+        let end_date = req.body.end_date;
+        let sql = "SELECT * FROM Proyectos WHERE ";
+
+        if(sector){
+            sql += `sector = ${sector}`
+        }
+        if(min){
+            sql += `min < ${min}`;
+        }
+        if(max){
+            sql += `max < ${max}`;
+        }
+        if(end_date){
+            sql += `end_date < ${end_date}`;
+        }
+        
+        connection.query(sql, function (err, result)
+            {
+                console.log(result);
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }  
+        ); 
+    }
+    );
+
 // Obtener proyectos por id de proyecto
 app.get("/projects/:id",
     function(req, resp)
@@ -239,7 +276,7 @@ app.get("/projects/user/:id",
     function(req, resp)
     {
         let id = req.params.id;
-        let sql = "SELECT project_id FROM Proyectos JOIN IN Proyecto-Empresa ON Proyectos.project_id = Proyecto-Empresa.project_id JOIN IN Empresas ON Proyecto-Empresa.company_id = Empresas.company_id JOIN IN Usuarios ON Empresas.user_id = Usuarios.user_id JOIN IN Inversores ON Inversores.user_id = Usuarios.user_id WHERE Usuarios.user_id = ?";
+        let sql = "SELECT * FROM Proyectos JOIN Proyecto-Empresa ON Proyectos.project_id = Proyecto-Empresa.project_id JOIN Empresas ON Proyecto-Empresa.company_id = Empresas.company_id WHERE Empresas.user_id = ?";
         connection.query(sql, id, function (err, result)
             {
                 if(err){
