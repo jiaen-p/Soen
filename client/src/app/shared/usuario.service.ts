@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Empresa } from '../models/empresa';
 import { Router } from '@angular/router';
+import { Inversor } from '../models/inversor';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +37,7 @@ export class UsuarioService {
     this.inversor = null
     this.router.navigate(["/"])
   }
-  registerInversor(user: User){
+  registerInversor(user: Inversor){
     // completar el request cuando esté la pagina de formulario
     return this.http.post(this.url+"/register/investor",{user: this.userinfo, investor: user})
   }

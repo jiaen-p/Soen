@@ -44,6 +44,7 @@ export class RegistroEmpresaComponent implements OnInit {
 
     // registrar empresa
     this.usuario.registerEmpresa(this.newEmpresa).subscribe(res => {
+      console.log(res)
       if (res === 201){
         this.router.navigate(['/login'])
       } else {
