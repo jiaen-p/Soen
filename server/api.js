@@ -87,7 +87,10 @@ app.post("/user/register/company", function (req, resp) {
 });
 // Registro de un usuario que es inversor
 app.post("/user/register/investor", function (req, resp) {
-    var params = [req.body.email, req.body.password];
+    console.log(req.body);
+    var user = req.body.user;
+    var inversor = req.body.investor;
+    var params = [user.email, user.password];
     var sql = "INSERT INTO Usuarios (email, password) " + "VALUES (?, ?)";
     connection.query(sql, params, function (err, result) {
         if (err) {
@@ -95,7 +98,7 @@ app.post("/user/register/investor", function (req, resp) {
             resp.sendStatus(500);
         }
         else {
-            var paramsB = [result.insertId, req.body.name, req.body.surname, req.body.profile_url, req.body.postal_code];
+            var paramsB = [result.insertId, inversor.name, inversor.surname, inversor.profile_url, inversor.postal_code];
             var investor = "INSERT INTO Inversores (user_id, name, surname, profile_url, postal_code)" + "VALUES (?, ?, ?, ?, ?)";
             connection.query(investor, paramsB, function (err, result) {
                 if (err) {
@@ -135,7 +138,6 @@ app.post("/user/login", function (req, resp) {
                                 resp.sendStatus(500);
                             }
                             else {
-                                console.log('test', result2);
                                 resp.send(result2);
                             }
                         });
@@ -397,9 +399,11 @@ app["delete"]("/conversations", function (req, res) {
     res.send({ "done": true });
 });
 // Añadir conversacion nueva
-app.post("/conversation", function (req, resp) {
+app.post("/conversations", function (req, resp) {
+    console.log(req.body);
     var params = [req.body.sender, req.body.receiver];
     var sql = "INSERT INTO Conversaciones (sender, receiver) " + "VALUES (?, ?)";
+    sql = "SELECT * FROM Conversaciones";
     connection.query(sql, params, function (err, result) {
         if (err) {
             console.log(err);

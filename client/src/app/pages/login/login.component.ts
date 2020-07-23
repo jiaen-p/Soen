@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from "../../models/user";
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
-import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-login',
@@ -21,10 +20,9 @@ export class LoginComponent implements OnInit {
   {
     // realizar autentificacion con el servidor y cambiar autentificado a true
     // asignar el perfil de usuario al servicio de usuario
-    console.log(form.value.email)
     if(form.value.email && form.value.password){
       this.usuario.login(form.value).subscribe(res => {
-        console.log(res)
+        this.usuario.userinfo = form.value
         if(res){
           // asignar el tipo de perfil con el nuevo usuario del login
           if (res[0].company_id){
@@ -34,10 +32,7 @@ export class LoginComponent implements OnInit {
           }
           this.usuario.perfil_url = res[0].profile_url
           this.usuario.user_id = res[0].user_id
-          console.log(res)
           this.router.navigate(["/dashboard"])
-        } else {
-          console.log(res)
         }
       })
     }

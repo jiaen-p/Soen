@@ -65,35 +65,58 @@ export class ChatComponent implements OnInit {
   }
   // 
   getConversation(){
-    let result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo) || this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)
-    return result[0].name
+    let result = null
+    if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+      result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0].name
+    } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+      result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0].name
+    }
+    return result
   }
 
   getMessage(data){
+    let res = null
     let conv_id = data.conversation_id
     let result = this.chat.conversaciones[0].filter(conv => conv.conversation_id === conv_id)
-    return result[0].message
+    if(result.length !== 0){
+      res = result[0].message
+    }
+    return res
   }
 
   getDate(date){
     return new Date(date)
   }
-
+  
   getDay(data):Date{
+    let res = null
     let conv_id = data.conversation_id
     let result = this.chat.conversaciones[0].filter(conv => conv.conversation_id === conv_id)
-    return new Date(result[0].date)
+    if(result.length !== 0){
+      res = new Date(result[0].date)
+    }
+    return res
   }
 
   getName(data):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
-    let response =  this.chat.conversaciones[3].filter(conv => conv.user_id === user) || this.chat.conversaciones[2].filter(conv => conv.user_id = user)
+    let response = null
+    if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
+      response = this.chat.conversaciones[3].filter(conv => conv.user_id === user) 
+    }else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
+      response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
+    }
     return response[0].name
   }
 
   getProfile(data):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
-    let response =  this.chat.conversaciones[3].filter(conv => conv.user_id === user) || this.chat.conversaciones[2].filter(conv => conv.user_id = user)
+    let response =  null
+    if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
+      response = this.chat.conversaciones[3].filter(conv => conv.user_id === user)
+    } else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
+      response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
+    }
     return response[0].profile_url
   }
 
@@ -113,9 +136,6 @@ export class ChatComponent implements OnInit {
         this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
       })
     }
-    // this.conversacion_usuario_seleccionado = this.mensajes[this.conversacion_activo][0].sender === this.usuario.miPerfil.id ? this.mensajes[this.conversacion_activo][0].receiver : this.mensajes[this.conversacion_activo][0].sender
   }
-  private id_otro_usuario(index:number):number{
-    return // this.chat.conversaciones[1][index].sender === this.usuario.user_id ? this.chat.conversaciones[1][index].receiver : this.chat.conversaciones[1][index].sender
-  }
+
 }

@@ -13,7 +13,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.usuario)
     if(this.usuario.empresa){
       this.router.navigate(['/dashboard/mis_proyectos'])
     } else {

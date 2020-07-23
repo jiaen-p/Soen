@@ -23,4 +23,7 @@ export class ChatService {
   deleteConversation(conversation_id: number){
     return this.http.request("delete",this.url, {body: {conversation_id: conversation_id}})
   }
+  openConversation(project_id: number){
+    return this.http.post(this.url, {user_id: this.usuario.user_id, project_id: project_id})
+  }
 }

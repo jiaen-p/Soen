@@ -71,7 +71,10 @@ app.post("/user/register/company",
 app.post("/user/register/investor",
     function(req, resp)
     {
-        let params = [req.body.email, req.body.password];
+        console.log(req.body)
+        let user = req.body.user
+        let inversor = req.body.investor
+        let params = [user.email, user.password];
         let sql = "INSERT INTO Usuarios (email, password) " + "VALUES (?, ?)";
         connection.query(sql, params, function (err, result)
             {
@@ -80,7 +83,7 @@ app.post("/user/register/investor",
                     resp.sendStatus(500);
                 } else{
                     
-                    let paramsB = [result.insertId, req.body.name, req.body.surname, req.body.profile_url, req.body.postal_code];
+                    let paramsB = [result.insertId, inversor.name, inversor.surname, inversor.profile_url, inversor.postal_code];
                     let investor = "INSERT INTO Inversores (user_id, name, surname, profile_url, postal_code)" + "VALUES (?, ?, ?, ?, ?)";
                     connection.query(investor, paramsB, function (err, result)
                     {
@@ -126,7 +129,6 @@ app.post("/user/login",
                                 if (err){
                                     resp.sendStatus(500)
                                 } else {
-                                    console.log('test', result2)
                                     resp.send(result2)
                                 }
                             });
@@ -466,11 +468,13 @@ app.delete("/conversations", (req,res) => {
 })
 
 // Añadir conversacion nueva
-app.post("/conversation",
+app.post("/conversations",
     function(req, resp)
     {
+        console.log(req.body)
         let params = [req.body.sender, req.body.receiver];
         let sql = "INSERT INTO Conversaciones (sender, receiver) " + "VALUES (?, ?)";
+        sql = "SELECT * FROM Conversaciones"
         connection.query(sql, params, function (err, result)
             {
                 if(err){

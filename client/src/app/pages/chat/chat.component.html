@@ -1,4 +1,4 @@
-<div class="container-fluid box">
+<div class="container-fluid box" *ngIf="chat.conversaciones">
     <!-- lado izquierdo -->
     <div id="chat-container">
         <div id="search-container">
@@ -10,11 +10,11 @@
                 <div class="title-text">
                     {{getName(conversacion)}}
                 </div>
-                <div class="created-date">
+                <div class="created-date" *ngIf="getDay(conversacion)">
                     <!-- {{mensaje[0].fecha.toLocaleDateString('es-ES', {day: 'numeric', month:'short'})}} -->
                     {{getDay(conversacion).toLocaleDateString('es-ES', {day: 'numeric', month:'short'})}}
                 </div>
-                <div class="conversation-message">
+                <div class="conversation-message" *ngIf="getMessage(conversacion)">
                     <!-- {{mensaje[0].mensaje}} -->
                     {{getMessage(conversacion)}}
                 </div>
