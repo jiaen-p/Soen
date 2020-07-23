@@ -21,9 +21,10 @@ export class UsuarioService {
     
   }
   // metodo que busca en bbdd info sobre otros usuarios
-  getUserInfo(id:number):Usuario{
-    // generar usuario
-    return 
+  getUserInfo(id:number){
+
+    return this.http.get(this.url + `/${id}`).toPromise()
+
   }
   login(user){
     return this.http.post(this.url + "/login", user)

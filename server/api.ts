@@ -21,7 +21,8 @@ let connection = mysql.createConnection
         host: "localhost",
         user: "root",
         password: null,
-        database: "super_proyecto"
+        database: "super_proyecto",
+        multipleStatements: true
     }
 );
 
@@ -159,6 +160,36 @@ app.post("/user/login",
         }   
     }
     );
+
+// Obtener informacion sobre un usuario con user_id 
+app.get("/user/:id", (req,res) => {
+    let user_id = req.params.id
+    let sql = "SELECT * FROM Usuarios WHERE Usuarios.user_id = ?"
+    let value = [user_id]
+    connection.query(sql, value, (err, data) => {
+        if (err) throw err
+        console.log(data)
+        if (data.length > 0 && data[0].role === 'company'){
+            sql = "SELECT * FROM Empresas WHERE user_id = ?"
+            connection.query(sql, value, (err, data) => {
+                if (err) throw err
+                console.log(data)
+                res.send(data)
+            })
+        } else if (data.length > 0 && data[0].role === 'investor'){
+            sql = "SELECT * FROM Inversores Where user_id = ?"
+            connection.query(sql, value, (err, data) => {
+                if (err) throw err
+                console.log("test")
+                console.log(data)
+                res.send(data)
+            })
+        } else {
+            res.sendStatus(404)
+        }
+    })
+})    
+
 
 
 // Modificar usuario
@@ -348,6 +379,67 @@ app.get("/conversation/:id",
         ); 
     }
     );
+app.get("/conversations/:user_id", (req,res) => {
+    let user_id = req.params.user_id
+    let query = `
+        SELECT * 
+        FROM \`Mensaje-Usuario\` 
+        JOIN Mensajes 
+        ON \`Mensaje-Usuario\`.message_id = Mensajes.message_id 
+        JOIN \`Conversaciones\` 
+        ON \`Mensaje-Usuario\`.conversation_id = \`Conversaciones\`.conversation_id 
+        WHERE \`Conversaciones\`.sender = ? OR \`Conversaciones\`.receiver = ? 
+        GROUP BY  \`Conversaciones\`.conversation_id, Mensajes.message_id 
+        ORDER BY Conversaciones.conversation_id ASC, date DESC;`
+    query += `
+        SELECT * 
+        FROM Conversaciones 
+        WHERE \`Conversaciones\`.sender = ? OR \`Conversaciones\`.receiver = ?;
+    `
+    query += `
+        SELECT Empresas.profile_url, Empresas.user_id, Conversaciones.conversation_id, Empresas.company_name as name
+        FROM Conversaciones 
+        JOIN Empresas
+        ON Conversaciones.sender = Empresas.user_id OR Conversaciones.receiver = Empresas.user_id
+        WHERE \`Conversaciones\`.sender = ? OR \`Conversaciones\`.receiver = ? 
+        GROUP BY user_id;
+    `
+    query += `
+        SELECT Inversores.profile_url, Inversores.user_id, Conversaciones.conversation_id, Inversores.name as name
+        FROM Conversaciones 
+        JOIN Inversores
+        ON Conversaciones.sender = Inversores.user_id OR Conversaciones.receiver = Inversores.user_id
+        WHERE \`Conversaciones\`.sender = ? OR \`Conversaciones\`.receiver = ? 
+        GROUP BY user_id;
+    `
+    connection.query(query, [user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id, user_id], async (err, data) => {
+        if (err) throw err
+        res.send(data)
+    })
+})
+
+// enviar mensaje
+app.put("/conversations", (req,res) => {
+    console.log(req.body)
+    let m = req.body.mensaje
+    let conversation_id = req.body.conversation_id
+    let sql = `INSERT INTO Mensajes (message, user_id) VALUES (?,?)`
+    connection.query(sql,[m.mensaje, m.user_id], (err,data) => {
+        if (err) throw err
+        sql = `INSERT INTO \`Mensaje-Usuario\` (conversation_id, message_id) VALUES (?,?)`
+        connection.query(sql, [conversation_id, data.insertId], (err, data2) => {
+            if (err) throw err
+            res.send({message_id: data.insertId})
+        })
+    })
+})
+
+// borrar conversacion
+app.delete("/conversations", (req,res) => {
+    console.log(req.body.conversation_id)
+
+    res.send({"done": true})
+})
 
 // Añadir conversacion nueva
 app.post("/conversation",

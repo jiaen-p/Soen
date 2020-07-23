@@ -17,7 +17,7 @@ export class MensajesService {
     return null
   }
   getInfoUser(id:number):Usuario{
-    return this.usuario.getUserInfo(id)
+    return null
   }
 
   enviarMensaje(mensaje: Mensajes, index: number){
