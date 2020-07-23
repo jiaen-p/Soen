@@ -8,9 +8,9 @@ export class Empresa {
     public direccion: string
     public web_url: string
     public descripcion: string
-    public logo_url: string
+    public profile_url: string
     public sector: string
-   
+    
 }
 
 
