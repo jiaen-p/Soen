@@ -1,7 +1,5 @@
 // Configuración API
 
-import { resolve } from "path";
-
 let express = require("express");
 let bodyParser = require('body-parser');
 let app = express();
@@ -108,58 +106,47 @@ app.post("/user/login",
     {
         let email = req.body.email;
         let password = req.body.password;
-        
         let sql = "SELECT * FROM Usuarios WHERE email = ? AND password = ?"
         if(email && password){
             connection.query(sql, [email, password], function(err, result){
-                if(result[0].password != password){
-                    resp.send('Email o contraseña incorrecto');
-
-                } else if(err){
+                if(err){
                     console.log(err);
-
-                } else{
-                    
-                    let id = result[0].user_id;
-                    let role = result[0].role;
-                    
-                    let userA = "SELECT * FROM Empresas WHERE Empresas.user_id = ?";
-                    let userB = "SELECT * FROM Inversores WHERE Inversores.user_id = ?";
-
-                    connection.query(userA, [id, role], function (err, result)
-                    {
-                        if(role === 'company')
-                        {
-                            resp.send(result); 
-                            
-                        } else if(err){
-                            console.log(err);
-
-                        } else {
-                            
-                            connection.query(userB, [id, role], function (err, result)
-                            {
-                                if(err){
-                                    console.log(err); 
-                                    resp.sendStatus(500);
-                                } else{
-                                    if(role === 'investor'){
-                                        resp.send(result);
-                                    } else{
-                                        resp.sendStatus(404);
-                                    }
+                } else {
+                    if(result.length === 0){
+                        resp.sendStatus(401)
+                        console.log("usuario y contraseña no encontrado")
+                    } else {
+                        let id = result[0].user_id;
+                        let role = result[0].role;
+                        
+                        let userA = "SELECT * FROM Empresas WHERE Empresas.user_id = ?";
+                        let userB = "SELECT * FROM Inversores WHERE Inversores.user_id = ?";
+                        if(role === 'company'){
+                            connection.query(userA, [id, role], function (err, result2){
+                                if (err){
+                                    resp.sendStatus(500)
+                                } else {
+                                    console.log('test', result2)
+                                    resp.send(result2)
                                 }
-                            }
-                            );
+                            });
+                        } else if(role === 'investor'){
+                            connection.query(userB, [id, role], function (err, result2){
+                                if (err){
+                                    resp.sendStatus(500)
+                                } else {
+                                    resp.send(result2)
+                                }
+                            });
+                        } else {
+                            resp.sendStatus(500)
                         }
                     }
-                    );
                 }
             }
             );
         }   
-    }
-    );
+    });
 
 // Obtener informacion sobre un usuario con user_id 
 app.get("/user/:id", (req,res) => {
