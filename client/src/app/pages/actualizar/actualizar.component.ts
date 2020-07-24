@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ProyectosService } from 'src/app/shared/proyectos.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Proyecto } from 'src/app/models/proyecto';
+import { EmpresaService } from 'src/app/shared/empresa.service';
 
 @Component({
   selector: 'app-actualizar',
@@ -6,27 +10,42 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./actualizar.component.css']
 })
 export class ActualizarComponent implements OnInit {
-  public newActualizar: string;
-  public newFinanciacion: number;
-
-  constructor() { }
-
-  actualizar(actualizar: HTMLInputElement){
-    this.newActualizar = actualizar.value;
-    console.log(this.newActualizar);
+  private project_id: number
+  public project:Proyecto = new Proyecto()
+  constructor(public proyectos:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, private router:Router) { }
+//  update__
+  actualizar(actualizar:string){
+    this.project.update = actualizar
+    this.empresa.modificarProyecto(this.project).subscribe(res => {
+      this.navegar()
+    })
   }
-
-  financiacion(financiacion: HTMLInputElement){
-    this.newFinanciacion = Number(financiacion.value);
-    console.log(this.newFinanciacion);
+// actualizar acquared amount
+  financiacion(financiacion: string){
+    this.project.remaining_amount -= Number(financiacion)
+    this.empresa.modificarProyecto(this.project).subscribe(res => {
+      this.navegar()
+    })
   }
 
   objetivos(){
-    console.log("Click objetivos")
+    this.project.remaining_amount = 0;
+    this.empresa.modificarProyecto(this.project).subscribe(res => {
+      this.navegar()
+    })
   }
 
+  private navegar(){
+    this.router.navigate(['/dashboard'])
+  }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.project_id = params['project_id']
+      this.proyectos.getProyecto(this.project_id).subscribe(data => {
+        this.project = data[0]
+      })
+    })
   }
 
 }

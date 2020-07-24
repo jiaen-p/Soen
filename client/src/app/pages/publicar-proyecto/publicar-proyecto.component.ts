@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Proyecto } from '../../models/proyecto'
-import { ProyectosService } from 'src/app/shared/proyectos.service';
+import { EmpresaService } from '../../shared/empresa.service'
+import { Proyecto } from 'src/app/models/proyecto';
 import { Sectores } from 'src/app/models/sectores.enum';
+import { UsuarioService } from 'src/app/shared/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-publicar-proyecto',
@@ -9,25 +11,28 @@ import { Sectores } from 'src/app/models/sectores.enum';
   styleUrls: ['./publicar-proyecto.component.css']
 })
 export class PublicarProyectoComponent implements OnInit {
- 
-  constructor(private apiService:ProyectosService) { }
+  
+  constructor(public empresa:EmpresaService, private usuario:UsuarioService, private router:Router) { }
 
-  save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string)
-  {
-    // this.apiService.postProyecto(new Proyecto()).subscribe((data) =>
-    // {
-    //   console.log(data);
-    // }
-    // )
+  save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string){
+    let proyecto = new Proyecto()
+    proyecto = {
+      project_id: null, 
+      project_name: project_name, 
+      company_name:this.usuario.empresa.company_name, 
+      description: description,
+      total_amount: total_amount,
+      remaining_amount: total_amount,
+      end_date: end_date,
+      project_img_url: project_img_url,
+      sector: <Sectores>sector,
+      update: null
+    }
+    console.log(proyecto)
+    this.empresa.publicarProyecto(proyecto).subscribe(res => {
+      this.router.navigate(['/dashboard'])
+    })
   }
   ngOnInit(): void {
   }
-  public project_name: string
-  public description: string
-  public total_amount: number
-  public remaining_abount: number
-  public end_date: Date 
-  public project_img_url: string
-  public sector: Sectores
-  public update: string
 }

@@ -3,19 +3,19 @@
         <form>
             <div class="form-group">
                 <h4>Informa a tus inversores de los últimas novedades del proyecto</h4>
-                <textarea class="form-control" type="text" id="actualizacion" placeholder="Tu actualización" rows="2" #newActualizacion></textarea>
+                <textarea class="form-control" type="text" id="actualizacion" placeholder="Tu actualización" rows="2" #update></textarea>
             </div>
             <div class="form-group">
-                <a class="btn btn-primary" role="button" (click)=actualizar(newActualizacion)>Publicar actualización</a>
+                <a class="btn btn-primary" role="button" (click)=actualizar(update.value)>Publicar actualización</a>
             </div>
         </form>
         <form>
             <div class="form-group">
                 <h4>¿Has conseguido más financiación?</h4>
-                <input class="form-control" type="number" #newFinanciacion>
+                <input class="form-control" type="number" #Inversion>
             </div>
             <div class="form-group">
-                <a role="button" class="btn btn-primary" (click)=financiacion(newFinanciacion)>Actualizar Capital</a>
+                <a role="button" class="btn btn-primary" (click)=financiacion(Inversion.value)>Actualizar Capital</a>
             </div>
         </form>
         <form>
