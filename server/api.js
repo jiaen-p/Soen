@@ -228,24 +228,23 @@ app.get("/projects", function (req, resp) {
 });
 // Obtiene proyectos según filtros pasados por el usuario
 app.get("/projects/filters", function (req, resp) {
-    var sector = req.body.sector;
-    var min = req.body.min;
-    var max = req.body.max;
-    var end_date = req.body.end_date;
-    var sql = "SELECT * FROM Proyectos WHERE ";
-    if (sector) {
-        sql += "sector = " + sector;
+    var params = [req.body.sector, req.body.min, req.body.max, req.body.end_date];
+    var sql = "SELECT * FROM Proyectos";
+    /*
+    if(sector){
+        sql += `sector = ${sector}`
     }
-    if (min) {
-        sql += "min < " + min;
+    if(min){
+        sql += `min < ${min}`;
     }
-    if (max) {
-        sql += "max < " + max;
+    if(max){
+        sql += `max < ${max}`;
     }
-    if (end_date) {
-        sql += "end_date < " + end_date;
+    if(end_date){
+        sql += `end_date < ${end_date}`;
     }
-    connection.query(sql, function (err, result) {
+    */
+    connection.query(sql, params, function (err, result) {
         console.log(result);
         if (err) {
             console.log(err);

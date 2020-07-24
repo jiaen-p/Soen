@@ -12,14 +12,13 @@ import { Empresa } from 'src/app/models/empresa';
 })
 export class ProyectosComponent implements OnInit {
   // filtrado y filtrado por rango, copias de proyecto, util para realizar los filtros
-  public filtrado: Proyecto[] = []
+  public filtrado: Proyecto[]
   public filtradoPorRango: Proyecto[] = []
   public user_fav = []
   // search, vinculado directamente con el valor de la barra de busqueda
   public search:string = ''
   public projects: Proyecto[]
   public project: Proyecto
-  public company: Empresa
 
   constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
   }
@@ -45,46 +44,57 @@ export class ProyectosComponent implements OnInit {
     {
       this.projects = data;
       console.log(data);
+      Object.assign(this.filtradoPorRango, this.projects);
     }
     )
   }
 
+  
   filter(sector:string = null, max:number = null, min:number = null, date:string = null)
   {
     this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) =>
     {
-      console.log(data);
+      Object.assign(this.filtrado, this.projects);
+      if(sector || max || min || date){
+        let borrar = [];
+        for (let i=0; i<data.length; i++){
+          if ((min && data[i].total_amount < Number(min)) || (max && data[i].total_amount > Number(max)) || (sector && sector != data[i].sector) || (date && new Date(date) > data[i].end_date)){
+          }else{
+          borrar.push(data[i]);
+          }
+        this.filtrado = borrar;
+        }
+      }else{
+        Object.assign(this.filtrado, this.projects)
+      }
     }
     )
+        Object.assign(this.filtradoPorRango, this.filtrado)
   }
 
   filterForName()
   {
-    this.apiService.getProyectos().subscribe((data: any[]) =>
-    {
       if(this.search){
-        for(var i=0; i<data.length; i++)
+        this.filtradoPorRango = [];
+        for(var i=0; i<this.projects.length; i++)
         {
-          if(data[i].project_name.includes(this.search) || data[i].company_name.include(this.search))
+          if(this.projects[i].project_name.includes(this.search) ||this.projects[i].company_name.includes(this.search))
           {
-            this.filtradoPorRango.push(data[i]);
+            console.log(this.projects[i]);
+            this.filtradoPorRango.push(this.projects[i]);
+            //console.log(filter)
+            
           }
         }
         console.log(this.filtradoPorRango);
       }
-    })
   }
 
   ngOnInit(): void {
-    // asignar valores a los arrays con datos obtenidos del service
-    // Object.assign(this.filtrado, this.proyectos.proyectos)
-    // Object.assign(this.filtradoPorRango, this.proyectos.proyectos)
-
     this.allProjects();
-    this.filterForName();
   }
 
-  filtrar(sector:string = null, max:number = null, min:number = null, fecha:string = null){
+  filtrar(sector:string = null, max:number = null, min:number = null, end_date:string = null){
     // Object.assign(this.filtrado,this.proyectos)
     // comprobamos si el filtro está vacio o no
     // if(sector || max || min || fecha){
@@ -105,24 +115,10 @@ export class ProyectosComponent implements OnInit {
     // Object.assign(this.filtradoPorRango, this.filtrado)
   }
 
-  //ERROR proyecto.empresa se ha modificado modelo Proyectos 
-  filtrarPorNombre(){
-    // this.filtrado = this.filtradoPorRango
-    // if(this.search){
-    //   let filter:Proyecto[] = []
-    //   this.filtrado.forEach(proyecto => {
-    //     // por cada proyecto que incluya los terminos en nombre de empresa o proyecto, se añade al array de filter
-    //     if(proyecto.project_name.includes(this.search) || proyecto.empresa.includes(this.search)){
-    //       filter.push(proyecto)
-    //     }
-    //   })
-    //   this.filtrado = filter
-  } 
-  
   // comprobar si es usuario
   masInfo(id:number){
     if(this.usuario.empresa || this.usuario.inversor){
-       this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: this.project.project_id } })
+       this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id} })
      } else {
      this.router.navigate(['/register'])
     }

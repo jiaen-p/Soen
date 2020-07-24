@@ -228,12 +228,10 @@ app.get("/projects",
 app.get("/projects/filters",
     function(req, resp)
     {
-        let sector = req.body.sector;
-        let min = req.body.min;
-        let max = req.body.max; 
-        let end_date = req.body.end_date;
-        let sql = "SELECT * FROM Proyectos WHERE ";
+        let params = [req.body.sector, req.body.min, req.body.max, req.body.end_date];
+        let sql = "SELECT * FROM Proyectos";
 
+        /*
         if(sector){
             sql += `sector = ${sector}`
         }
@@ -246,8 +244,9 @@ app.get("/projects/filters",
         if(end_date){
             sql += `end_date < ${end_date}`;
         }
-        
-        connection.query(sql, function (err, result)
+        */
+
+        connection.query(sql, params, function (err, result)
             {
                 console.log(result);
                 if(err){

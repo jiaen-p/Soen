@@ -10,9 +10,19 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  public proyectos_destacados: Proyecto[] = []
-  constructor(public proyectos: ProyectosService, private router:Router, private usuario: UsuarioService) { 
-    // this.proyectos_destacados = proyectos.proyectos.slice(0,4)
+  public projects_featured: Proyecto[] = []
+
+  constructor(public apiService: ProyectosService, private router:Router, private usuario: UsuarioService) { 
+   
+  }
+  
+  featuredProjects(){
+    this.apiService.getProyectos().subscribe((data: any[]) =>
+    {
+      this.projects_featured = data.slice(0,4);
+      console.log(this.projects_featured);
+    }
+    )
   }
 
   conocerMas(id:number){
@@ -25,6 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.featuredProjects();
   }
 
 }

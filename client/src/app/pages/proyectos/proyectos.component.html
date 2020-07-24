@@ -62,7 +62,7 @@
                 <label class="my-1 mr-2" for="fecha-fin">Fecha fin de ronda: </label>
                 <input type="date" id="fecha-fin" #fecha>
             </div>
-            <a class="btn btn-primary buscar" (click)="filtrar(sector.value, maximo.value, minimo.value, fecha.value)">Filtrar</a>
+            <a class="btn btn-primary buscar" (click)="filter(sector.value, maximo.value, minimo.value, fecha.value)">Filtrar</a>
         </form>
 
     </div>
@@ -73,9 +73,9 @@
             </div>
             <input type="text" class="form-control" placeholder="Nombre proyecto o empresa" #buscador="ngModel" [(ngModel)]="search" (keyup)="filterForName()">
         </div>
-        <div *ngFor="let project of projects" class="card w-100 proyecto">
-            <a class="fav" *ngIf="usuario.miPerfil" (click)="toggle(proyecto.id)">
-                <i class='fa-star'  [ngClass]="user_fav.includes(proyecto.id) ? 'fas' : 'far'" [id]="'id_proyecto_'+proyecto.id" ></i>
+        <div *ngFor="let project of filtradoPorRango" class="card w-100 proyecto">
+            <a class="fav" *ngIf="usuario.inversor" (click)="toggle(proyecto.id)">
+                <i class='fa-star' [ngClass]="user_fav.includes(proyecto.id) ? 'fas' : 'far'" [id]="'id_proyecto_'+proyecto.id" ></i>
             </a>
             <div class="card-body">
                 <h5 class="card-title">{{ project.project_name }}</h5>
