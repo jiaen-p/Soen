@@ -24,6 +24,7 @@
                 <option value="inteligencia artificial">inteligencia artificial</option>
               </select>
             </div>       
-        <br><button type="button" class="btn" id="btn" (click)=save(project_name,total_amount,end_date,description,project_img_url,sector)>Submit</button>
+          <br>
+        <button type="button" class="btn" id="btn" (click)="save(project_name.value, description.value, total_amount.value, end_date.value,  project_img_url.value, sector.value)">Submit</button>
       </form>
 </div>

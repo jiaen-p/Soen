@@ -14,7 +14,7 @@ import { MisProyectosComponent } from './pages/mis-proyectos/mis-proyectos.compo
 import { ActualizarComponent } from './pages/actualizar/actualizar.component';
 import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empresa.component';
 import { RegistroInversorComponent } from './pages/registro-inversor/registro-inversor.component';
-
+import { ModificarProyectoComponent } from './pages/modificar-proyecto/modificar-proyecto.component';
 
 
 const routes: Routes = [
@@ -31,7 +31,8 @@ const routes: Routes = [
   {path:"dashboard/mis_proyectos", component: MisProyectosComponent},
   {path:"dashboard/actualizar", component: ActualizarComponent},
   {path:"register/enterprise", component: RegistroEmpresaComponent},
-  {path:"register/investor", component: RegistroInversorComponent}
+  {path:"register/investor", component: RegistroInversorComponent},
+  {path:"dashboard/mis_proyectos/modificar", component: ModificarProyectoComponent}
 ];
 
 @NgModule({

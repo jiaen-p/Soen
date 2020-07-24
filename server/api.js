@@ -260,7 +260,7 @@ app.get("/projects/filters", function (req, resp) {
 app.get("/projects/:id", function (req, resp) {
     var id = req.params.id;
     var sql = "SELECT * FROM Proyectos WHERE project_id = ?";
-    connection.query(sql, function (err, result) {
+    connection.query(sql, [id], function (err, result) {
         if (err) {
             console.log(err);
             resp.sendStatus(500);
@@ -314,21 +314,32 @@ app.post("/projects/favorites/:id", function (req, resp) {
 });
 // Añadir proyecto
 app.post("/projects", function (req, resp) {
-    var params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_];
-    var sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    var project = req.body.proyecto;
+    var params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_];
+    var sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     connection.query(sql, params, function (err, result) {
         if (err) {
             console.log(err);
             resp.sendStatus(500);
         }
         else {
-            resp.send(result);
+            sql = "INSERT INTO `Proyecto-Empresa` (project_id, company_id) VALUES (?,?)";
+            params = [result.insertId, req.body.company_id];
+            connection.query(sql, params, function (err, data) {
+                if (err) {
+                    resp.sendStatus(500);
+                }
+                else {
+                    resp.send(data);
+                }
+            });
         }
     });
 });
 // Modificar proyecto
 app.put("/projects", function (req, resp) {
-    var params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_, req.body.project_id];
+    var project = req.body.proyecto;
+    var params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_, project.project_id];
     var sql = "UPDATE Proyectos SET project_name = ?, description = ?, total_amount = ?, remaining_amount = ?, end_date = ?, project_img_url = ?, sector = ?, update_ = ? WHERE project_id = ?";
     connection.query(sql, params, function (err, result) {
         if (err) {

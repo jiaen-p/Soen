@@ -267,7 +267,7 @@ app.get("/projects/:id",
     {
         let id = req.params.id;
         let sql = "SELECT * FROM Proyectos WHERE project_id = ?";
-        connection.query(sql, function (err, result)
+        connection.query(sql, [id],  function (err, result)
             {
                 if(err){
                     console.log(err); 
@@ -341,15 +341,24 @@ function(req, resp)
 app.post("/projects",
     function(req, resp)
     {
-        let params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_]
-        let sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) " + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        let project = req.body.proyecto
+        let params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_]
+        let sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         connection.query(sql, params, function (err, result)
             {
                 if(err){
                     console.log(err); 
                     resp.sendStatus(500);
                 } else{
-                    resp.send(result);
+                    sql = "INSERT INTO `Proyecto-Empresa` (project_id, company_id) VALUES (?,?)"
+                    params = [result.insertId, req.body.company_id]
+                    connection.query(sql, params, (err, data) => {
+                        if (err) {
+                            resp.sendStatus(500)
+                        } else {
+                            resp.send(data)
+                        }
+                    })
                 }   
             }
         );
@@ -360,7 +369,8 @@ app.post("/projects",
 app.put("/projects",
     function(req, resp)
     {
-        let params = [req.body.project_name, req.body.description, req.body.total_amount, req.body.remaining_amount, req.body.end_date, req.body.project_img_url, req.body.sector, req.body.update_, req.body.project_id];
+        let project = req.body.proyecto
+        let params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_, project.project_id];
         let sql = "UPDATE Proyectos SET project_name = ?, description = ?, total_amount = ?, remaining_amount = ?, end_date = ?, project_img_url = ?, sector = ?, update_ = ? WHERE project_id = ?";
         connection.query(sql, params, function (err, result)
             {
