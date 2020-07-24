@@ -337,6 +337,44 @@ function(req, resp)
 }
 );
 
+// Añadir proyecto Invertido a un inversor
+app.post("/projects/invested",
+function(req, resp)
+{
+    let params = [req.body.projects_id, req.body.investor_id]
+    let sql = "INSERT INTO `proyecto-inversor` (project_id, investor_id) VALUES (?, ?)";
+    connection.query(sql, params, function (err, result)
+        {
+            if(err){
+                console.log(err); 
+                resp.sendStatus(500);
+            } else{console.log(result)
+                resp.send(result);
+            }   
+        }
+    );
+}
+);
+
+// borrar proyecto Invertido a un inversor
+app.delete("//projects/invested", 
+function(req, resp)
+{
+    let params = [req.body.projects_id, req.body.investor_id]
+    let sql = "DELETE FROM `proyecto-inversor` WHERE project_id=? AND investor_id=?"; 
+    connection.query(sql, params, function (err, result)
+        {
+            if(err){
+                console.log(err); 
+                resp.sendStatus(500);
+            } else{console.log(result)
+                resp.send(result);
+            }   
+        }
+    );
+}
+);
+
 // Añadir proyecto
 app.post("/projects",
     function(req, resp)
