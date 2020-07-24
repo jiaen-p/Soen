@@ -6,8 +6,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class InversorService {
-  private urlInversor = "http://localhost:4200/inversor"
-  private urlInteres = "http://localhost:4200/interes"
+  private urlInversor = "http://localhost:4000/inversor"
+  private urlInvertido = "http://localhost:4000/projects/invested"
   constructor(private http: HttpClient) { }
 
   //Registro
@@ -15,17 +15,13 @@ export class InversorService {
     return this.http.post(this.urlInversor + "/", inversor);
   }
 
-  // Agregar Favoritos
-  postProyectosInteres(idInversor: number, idProyecto: number){
-    console.log(idInversor)
-    console.log(idProyecto)    
-    return 
+  // Agregar Invertir
+  postProyectosInvertido(idInversor: number, idProyecto: number){ 
+    return this.http.post(this.urlInvertido + "/", {"projects_id": idProyecto, "investor_id": idInversor});
   }
-  //Borrar fovoritos 
-  deleteProyectosInteres(idInversor:number, idProyecto: number){
-    console.log(idInversor)
-    console.log(idProyecto)    
-    return
+  //Borrar Invertir
+  deleteProyectosInvertido(idInversor:number, idProyecto: number){
+    return this.http.request("delete", this.urlInvertido + "/", {body:{"projects_id": idProyecto, "investor_id": idInversor}});
   }
   
 }

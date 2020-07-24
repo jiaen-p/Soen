@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
+import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/shared/usuario.service';
+import { InversorService } from 'src/app/shared/inversor.service';
 
 @Component({
   selector: 'app-proyectos-interes',
@@ -13,7 +16,7 @@ export class ProyectosInteresComponent implements OnInit {
   public fav: Proyecto
   public favs: Proyecto[]
 
-  constructor(public router:Router, private apiService: ProyectosService) { }
+  constructor(public router:Router, private apiService: ProyectosService, private usuario:UsuarioService, private inversor:InversorService) { }
 
   // Coge el id del inversor y devuelve favoritos asociados
   Favs(id){
@@ -25,6 +28,9 @@ export class ProyectosInteresComponent implements OnInit {
       }
     }
     ) 
+  }
+  addInvertidos(idProyecto: number){
+    this.inversor.postProyectosInvertido(this.usuario.user_id,idProyecto).subscribe(data =>{})  
   }
 
   ngOnInit(): void {
