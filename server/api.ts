@@ -37,7 +37,10 @@ connection.connect(function(err)
 app.post("/user/register/company",
     function(req, resp)
     {
-        let params = [req.body.email, req.body.password];
+        console.log(req.body)
+        let user = req.body.user
+        let compania = req.body.company
+        let params = [user.email, user.password];
         let sql = "INSERT INTO Usuarios (email, password) VALUES (?, ?)";
        
         connection.query(sql, params, function (err, result)
@@ -46,8 +49,12 @@ app.post("/user/register/company",
                     console.log(err);
                     resp.sendStatus(500); 
                 } else{
-                    let paramsB = [result.insertId, req.body.company_name, req.body.nif, req.body.logo_url, req.body.direction, req.body.telephone, req.body.web_url, req.body.sector, req.body.description];
-                    let company = "INSERT INTO Empresas (user_id, company_name, nif, logo_url, direction, telephone, web_url, sector, description)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    let paramsB = [
+                        result.insertId, compania.company_name, compania.nif, 
+                        compania.profile_url, compania.direccion, compania.telefono, 
+                        compania.web_url, compania.sector, compania.descripcion
+                    ];
+                    let company = "INSERT INTO Empresas (user_id, company_name, nif, profile_url, direction, telephone, web_url, sector, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     
                     connection.query(company, paramsB, function (err, result)
                     {

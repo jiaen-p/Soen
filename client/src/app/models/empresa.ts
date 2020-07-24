@@ -1,6 +1,6 @@
 import { Sectores } from './sectores.enum'
 export class Empresa {
-    public company_id: number
+    public company_id: number 
     public user_id: number
     public company_name: string
     public nif: string
