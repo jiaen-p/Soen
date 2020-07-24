@@ -20,11 +20,14 @@ export class MisProyectosComponent implements OnInit {
   {
     this.apiService.getProyectoUser(id = this.usuario.user_id).subscribe((data: any[]) =>
     {
-      console.log(this.projectsUser = data);
+      this.projectsUser = data;
+      console.log(data);
     }
   )
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.projectsForUser(this.usuario.user_id);
+  }
 
 }

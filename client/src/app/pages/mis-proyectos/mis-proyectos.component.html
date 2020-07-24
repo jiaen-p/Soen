@@ -70,16 +70,16 @@
       <div *ngIf="projectsUser!=null">
         <div *ngFor="let proyecto of projectsUser; let indice = index" class="col-md-8">
           <br>
-          <h2>{{ proyecto.project_name }}</h2><br>
+          <h2>{{ projectsUser.project_name }}</h2><br>
           <h3>Descripción del proyecto</h3>
-          <p>{{ proyecto.description }}</p>
+          <p>{{ projectsUser.description }}</p>
           <h5>Última actualización</h5>
           <p>(fecha de actualización) - Asunto de actualización</p>
         </div>
 
         <div class="col-md-4">
           <br>
-          <h5>Capital invertido: 4000/8000€</h5><br><br><br>
+          <h5>Cantidad restante {{ projectsUser.remaining_amount }}€</h5><br><br><br>
           <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
           <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
         </div>

@@ -1,3 +1,4 @@
+<!--
 <div class="row page">
     <div class="col-md-3 col-sm-12 filtro">
         <form class="formulario">
@@ -37,6 +38,51 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{proyecto.capital_restante}}/{{proyecto.capital_total}} €</h6>
                 <h6 class="card-subtitle mb-2 text-muted">{{proyecto.empresa}}</h6>
                 <a class="btn" (click)="masInfo(proyecto.id)">Más información</a>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+
+<div class="row page">
+    <div class="col-md-3 col-sm-12 filtro">
+        <form class="formulario">
+            <select class="custom-select my-1 mr-sm-2 seccion" #sector>
+                <option selected value="" disabled>Sector</option>
+                <option value="fintech">Fin-tech</option>
+                <option value="inteligencia_artificial">Inteligencia artificial</option>
+                <option value="transporte">Transporte</option>
+            </select>
+            <br>
+            <div class="input-group mb-3 seccion">
+                <input type="number" class="form-control" placeholder="Capital Minimo" #minimo>
+                <input type="number" class="form-control" placeholder="Capital Maximo" #maximo>
+            </div>
+            <div class="calendario seccion">
+                <label class="my-1 mr-2" for="fecha-fin">Fecha fin de ronda: </label>
+                <input type="date" id="fecha-fin" #fecha>
+            </div>
+            <a class="btn btn-primary buscar" (click)="filtrar(sector.value, maximo.value, minimo.value, fecha.value)">Filtrar</a>
+        </form>
+
+    </div>
+    <div class="col-md-9 col-sm-12 proyectos">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Nombre proyecto o empresa" #buscador="ngModel" [(ngModel)]="search" (keyup)="filterForName()">
+        </div>
+        <div *ngFor="let project of projects" class="card w-100 proyecto">
+            <a class="fav" *ngIf="usuario.miPerfil" (click)="toggle(proyecto.id)">
+                <i class='fa-star'  [ngClass]="user_fav.includes(proyecto.id) ? 'fas' : 'far'" [id]="'id_proyecto_'+proyecto.id" ></i>
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">{{ project.project_name }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                <h6 class="card-subtitle mb-2 text-muted">{{project.remaining_amount}}/{{project.total_amount}} €</h6>
+                <h6 class="card-subtitle mb-2 text-muted">{{project.company_name}}</h6>
+                <a class="btn" (click)="masInfo()">Más información</a>
             </div>
         </div>
     </div>

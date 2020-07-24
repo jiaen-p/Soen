@@ -18,7 +18,8 @@ export class ProyectosComponent implements OnInit {
   // search, vinculado directamente con el valor de la barra de busqueda
   public search:string = ''
   public projects: Proyecto[]
-
+  public project: Proyecto
+  public company: Empresa
 
   constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
   }
@@ -42,14 +43,15 @@ export class ProyectosComponent implements OnInit {
   {
     this.apiService.getProyectos().subscribe((data: any[]) =>
     {
-      console.log(this.projects = data[0]);
+      this.projects = data;
+      console.log(data);
     }
     )
   }
 
   filter(sector:string = null, max:number = null, min:number = null, date:string = null)
   {
-    this.apiService.getFilter(sector, 0, 0, "2020-02-02").subscribe((data: any[]) =>
+    this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) =>
     {
       console.log(data);
     }
@@ -61,23 +63,25 @@ export class ProyectosComponent implements OnInit {
     this.apiService.getProyectos().subscribe((data: any[]) =>
     {
       if(this.search){
-        let company: Empresa
-        data.forEach(project => {
-          // por cada proyecto que incluya los terminos enombre de empresa o proyecto, se añade al array dfilter
-          if(project.project_name.includes(this.search) || company.company_name.includes(this.search)){
-            this.filtrado.push(project);
+        for(var i=0; i<data.length; i++)
+        {
+          if(data[i].project_name.includes(this.search) || data[i].company_name.include(this.search))
+          {
+            this.filtradoPorRango.push(data[i]);
+          }
         }
-      })
-      this.filtrado = data;
+        console.log(this.filtradoPorRango);
       }
-    }
-    )
+    })
   }
 
   ngOnInit(): void {
     // asignar valores a los arrays con datos obtenidos del service
     // Object.assign(this.filtrado, this.proyectos.proyectos)
     // Object.assign(this.filtradoPorRango, this.proyectos.proyectos)
+
+    this.allProjects();
+    this.filterForName();
   }
 
   filtrar(sector:string = null, max:number = null, min:number = null, fecha:string = null){
@@ -117,10 +121,11 @@ export class ProyectosComponent implements OnInit {
   
   // comprobar si es usuario
   masInfo(id:number){
-    // if(this.usuario.empresa || this.usuario.inversor){
-    //   this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id } })
-    // } else {
-    //   this.router.navigate(['/register'])
-    // }
+    if(this.usuario.empresa || this.usuario.inversor){
+       this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: this.project.project_id } })
+     } else {
+     this.router.navigate(['/register'])
+    }
+    
   }
 }
