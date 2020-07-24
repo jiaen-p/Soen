@@ -21,7 +21,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
     this.apiService.getProyecto(id = this.proyecto.project_id).subscribe((data: any[]) =>
     {
           this.proyecto = data[0];
-          console.log(data[0]);
+          console.log(this.proyecto);
     }
   )
   }

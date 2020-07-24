@@ -38,7 +38,7 @@ export class ProyectosService {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
       body: {sector: sector, min: min, max:max, end_date:end_date} 
     }
-    return this.http.request('filters', this.url + "/filters", options)
+    return this.http.request('get', this.url + "/filters", options)
   }
 
 
