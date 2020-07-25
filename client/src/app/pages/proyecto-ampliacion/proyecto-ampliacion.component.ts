@@ -31,7 +31,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.proyecto;
+    this.projectsForId(this.proyecto.project_id);
    }
 
 

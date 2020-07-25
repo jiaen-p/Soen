@@ -30,73 +30,81 @@
 
   <!-- Project -->
   <div class="row why">
-
-    <div id="carouselExampleIndicators" class="carousel slide caja-carousel" data-ride="carousel">
-
-      <div class="carousel-inner">
-        <div class="col-lg-12 carousel-item active">
-          <div class="card mb-2">
-            <span class="tag">Finalizado</span>
-            <img class="card-img-top" [src]="projects_featured[0].project_img_url" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><img class="icon-eur" src="/assets/images/euro.png"> {{projects_featured[0].company_name}}
-              </h4>
-              <p class="card-text">{{projects_featured[0].description.slice(0,220)}} ...</p>
-              <a class="btn_carousel" (click)="conocerMas(projects_featured[0].project_id)">Conocer más > </a>
+    ​
+        <div id="carouselExampleIndicators" class="carousel slide caja-carousel" data-ride="carousel">
+          <!-- <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol> -->
+          <div class="carousel-inner">
+    ​
+           <div class="col-lg-12 carousel-item active">
+              <div class="card mb-2">
+                <span class="tag">En campaña</span>
+                <img class="card-img-top" [src]="projects_featured[0].project_img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><img class="icon-eur"
+                    src="/assets/images/euro.png"> {{projects_featured[0].company_name}}</h4>
+                  <p class="card-text">{{projects_featured[0].description.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(projects_featured[0].project_id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+    ​
+            <div class="col-lg-12 carousel-item">
+              <div class="card mb-2">
+                <span class="tag">En campaña</span>
+                <img class="card-img-top" [src]="projects_featured[1].project_img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><img class="icon-eur"
+                    src="/assets/images/euro.png"> {{projects_featured[1].company_name}}</h4>
+                  <p class="card-text">{{projects_featured[1].description.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(projects_featured[1].project_id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+    ​
+            <div class="col-lg-12 carousel-item">
+              <div class="card mb-2">
+                <span class="tag">En campaña</span>
+                <img class="card-img-top" [src]="projects_featured[2].project_img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><img class="icon-eur"
+                    src="/assets/images/euro.png"> {{projects_featured[2].company_name}}</h4>
+                  <p class="card-text">{{projects_featured[2].description.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(projects_featured[2].project_id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
+    ​
+            <div class="col-lg-12 carousel-item">
+              <div class="card mb-2">
+                <span class="tag">Finalizado</span>
+                <img class="card-img-top" [src]="projects_featured[3].project_img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><img class="icon-eur"
+                    src="/assets/images/euro.png"> {{projects_featured[3].company_name}}</h4>
+                  <p class="card-text">{{projects_featured[3].description.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(projects_featured[3].project_id)">Conocer más > </a>
+                </div>
+              </div>
             </div>
           </div>
+    ​
+          <a class="carousel-control-prev btn-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next btn-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
         </div>
-
-
-        <div class="col-lg-12 carousel-item active">
-          <div class="card mb-2">
-            <span class="tag">En campaña</span>
-            <img class="card-img-top" [src]="projects_featured[1].project_img_url" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><img class="icon-eur" src="/assets/images/euro.png"> {{projects_featured[1].company_name}}
-              </h4>
-              <p class="card-text">{{projects_featured[1].description.slice(0,220)}} ...</p>
-              <a class="btn_carousel" (click)="conocerMas(projects_featured[1].project_id)">Conocer más > </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-12 carousel-item active">
-          <div class="card mb-2">
-            <span class="tag">Finalizado</span>
-            <img class="card-img-top" [src]="projects_featured[2].project_img_url" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><img class="icon-eur" src="/assets/images/euro.png"> {{projects_featured[2].company_name}}
-              </h4>
-              <p class="card-text">{{projects_featured[2].description.slice(0,220)}} ...</p>
-              <a class="btn_carousel" (click)="conocerMas(projects_featured[2].project_id)">Conocer más > </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-12 carousel-item active">
-          <div class="card mb-2">
-            <span class="tag">En campaña</span>
-            <img class="card-img-top" [src]="projects_featured[3].project_img_url" alt="Card image cap">
-            <div class="card-body">
-              <h4 class="card-title"><img class="icon-eur" src="/assets/images/euro.png"> {{projects_featured[3].company_name}}
-              </h4>
-              <p class="card-text">{{projects_featured[3].description.slice(0,220)}} ...</p>
-              <a class="btn_carousel" (click)="conocerMas(projects_featured[3].project_id)">Conocer más > </a>
-            </div>
-          </div>
-        </div>
-
-        <a class="carousel-control-prev btn-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next btn-control" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-        
-    </div>
+    ​
+    ​
+      </div>
+    
 
 
     <!-- Accountant -->
