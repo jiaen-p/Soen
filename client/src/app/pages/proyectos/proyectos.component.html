@@ -1,4 +1,4 @@
-<div class="row page">
+<!-- <div class="row page">
     <div class="col-md-3 col-sm-12 filtro">
         <form class="formulario">
             <select class="custom-select my-1 mr-sm-2 seccion" #sector>
@@ -31,8 +31,14 @@
             <a class="fav" *ngIf="usuario.miPerfil" (click)="toggle(proyecto.id)">
                 <i class='fa-star'  [ngClass]="user_fav.includes(proyecto.id) ? 'fas' : 'far'" [id]="'id_proyecto_'+proyecto.id" ></i>
             </a>
-            <div class="card-body">
-                <h5 class="card-title">{{proyecto.nombre}}</h5>
+            <div class="card-body"> -->
+                <h1>Ciudades de Europa</h1>
+    <table>
+        <ol>
+            <li *ngFor="let proyecto of proyectos;">{{ proyecto.project_name }}</li>
+        </ol>
+    </table>
+                <!-- <h5 class="card-title">{{proyecto.project_name}}</h5>
                 <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius temporibus earum illum, corporis dolor eaque vel dolore id dolorem praesentium itaque eos possimus error placeat iusto! Doloribus totam veritatis illum architecto unde cumque nobis ipsum beatae ducimus? Reiciendis placeat alias porro deserunt voluptate exercitationem id quam sed nostrum sint, ipsum architecto ad distinctio a possimus vel illo. Incidunt, quaerat enim!</p>
                 <h6 class="card-subtitle mb-2 text-muted">{{proyecto.capital_restante}}/{{proyecto.capital_total}} €</h6>
                 <h6 class="card-subtitle mb-2 text-muted">{{proyecto.empresa}}</h6>
@@ -40,4 +46,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

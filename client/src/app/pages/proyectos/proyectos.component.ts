@@ -11,6 +11,7 @@ import { InversorService } from '../../shared/inversor.service'
 })
 export class ProyectosComponent implements OnInit {
   // filtrado y filtrado por rango, copias de proyecto, util para realizar los filtros
+  public proyectos: any;
   public filtrado: Proyecto[] = []
   public filtradoPorRango: Proyecto[] = []
   public user_fav = []
@@ -18,8 +19,11 @@ export class ProyectosComponent implements OnInit {
   public search:string = ''
 
 
-  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
+  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
+    this.proyectos = this.apiService.getProyectos()
+    console.log(this.proyectos.project_name)
   }
+
   // añadir/quitar de favorito 
   toggle(id:number):void{
     let res = 'fas'
@@ -27,10 +31,10 @@ export class ProyectosComponent implements OnInit {
       let index = this.user_fav.indexOf(id)
       this.user_fav.splice(index,1)
       res = 'far'
-      // this.inversorSrevice.deleteProyectosInteres(1,id)
+      this.inversor.deleteProyectosFavoritos(this.usuario.user_id,id).subscribe(data =>{})
     } else {
       this.user_fav.push(id)
-      // this.inversorSrevice.postProyectosInteres(1,id) 
+      this.inversor.postProyectosFavoritos(this.usuario.user_id,id).subscribe(data =>{})  
     }
     // cambia el icono segun estado, no funciona con ngclass
     document.getElementById('id_proyecto_'+id).setAttribute("data-prefix", res)

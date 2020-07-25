@@ -214,7 +214,7 @@ app.put("/user",
 app.get("/projects",
     function(req, resp)
     {
-        let sql = "SELECT * FROM Proyectos";
+        let sql = "SELECT * FROM proyectos";
         connection.query(sql, function (err, result)
             {
                 if(err){
@@ -304,6 +304,25 @@ function(req, resp)
 }
 );
 
+// borrar proyecto favorito a un inversor
+app.delete("/projects/favorites/:id", 
+function(req, resp)
+{
+    let params = [req.body.projects_id, req.body.investor_id]
+    let sql = "DELETE FROM `favoritos` WHERE project_id=? AND investor_id=?"; 
+    connection.query(sql, params, function (err, result)
+        {
+            if(err){
+                console.log(err); 
+                resp.sendStatus(500);
+            } else{console.log(result)
+                resp.send(result);
+            }   
+        }
+    );
+}
+);
+
 // Añadir proyecto Invertido a un inversor
 app.post("/projects/invested",
 function(req, resp)
@@ -323,24 +342,7 @@ function(req, resp)
 }
 );
 
-// borrar proyecto Invertido a un inversor
-app.delete("//projects/invested", 
-function(req, resp)
-{
-    let params = [req.body.projects_id, req.body.investor_id]
-    let sql = "DELETE FROM `proyecto-inversor` WHERE project_id=? AND investor_id=?"; 
-    connection.query(sql, params, function (err, result)
-        {
-            if(err){
-                console.log(err); 
-                resp.sendStatus(500);
-            } else{console.log(result)
-                resp.send(result);
-            }   
-        }
-    );
-}
-);
+
 
 // Añadir proyecto
 app.post("/projects",
