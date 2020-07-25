@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProyectosService {
+  
+  public project_id: number;
 
   private url = "http://localhost:4000/projects"
 
@@ -20,13 +22,13 @@ export class ProyectosService {
   //Información proyecto por id proyecto
   getProyecto(id:Number)
   {
-    return this.http.get(this.url + "/" + id);
+    return this.http.get(this.url + `/${id}`);
   }
 
   //Proyectos por id usuario
   getProyectoUser(id:Number)
   {
-    return this.http.get(this.url + "/user/" + id);
+    return this.http.get(this.url + "/user" + `/${id}`);
   }
 
   //Proyectos según filtros

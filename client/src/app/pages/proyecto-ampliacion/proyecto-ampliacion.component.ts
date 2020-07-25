@@ -20,7 +20,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
   {
     this.apiService.getProyecto(id = this.proyecto.project_id).subscribe((data: any[]) =>
     {
-          this.proyecto = data[0];
+          this.proyecto.project_id = data[0].project_id;
           console.log(this.proyecto);
     }
   )
@@ -31,7 +31,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.projectsForId(this.proyecto.project_id)
+    this.proyecto;
    }
 
 

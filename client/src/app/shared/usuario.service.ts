@@ -18,7 +18,7 @@ export class UsuarioService {
   public inversor = null
   public empresa = null
   public perfil_url = null
-  constructor(private proyectos: ProyectosService, private http: HttpClient, private router:Router) {
+  constructor(private apiService: ProyectosService, private http: HttpClient, private router:Router) {
     
   }
   // metodo que busca en bbdd info sobre otros usuarios

@@ -55,14 +55,14 @@
             </select>
             <br>
             <div class="input-group mb-3 seccion">
-                <input type="number" class="form-control" placeholder="Capital Minimo" #minimo>
-                <input type="number" class="form-control" placeholder="Capital Maximo" #maximo>
+                <input type="number" class="form-control" placeholder="Capital Minimo" #min>
+                <input type="number" class="form-control" placeholder="Capital Maximo" #max>
             </div>
             <div class="calendario seccion">
                 <label class="my-1 mr-2" for="fecha-fin">Fecha fin de ronda: </label>
-                <input type="date" id="fecha-fin" #fecha>
+                <input type="date" id="fecha-fin" #date>
             </div>
-            <a class="btn btn-primary buscar" (click)="filter(sector.value, maximo.value, minimo.value, fecha.value)">Filtrar</a>
+            <a class="btn btn-primary buscar" (click)="filter(sector.value, max.value, min.value, date.value)">Filtrar</a>
         </form>
 
     </div>

@@ -248,7 +248,6 @@ app.get("/projects/filters",
 
         connection.query(sql, params, function (err, result)
             {
-                console.log(result);
                 if(err){
                     console.log(err); 
                     resp.sendStatus(500);
@@ -284,7 +283,7 @@ app.get("/projects/user/:id",
     function(req, resp)
     {
         let id = req.params.id;
-        let sql = "SELECT * FROM Proyectos JOIN Proyecto-Empresa ON Proyectos.project_id = Proyecto-Empresa.project_id JOIN Empresas ON Proyecto-Empresa.company_id = Empresas.company_id WHERE Empresas.user_id = ?";
+        let sql = "SELECT * FROM Proyectos JOIN `Proyecto-Empresa` ON Proyectos.project_id = `Proyecto-Empresa`.project_id JOIN Empresas ON `Proyecto-Empresa`.company_id = Empresas.company_id WHERE Empresas.user_id = ?";
         connection.query(sql, id, function (err, result)
             {
                 if(err){

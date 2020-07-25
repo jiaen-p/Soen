@@ -43,33 +43,35 @@ export class ProyectosComponent implements OnInit {
     this.apiService.getProyectos().subscribe((data: any[]) =>
     {
       this.projects = data;
-      console.log(data);
       Object.assign(this.filtradoPorRango, this.projects);
     }
     )
   }
 
   
-  filter(sector:string = null, max:number = null, min:number = null, date:string = null)
+  filter(sector:string = null , max:number = null, min:number = null, date:string = null)
   {
     this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) =>
     {
-      Object.assign(this.filtrado, this.projects);
       if(sector || max || min || date){
         let borrar = [];
+        this.filtrado = [];
+        
         for (let i=0; i<data.length; i++){
-          if ((min && data[i].total_amount < Number(min)) || (max && data[i].total_amount > Number(max)) || (sector && sector != data[i].sector) || (date && new Date(date) > data[i].end_date)){
+          if ((data[i].total_amount > Number(min)) || (data[i].total_amount < Number(max)) || (sector == data[i].sector) || (new Date(date) > data[i].end_date)){
+            this.filtrado.push(data[i]);
+            console.log(this.filtrado);
           }else{
-          borrar.push(data[i]);
+            //console.log(data)
           }
-        this.filtrado = borrar;
         }
       }else{
-        Object.assign(this.filtrado, this.projects)
+        //Object.assign(this.filtrado, this.projects)
+        console.log("hola");
       }
     }
     )
-        Object.assign(this.filtradoPorRango, this.filtrado)
+      //Object.assign(this.projects, this.filtrado)
   }
 
   filterForName()
