@@ -25,6 +25,12 @@ export class ProyectosService {
     return this.http.get(this.url + `/${id}`);
   }
 
+  // Total de proyectos (información para el contador de la home)
+  getTotalProjects()
+  {
+    return this.http.get(this.url + "/total");
+  }
+
   //Proyectos por id usuario
   getProyectoUser(id:Number)
   {

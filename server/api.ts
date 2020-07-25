@@ -224,6 +224,25 @@ app.get("/projects",
     }
     );
 
+// Obtiene numero total de proyectos 
+
+app.get("/projects/total",
+    function(req, resp)
+    {
+        let sql = "SELECT SUM(project_id) FROM Proyectos";
+        connection.query(sql, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
+
 // Obtiene proyectos según filtros pasados por el usuario
 app.get("/projects/filters",
     function(req, resp)

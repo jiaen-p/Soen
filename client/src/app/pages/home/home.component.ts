@@ -11,6 +11,7 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class HomeComponent implements OnInit {
   public projects_featured: Proyecto[] = []
+  public total_projects: number
 
   constructor(public apiService: ProyectosService, private router:Router, private usuario: UsuarioService) { 
    
@@ -25,6 +26,16 @@ export class HomeComponent implements OnInit {
     )
   }
 
+  totalProjects(){
+    this.apiService.getTotalProjects().subscribe((data:number = 0) =>
+    {
+      this.total_projects = data[0][0];
+      console.log(this.total_projects)
+    }
+    )
+  }
+  
+
   conocerMas(id:number){
     console.log(id)
     if(this.usuario.miPerfil){
@@ -36,6 +47,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.featuredProjects();
+    this.totalProjects();
   }
 
 }

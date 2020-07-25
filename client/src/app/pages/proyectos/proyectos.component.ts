@@ -49,29 +49,30 @@ export class ProyectosComponent implements OnInit {
   }
 
   
-  filter(sector:string = null , max:number = null, min:number = null, date:string = null)
-  {
-    this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) =>
-    {
-      if(sector || max || min || date){
-        let borrar = [];
-        this.filtrado = [];
-        
-        for (let i=0; i<data.length; i++){
-          if ((data[i].total_amount > Number(min)) || (data[i].total_amount < Number(max)) || (sector == data[i].sector) || (new Date(date) > data[i].end_date)){
+  filter(sector: string = null, max: number = null, min: number = null, date: string = null) {
+    this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) => {
+      if (!max) {
+        max = 99999999999;
+      }
+      if (!min) {
+        min = 0;
+      }
+      if (!date) {
+        date = "2999/12/31";
+      }
+      this.filtrado = [];
+      for (let i = 0; i < data.length; i++) {
+        if (sector) {
+          if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (sector && sector == data[i].sector) && (date && new Date(date) >= new Date(data[i].end_date))) {
             this.filtrado.push(data[i]);
-            console.log(this.filtrado);
-          }else{
-            //console.log(data)
+          }
+        } else {
+          if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
+            this.filtrado.push(data[i]);
           }
         }
-      }else{
-        //Object.assign(this.filtrado, this.projects)
-        console.log("hola");
-      }
-    }
-    )
-      //Object.assign(this.projects, this.filtrado)
+      } console.log(this.filtrado)
+    })
   }
 
   filterForName()
