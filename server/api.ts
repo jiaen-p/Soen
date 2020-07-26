@@ -40,9 +40,9 @@ app.post("/user/register/company",
         console.log(req.body)
         let user = req.body.user
         let compania = req.body.company
-        let params = [user.email, user.password];
-        let sql = "INSERT INTO Usuarios (email, password) VALUES (?, ?)";
-       
+        let params = [user.email, user.password, 'company'];
+        let sql = "INSERT INTO Usuarios (email, password, role) VALUES (?, ?, ?)";
+    //    añadir si no se quiere insertar el mismo email dos veces WHERE NOT EXISTS (SELECT email FROM Usuarios WHERE email = ?)
         connection.query(sql, params, function (err, result)
             {
                 if(err){
@@ -51,10 +51,10 @@ app.post("/user/register/company",
                 } else{
                     let paramsB = [
                         result.insertId, compania.company_name, compania.nif, 
-                        compania.profile_url, compania.direccion, compania.telefono, 
-                        compania.web_url, compania.sector, compania.descripcion
+                        compania.profile_url, compania.direction, compania.telefono, 
+                        compania.web_url, compania.sector, compania.descripcion_company
                     ];
-                    let company = "INSERT INTO Empresas (user_id, company_name, nif, profile_url, direction, telephone, web_url, sector, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    let company = "INSERT INTO Empresas (user_id, company_name, nif, profile_url, direction, telephone, web_url, sector, description_company) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                     
                     connection.query(company, paramsB, function (err, result)
                     {
@@ -482,24 +482,89 @@ app.delete("/projects",
     }
     );
 
-// Relación conversación y mensajes
-app.get("/conversation/:id",
+
+// enviar mensaje
+app.put("/conversations", (req,res) => {
+    console.log(req.body)
+    let m = req.body.mensaje
+    let conversation_id = req.body.conversation_id
+    let sql = `INSERT INTO Mensajes (message, user_id) VALUES (?,?)`
+    connection.query(sql,[m.mensaje, m.user_id], (err,data) => {
+        if (err) throw err
+        sql = `INSERT INTO \`Mensaje-Usuario\` (conversation_id, message_id) VALUES (?,?)`
+        connection.query(sql, [conversation_id, data.insertId], (err, data2) => {
+            if (err) throw err
+            res.send({message_id: data.insertId})
+        })
+    })
+})
+
+// borrar conversacion
+// app.delete("/conversations", (req,res) => {
+//     console.log(req.body.conversation_id)
+
+//     res.send("ok")
+// })
+
+// Obtener user_id a partir de un project_id
+app.post("/conversations/project",
     function(req, resp)
     {
-        let id = req.params.id;
-        let sql = "SELECT * FROM `Mensaje-Usuario` JOIN Mensajes ON `Mensaje-Usuario`.message_id = Mensajes.message_id WHERE `Mensaje-Usuario`.conversation_id = ?";
-        connection.query(sql, id, function (err, result)
+        console.log(req.body)
+        let params = [req.body.sender, req.body.receiver];
+        let sql = "INSERT INTO Conversaciones (sender, receiver) " + "VALUES (?, ?)";
+        sql = `
+        SELECT user_id FROM Empresas 
+        JOIN \`Proyecto-Empresa\` 
+        ON Empresas.company_id = \`Proyecto-Empresa\`.company_id
+        WHERE project_id = ?
+        `
+        connection.query(sql, [req.body.project_id], function (err, result)
             {
                 if(err){
                     console.log(err); 
                     resp.sendStatus(500);
                 } else{
-                    resp.send(result);
-                }
+                    resp.send(result[0]);
+                }   
             }
-        ); 
+        );
     }
     );
+
+// Obtener conversacion_id
+
+app.post("/conversations/conv_id", (req,res) => {
+    let a = req.body.sender
+    let b = req.body.receiver
+    let sql = `SELECT conversation_id FROM Conversaciones WHERE (sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)`
+    // sql = `
+    //     INSERT INTO Conversaciones (sender, receiver) VALUES (?,?)
+    //     WHERE NOT EXISTS (SELECT conversation_id FROM Conversaciones WHERE ((sender = ? AND receiver = ?) OR (sender = ? AND receiver = ?)))
+    //     `
+    let params = [a,b,b,a,b,a]
+    connection.query(sql, params, (err, data) => {
+        if (err) {
+            console.log(err)
+        } else {
+            console.log(data)
+            if (data[0]){
+                res.send(data[0])
+            } else {
+                sql = `INSERT INTO Conversaciones (sender, receiver) VALUES (?,?)`
+                params = [a,b]
+                connection.query(sql, params, (err,data)=>{
+                    if (err) throw err
+                    console.log(data.insertId)
+                    res.send(data.insertId)
+                })
+            }
+        }
+    })
+
+})
+
+// Relación conversación y mensajes
 app.get("/conversations/:user_id", (req,res) => {
     let user_id = req.params.user_id
     let query = `
@@ -539,49 +604,6 @@ app.get("/conversations/:user_id", (req,res) => {
     })
 })
 
-// enviar mensaje
-app.put("/conversations", (req,res) => {
-    console.log(req.body)
-    let m = req.body.mensaje
-    let conversation_id = req.body.conversation_id
-    let sql = `INSERT INTO Mensajes (message, user_id) VALUES (?,?)`
-    connection.query(sql,[m.mensaje, m.user_id], (err,data) => {
-        if (err) throw err
-        sql = `INSERT INTO \`Mensaje-Usuario\` (conversation_id, message_id) VALUES (?,?)`
-        connection.query(sql, [conversation_id, data.insertId], (err, data2) => {
-            if (err) throw err
-            res.send({message_id: data.insertId})
-        })
-    })
-})
-
-// borrar conversacion
-app.delete("/conversations", (req,res) => {
-    console.log(req.body.conversation_id)
-
-    res.send({"done": true})
-})
-
-// Añadir conversacion nueva
-app.post("/conversations",
-    function(req, resp)
-    {
-        console.log(req.body)
-        let params = [req.body.sender, req.body.receiver];
-        let sql = "INSERT INTO Conversaciones (sender, receiver) " + "VALUES (?, ?)";
-        sql = "SELECT * FROM Conversaciones"
-        connection.query(sql, params, function (err, result)
-            {
-                if(err){
-                    console.log(err); 
-                    resp.sendStatus(500);
-                } else{
-                    resp.send(result);
-                }   
-            }
-        );
-    }
-    );
 
 // Modificar mensaje
 

@@ -18,7 +18,7 @@
                 <div class="col-md-4" >
                     <br>
                     <a class="btn btn1" (click)= "null" role="button" >Mas info</a>
-                    <a class="btn btn2" routerLink="/chat" role="button" >Contactar</a>
+                    <a class="btn btn2" (click)="chat.goToChat(interes[0].project_id)" role="button" >Contactar</a>
                     <a class="btn btn-primary add" role="button" (click)=addInvertidos(1)>Añadir a proyectos invertidos</a>
             </div>
         </div>

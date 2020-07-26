@@ -5,6 +5,7 @@ import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from 'src/app/shared/inversor.service';
+import { ChatService } from 'src/app/shared/chat.service';
 
 @Component({
   selector: 'app-proyectos-interes',
@@ -19,7 +20,7 @@ export class ProyectosInteresComponent implements OnInit {
   public favoritos: number;
 
 
-  constructor(public router:Router, private apiService: ProyectosService, private usuario:UsuarioService, private inversor:InversorService) { }
+  constructor(public router:Router, private apiService: ProyectosService, private usuario:UsuarioService, private inversor:InversorService, public chat:ChatService) { }
 
   proyectosFavoritos(){
    this.inversor.getProyectosFavoritos(this.usuario.user_id).subscribe((data: any[]) =>{

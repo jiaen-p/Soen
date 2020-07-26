@@ -19,7 +19,7 @@
                 <br>
                 <h5>Capital invertido: {{invertidos[0].remaining_amount}}€/{{invertidos[0].total_amount}}€</h5><br><br><br>
                 <a class="btn" (click)= "null" role="button" id="btn">Mas info</a>
-                <a class="btn" (click)="goToConversation(2)" role="button" id="btn2">Contactar</a>
+                <a class="btn" (click)="goToConversation(invertidos[0].project_id)" role="button" id="btn2">Contactar</a>
           </div>
         </div>
         

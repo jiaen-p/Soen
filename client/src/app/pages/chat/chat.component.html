@@ -5,7 +5,8 @@
             <input type="text" placeholder="Search" [(ngModel)]='nombre_deseado' (keyup)="filtrar_chat()">
         </div>
         <div id="conversation-list">
-            <div *ngFor="let conversacion of chat.conversaciones[1], let i = index" class="conversation" [class]="conversacion_activo === conversacion.conversation_id ? 'active' : null" (click)="ver_conversacion(conversacion.conversation_id)">
+            <div *ngFor="let conversacion of chat.conversaciones[1], let i = index" class="conversation" [class]="conversacion_activo === conversacion.conversation_id ? 'active' : null" 
+                (click)="ver_conversacion(conversacion.conversation_id)">
                 <img [src]="getProfile(conversacion)" alt="foto perfil"/>
                 <div class="title-text">
                     {{getName(conversacion)}}

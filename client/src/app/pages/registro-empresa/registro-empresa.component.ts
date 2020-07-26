@@ -10,29 +10,28 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
   styleUrls: ['./registro-empresa.component.css']
 })
 export class RegistroEmpresaComponent implements OnInit {
-  public newEmpresa: Empresa = new Empresa();
+  private empresa: Empresa = new Empresa();
   
  
   constructor(private route: ActivatedRoute, private router: Router, private usuario: UsuarioService) { }
 
-  save(direccion: HTMLInputElement, nif: HTMLInputElement, telefono: HTMLInputElement,web_url: HTMLInputElement,descripcion: HTMLInputElement, logo_url: HTMLInputElement, company_name: HTMLInputElement, sector: HTMLInputElement){
-    // this.newCompany_id = null;
-    // this.newDireccion = direccion.value;
-    // this.newNif = nif.value;
-    // this.newTelefono = Number(telefono.value);
-    // this.newUser_id = null;
-    // this.newWeb_url = web_url.value;
-    // this.newDescripcion = descripcion.value;
-    // this.newLogo_url = logo_url.value;
-    // this.newCompany_name = company_name.value;
-    // this.newSector = sector.value;
-    // this.newEmpresa =  {company_name: this.newNombre, direccion: this.newDireccion, nif: this.newNif, telefono: this.newTelefono, fax: this.newFax,email: this.newEmail, web: this.newWeb, descripcion: this.newDescripcion, img_url: this.newImg_url,id: this.newId,sector: <Sectores>this.newSector}
-    // console.log(this.newEmpresa);
-
+  save(direccion: string, nif: string, telefono: string, web_url: string, descripcion: string, logo_url: string, company_name: string, sector: Sectores){
+    this.empresa = {
+      direction: direccion,
+      nif: nif,
+      telefono: Number(telefono),
+      web_url: web_url,
+      descripcion_company: descripcion,
+      profile_url: logo_url,
+      company_name: company_name,
+      sector: sector,
+      company_id: null,
+      user_id: null
+    }
     // registrar empresa
-    this.usuario.registerEmpresa(this.newEmpresa).subscribe(res => {
+    this.usuario.registerEmpresa(this.empresa).subscribe(res => {
       console.log(res)
-      if (res === 201){
+      if (res){
         this.router.navigate(['/login'])
       } else {
         this.router.navigate(['/register'])

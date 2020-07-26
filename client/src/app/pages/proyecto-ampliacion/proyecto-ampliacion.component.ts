@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Proyecto } from 'src/app/models/proyecto';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { Location } from '@angular/common'
+import { ChatService } from 'src/app/shared/chat.service';
 
 @Component({
   selector: 'app-proyecto-ampliacion',
@@ -14,7 +15,9 @@ export class ProyectoAmpliacionComponent implements OnInit {
   public proyecto: Proyecto  = new Proyecto()
   public project_id: number
 
-  constructor(public route: ActivatedRoute, public _location: Location, private apiService: ProyectosService) { }
+  constructor(public route: ActivatedRoute, public _location: Location, 
+    private apiService: ProyectosService, public chat:ChatService,
+    private router:Router) { }
 
   // Coge el valor del id del proyecto pasado por la url y devuelve toda su información
   projectsForId(id:number)
@@ -38,5 +41,14 @@ export class ProyectoAmpliacionComponent implements OnInit {
     )
    }
 
+  getConversation(project_id:number){
+    this.chat.getProjectOwner(project_id).then(res => {
+        let project_owner = res['user_id']
+      this.chat.getConversationId(project_owner).then(conv_id => {
+        console.log(conv_id['conversation_id'])
+        this.router.navigate(['/chat'], {queryParams: {conversation_id: conv_id['conversation_id']}})
+      })
+    })
+  }
 
 }

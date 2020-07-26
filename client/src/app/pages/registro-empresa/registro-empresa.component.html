@@ -30,6 +30,8 @@
                 <option value="inteligencia artificial">inteligencia artificial</option>
               </select>
             </div>       
-        <br><button type="button" class="btn btn-primary" style="background-color: var(--secondary-color);" (click)=save(company_name,direccion,nif,telefono,descripcion,web_url,logo_url,sector) >Submit</button>
+        <br>
+        <button type="button" class="btn btn-primary" style="background-color: var(--secondary-color);" 
+          (click)="save( direccion.value, nif.value, telefono.value, web_url.value, descripcion.value, logo_url.value, company_name.value, sector.value)" >Submit</button>
       </form>
 </div>

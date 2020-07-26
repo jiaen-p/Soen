@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MensajesService } from '../../shared/mensajes.service'
 import { UsuarioService } from 'src/app/shared/usuario.service'
 import { ChatService } from '../../shared/chat.service'
-import { Chat } from '../../models/chat'
 import { Mensajes } from 'src/app/models/mensajes';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -15,16 +15,14 @@ export class ChatComponent implements OnInit {
   // --------------------------------------
   public nombre_deseado:string = ''
   public conversacion = []
-  public conversacion_activo: number = 0
+  public conversacion_activo: number = null
   public conversacion_usuario_seleccionado: number = null
   public enviar_mensaje: string = ''
   public mensajes: Mensajes[][] = []
   public antes_filtrar: Mensajes[][] = []
 
-  constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService, public chat:ChatService) {
-    Object.assign(this.mensajes, servicio_mensajeria.mensajes)
-    Object.assign(this.antes_filtrar, servicio_mensajeria.mensajes)
-  }
+  constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService,
+    public chat:ChatService, private route: ActivatedRoute) {  }
 
   filtrar_chat(){
     // this.mensajes = this.antes_filtrar
@@ -66,11 +64,20 @@ export class ChatComponent implements OnInit {
   // 
   getConversation(){
     let result = null
-    if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-      result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0].name
-    } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-      result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0].name
+    if(this.usuario.inversor){
+      if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+        result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+      } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+        result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+      }
+    } else {
+      if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+        result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+      } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+        result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+      }
     }
+    result ? result=result.name : null
     return result
   }
 
@@ -129,13 +136,15 @@ export class ChatComponent implements OnInit {
 
   ngOnInit(): void {
     // obtener datos de conversacion
-    if(this.usuario.user_id){
-      this.chat.getConversation(this.usuario.user_id).subscribe(data => {
-        this.chat.conversaciones = data
-        this.conversacion_activo = data[0][0].conversation_id
-        this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
-      })
-    }
+    this.route.queryParams.subscribe(params => {
+      let desired_conv_id = params['conversation_id']
+      if(this.usuario.user_id){
+        this.chat.getConversation(this.usuario.user_id).subscribe(data => {
+          this.chat.conversaciones = data
+          desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
+          this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
+        })
+      }
+    })
   }
-
 }
