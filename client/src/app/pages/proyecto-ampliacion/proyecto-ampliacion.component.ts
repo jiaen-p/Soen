@@ -11,27 +11,31 @@ import { Location } from '@angular/common'
 })
 export class ProyectoAmpliacionComponent implements OnInit {
   
-  public proyecto: Proyecto 
-  
-  constructor(public _location: Location, private apiService: ProyectosService) { }
+  public proyecto: Proyecto  = new Proyecto()
+  public project_id: number
+
+  constructor(public route: ActivatedRoute, public _location: Location, private apiService: ProyectosService) { }
 
   // Coge el valor del id del proyecto pasado por la url y devuelve toda su información
   projectsForId(id:number)
   {
-    this.apiService.getProyecto(id = this.proyecto.project_id).subscribe((data: any[]) =>
+    this.apiService.getProyecto(id).subscribe((data: any[]) =>
     {
           this.proyecto.project_id = data[0].project_id;
+          this.proyecto = data[0];
           console.log(this.proyecto);
     }
   )
   }
 
-  addFav(){
-    
-  }
 
   ngOnInit(): void {
-    this.projectsForId(this.proyecto.project_id);
+
+    this.route.queryParams.subscribe(params => {
+      this.project_id = params["project_id"];
+      this.projectsForId(this.project_id)
+    }
+    )
    }
 
 
