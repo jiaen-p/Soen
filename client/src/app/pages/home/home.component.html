@@ -90,6 +90,19 @@
                 </div>
               </div>
             </div>
+
+            <div class="col-lg-12 carousel-item">
+              <div class="card mb-2">
+                <span class="tag">En campaña</span>
+                <img class="card-img-top" [src]="projects_featured[4].project_img_url" alt="Card image cap">
+                <div class="card-body">
+                  <h4 class="card-title"><img class="icon-eur"
+                    src="/assets/images/euro.png"> {{projects_featured[4].company_name}}</h4>
+                  <p class="card-text">{{projects_featured[4].description.slice(0,220)}} ...</p>
+                  <a class="btn_carousel" (click)="conocerMas(projects_featured[4].project_id)">Conocer más > </a>
+                </div>
+              </div>
+            </div>
           </div>
     ​
           <a class="carousel-control-prev btn-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
