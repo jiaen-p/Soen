@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Mensajes } from '../models/mensajes';
-import { Conversacion } from '../models/conversacion';
 import { UsuarioService } from './usuario.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { UsuarioService } from './usuario.service';
 export class ChatService {
   private url: string = 'http://localhost:4000/conversations'
   public conversaciones = null
-  constructor(private http:HttpClient, public usuario: UsuarioService) { }
+  constructor(private http:HttpClient, public usuario: UsuarioService, private router:Router) { }
   getConversation(user_id: number){
     return this.http.get(this.url + `/${user_id}`)
   }
@@ -23,7 +23,18 @@ export class ChatService {
   deleteConversation(conversation_id: number){
     return this.http.request("delete",this.url, {body: {conversation_id: conversation_id}})
   }
-  openConversation(project_id: number){
-    return this.http.post(this.url, {user_id: this.usuario.user_id, project_id: project_id})
+  getProjectOwner(project_id: number){
+    return this.http.post(this.url + "/project", {project_id: project_id}).toPromise()
+  }
+  getConversationId(user_id:number){
+    return this.http.post(this.url + "/conv_id", {sender: this.usuario.user_id, receiver: user_id}).toPromise()
+  }
+  goToChat(project_id:number){
+    this.getProjectOwner(project_id).then(res => {
+        let project_owner = res['user_id']
+      this.getConversationId(project_owner).then(conv_id => {
+        this.router.navigate(['/chat'], {queryParams: {conversation_id: conv_id['conversation_id']}})
+      })
+    })
   }
 }

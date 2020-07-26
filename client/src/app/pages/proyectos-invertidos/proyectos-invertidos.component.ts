@@ -40,7 +40,7 @@ export class ProyectosInvertidosComponent implements OnInit {
   {
     this.apiService.getProyectoUser(id).subscribe((data: any[]) =>
     {
-      console.log(this.projects = data);
+      this.projects = data;
     }
   )
   }
@@ -52,8 +52,6 @@ export class ProyectosInvertidosComponent implements OnInit {
 
   // abrir conversacion
   goToConversation(project_id){
-    this.chat.openConversation(project_id).subscribe(res => {
-      console.log(res)
-    })
+    this.chat.goToChat(project_id)
   }
 }

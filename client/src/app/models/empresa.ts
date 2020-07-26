@@ -5,9 +5,9 @@ export class Empresa {
     public company_name: string
     public nif: string
     public telefono: number
-    public direccion: string
+    public direction: string
     public web_url: string
-    public descripcion: string
+    public descripcion_company: string
     public profile_url: string
     public sector: string
     
