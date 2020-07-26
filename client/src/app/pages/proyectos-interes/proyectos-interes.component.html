@@ -4,7 +4,6 @@
     </div>
     <div class="col-xl-10 proyectos" >
         <br><h3 style="text-align: center;">Proyectos de interés</h3>
-        <a class="btn btn1" (click)= "proyectosFavoritos()" role="button" >mostrar</a>
         <div *ngFor="let interes of proyectosInteres">
             <div id="proyectos" class="row caja">
                 <div class="col-md-8 " >
@@ -17,7 +16,7 @@
                 
                 <div class="col-md-4" >
                     <br>
-                    <a class="btn btn1" (click)= "null" role="button" >Mas info</a>
+                    <a class="btn btn1" [routerLink]="['/proyectos/proyecto']" [queryParams]='{project_id:interes[0].project_id}' role="button" >Mas info</a>
                     <a class="btn btn2" routerLink="/chat" role="button" >Contactar</a>
                     <a class="btn btn-primary add" role="button" (click)=addInvertidos(1)>Añadir a proyectos invertidos</a>
             </div>

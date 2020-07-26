@@ -58,6 +58,7 @@ export class ProyectosInteresComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.proyectosFavoritos()
   }
 
 }

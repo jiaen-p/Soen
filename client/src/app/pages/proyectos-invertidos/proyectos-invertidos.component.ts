@@ -47,6 +47,7 @@ export class ProyectosInvertidosComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.proyectosInvertido()
   }
 
   // abrir conversacion

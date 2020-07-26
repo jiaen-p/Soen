@@ -318,7 +318,7 @@ app.get("/projects/user/:id",
     );
 
 // Obtener proyectos favoritos asociados a inversor
-app.get("/projects/investor/:id",
+app.get("/projects/favorites/:id",
     function(req, resp)
     {
         let id = req.params.id;
@@ -373,13 +373,12 @@ function(req, resp)
     );
 }
 );
-
 // Obtener proyectos invertidos asociados a inversor
 app.get("/projects/investor/:id",
     function(req, resp)
     {
         let id = req.params.id;
-        let sql = "SELECT *  FROM proyecto-inversor WHERE investor_id = ?";
+        let sql = "SELECT *  FROM `proyecto-inversor` WHERE investor_id = ?";
         connection.query(sql, id, function (err, result)
             {
                 if(err){
