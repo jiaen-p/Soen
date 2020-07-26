@@ -310,7 +310,7 @@ app.get("/projects/investor/:id", function (req, resp) {
     });
 });
 // Añadir proyecto favorito a un inversor
-app.post("/projects/favorites/:id", function (req, resp) {
+app.post("/projects/favorites/", function (req, resp) {
     var params = [req.body.investor_id, req.body.projects_id];
     var sql = "INSERT INTO Favoritos (investor_id, project_id) " + "VALUES (?, ?)";
     connection.query(sql, params, function (err, result) {
@@ -324,7 +324,7 @@ app.post("/projects/favorites/:id", function (req, resp) {
     });
 });
 // borrar proyecto favorito a un inversor
-app["delete"]("/projects/favorites/:id", function (req, resp) {
+app["delete"]("/projects/favorites/", function (req, resp) {
     var params = [req.body.projects_id, req.body.investor_id];
     var sql = "DELETE FROM `favoritos` WHERE project_id=? AND investor_id=?";
     connection.query(sql, params, function (err, result) {
@@ -334,6 +334,20 @@ app["delete"]("/projects/favorites/:id", function (req, resp) {
         }
         else {
             console.log(result);
+            resp.send(result);
+        }
+    });
+});
+// Obtener proyectos invertidos asociados a inversor
+app.get("/projects/investor/:id", function (req, resp) {
+    var id = req.params.id;
+    var sql = "SELECT *  FROM proyecto-inversor WHERE investor_id = ?";
+    connection.query(sql, id, function (err, result) {
+        if (err) {
+            console.log(err);
+            resp.sendStatus(500);
+        }
+        else {
             resp.send(result);
         }
     });

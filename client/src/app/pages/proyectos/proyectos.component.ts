@@ -23,7 +23,7 @@ export class ProyectosComponent implements OnInit {
 
   constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
     this.proyectos = this.apiService.getProyectos()
-    console.log(this.proyectos.project_name)
+
   }
 
   // añadir/quitar de favorito 
