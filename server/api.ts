@@ -19,7 +19,7 @@ const connection = mysql.createConnection
         host: "localhost",
         user: "root",
         password: null,
-        database: "super_proyecto",
+        database: "new",
         multipleStatements: true
     }
 );

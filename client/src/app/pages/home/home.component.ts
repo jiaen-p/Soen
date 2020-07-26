@@ -37,8 +37,8 @@ export class HomeComponent implements OnInit {
 
   conocerMas(id:number){
     console.log(id)
-    if(this.usuario.miPerfil){
-      this.router.navigate([`/proyectos/proyecto`], { queryParams: { id: id } })
+    if(this.usuario.user_id){
+      this.router.navigate([`/proyectos/proyecto`], { queryParams: { project_id: id } })
     } else {
       this.router.navigate(["/register"])
     }
