@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   featuredProjects(){
     this.apiService.getProyectos().subscribe((data: any[]) =>
     {
-      this.projects_featured = data.slice(0,4);
+      this.projects_featured = data.slice(0,5);
     }
     )
   }
