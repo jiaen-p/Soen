@@ -17,19 +17,16 @@ export class ModificarProyectoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      // this.project_id = params['project_id'];
-      console.log(params)
+      this.project_id = params['project_id'];
       this.proyecto.getProyecto(this.project_id).subscribe(res => {
-        
         this.project = res[0]
-        console.log(this.project)
         this.project.end_date = res[0].end_date.slice(0,10)
       })
     });
   }
 
   modificar(){
-    this.empresa.modificarProyecto(this.project).subscribe(res => {console.log(res)})
+    this.empresa.modificarProyecto(this.project).subscribe()
     this.router.navigate(['/dashboard'])
   }
 }

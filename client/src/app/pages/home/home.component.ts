@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
     this.apiService.getProyectos().subscribe((data: any[]) =>
     {
       this.projects_featured = data.slice(0,4);
-      console.log(this.projects_featured);
     }
     )
   }

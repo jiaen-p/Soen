@@ -10,6 +10,7 @@ export class Proyecto {
         public project_img_url: string
         public sector: Sectores
         public update: string
+        public update_: string
  
 
 }

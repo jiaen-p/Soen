@@ -1,9 +1,9 @@
 // Configuración API
 
-let express = require("express");
-let bodyParser = require('body-parser');
-let app = express();
-let cors = require('cors');
+const express = require("express");
+const bodyParser = require('body-parser');
+const app = express();
+const cors = require('cors');
 
 
 app.use(cors());
@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 
 // Configuracion MYSQL
 
-let mysql = require("mysql");
-let connection = mysql.createConnection
+const mysql = require("mysql");
+const connection = mysql.createConnection
 (
     {
         host: "localhost",
@@ -310,6 +310,7 @@ app.get("/projects/user/:id",
                     resp.sendStatus(500);
                 } else{
                     resp.send(result);
+                    console.log(result)
                 }
             }
         ); 
@@ -425,8 +426,9 @@ app.put("/projects",
     function(req, resp)
     {
         let project = req.body.proyecto
-        let params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_, project.project_id];
+        let params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date.slice(0,10), project.project_img_url, project.sector, project.update, project.project_id];
         let sql = "UPDATE Proyectos SET project_name = ?, description = ?, total_amount = ?, remaining_amount = ?, end_date = ?, project_img_url = ?, sector = ?, update_ = ? WHERE project_id = ?";
+        console.log(project.update)
         connection.query(sql, params, function (err, result)
             {
                 if(err){

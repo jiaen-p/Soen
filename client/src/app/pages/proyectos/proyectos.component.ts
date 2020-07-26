@@ -20,7 +20,7 @@ export class ProyectosComponent implements OnInit {
   public projects: Proyecto[]
   public project: Proyecto
 
-  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService) {
+  constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService) {
   }
   // añadir/quitar de favorito 
   toggle(id:number):void{

@@ -42,15 +42,15 @@
                 </div>
               </div>
             </li>
-            <li class="nav-item login" *ngIf="!usuario.empresa && !usuario.inversor">
+            <li class="nav-item login" *ngIf="!usuario.user_id">
               <a class="nav-link" routerLink="/login">Login</a>
             </li>
-            <li class="nav-item signup" *ngIf="!usuario.empresa && !usuario.inversor">
+            <li class="nav-item signup" *ngIf="!usuario.user_id">
               <a class="nav-link" routerLink="/register">Sign up</a>
             </li>
           </ul>
         </div>
-        <div class="items2 img login-signup" *ngIf="usuario.empresa || usuario.inversor">
+        <div class="items2 img login-signup" *ngIf="usuario.user_id">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="caja" [src]=usuario.perfil_url>
           </a>

@@ -15,11 +15,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.img_url)
-    // if(this.usuario.empresa){
-    // } else {
-    //   this.img_url = this.usuario.inversor.profile_url
-    // }
   }
 
   logout(){
@@ -27,6 +22,7 @@ export class NavbarComponent implements OnInit {
     this.usuario.perfil_url = null
     this.usuario.empresa = null
     this.usuario.inversor = null
+    this.usuario.user_id = null
     this.router.navigate(["/"])
   }
 }
