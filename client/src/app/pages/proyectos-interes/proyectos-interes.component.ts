@@ -23,7 +23,7 @@ export class ProyectosInteresComponent implements OnInit {
   constructor(public router:Router, private apiService: ProyectosService, private usuario:UsuarioService, private inversor:InversorService, public chat:ChatService) { }
 
   proyectosFavoritos(){
-   this.inversor.getProyectosFavoritos(this.usuario.user_id).subscribe((data: any[]) =>{
+   this.inversor.getProyectosFavoritos().subscribe((data: any[]) =>{
 
     for(let index = 0;index <= data.length-1;index++){
       
@@ -55,7 +55,7 @@ export class ProyectosInteresComponent implements OnInit {
   }
   */
   addInvertidos(idProyecto: number){
-    this.inversor.postProyectosInvertido(this.usuario.user_id,idProyecto).subscribe(data =>{})  
+    this.inversor.postProyectosInvertido(idProyecto).subscribe(data =>{})  
   }
 
   ngOnInit(): void {

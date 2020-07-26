@@ -20,20 +20,16 @@ export class ProyectosInvertidosComponent implements OnInit {
   constructor(public router:Router, private apiService: ProyectosService, public chat: ChatService, private usuario: UsuarioService, private inversor: InversorService) { }
 
   proyectosInvertido(){
-    this.inversor.getProyectosInvertido(this.usuario.user_id).subscribe((data: any[]) =>{
-      
-     for(let index = 0;index <= data.length-1;index++){
-       this.invertidos = data[index].project_id;
-       console.log(this.invertidos)
-       this.apiService.getProyecto(this.invertidos).subscribe((data: any[]) =>{
- 
-         this.proyectosInvertidos.push(data);
-         
+    this.inversor.getProyectosInvertido().subscribe((data: any[]) =>{
+      for(let index = 0;index <= data.length-1;index++){
+        this.invertidos = data[index].project_id;
+        // console.log(this.invertidos)
+        this.apiService.getProyecto(this.invertidos).subscribe((data: any[]) =>{
+          this.proyectosInvertidos.push(data);
        });
-     }});
-   console.log(this.proyectosInvertidos);
- 
-   }
+      }
+    });
+  }
 
   // Coge los proyectos asociados al usuario por su id
   projectsForUser(id:number)

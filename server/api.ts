@@ -315,7 +315,8 @@ app.get("/projects/user/:id",
             }
         ); 
     }
-    );
+);
+
 
 // Obtener proyectos favoritos asociados a inversor
 app.get("/projects/favorites/:id",
@@ -334,14 +335,14 @@ app.get("/projects/favorites/:id",
             }
         ); 
     }
-    );
+);
 
 // Añadir proyecto favorito a un inversor
 app.post("/projects/favorites/",
 function(req, resp)
 {
     let params = [req.body.investor_id, req.body.projects_id]
-    let sql = "INSERT INTO Favoritos (investor_id, project_id) " + "VALUES (?, ?)";
+    let sql = "INSERT INTO Favoritos (investor_id, project_id) VALUES (?, ?)";
     connection.query(sql, params, function (err, result)
         {
             if(err){
@@ -360,7 +361,7 @@ app.delete("/projects/favorites/",
 function(req, resp)
 {
     let params = [req.body.projects_id, req.body.investor_id]
-    let sql = "DELETE FROM `favoritos` WHERE project_id=? AND investor_id=?"; 
+    let sql = "DELETE FROM `Favoritos` WHERE project_id=? AND investor_id=?"; 
     connection.query(sql, params, function (err, result)
         {
             if(err){
@@ -378,7 +379,7 @@ app.get("/projects/investor/:id",
     function(req, resp)
     {
         let id = req.params.id;
-        let sql = "SELECT *  FROM `Proyecto-Inversor` WHERE investor_id = ?";
+        let sql = "SELECT * FROM `Proyecto-Inversor` WHERE investor_id = ?";
         connection.query(sql, id, function (err, result)
             {
                 if(err){

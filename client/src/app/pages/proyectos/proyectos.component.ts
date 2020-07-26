@@ -33,10 +33,10 @@ export class ProyectosComponent implements OnInit {
       let index = this.user_fav.indexOf(id)
       this.user_fav.splice(index,1)
       res = 'far'
-      this.inversor.deleteProyectosFavoritos(this.usuario.user_id,id).subscribe(data =>{})
+      this.inversor.deleteProyectosFavoritos(id).subscribe(data =>{})
     } else {
       this.user_fav.push(id)
-      this.inversor.postProyectosFavoritos(this.usuario.user_id,id).subscribe(data =>{})  
+      this.inversor.postProyectosFavoritos(id).subscribe(data =>{})  
     }
     // cambia el icono segun estado, no funciona con ngclass
     document.getElementById('id_proyecto_'+id).setAttribute("data-prefix", res)
@@ -112,6 +112,9 @@ export class ProyectosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allProjects();
+    this.allProjects()
+    this.inversor.getProyectosFavoritos().subscribe(data => { 
+      this.user_fav = Object.values(data).map(x => x.project_id)
+    })
   }
 }
