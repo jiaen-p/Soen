@@ -34,7 +34,7 @@ export class ProyectosService {
   //Proyectos por id usuario
   getProyectoUser(id:Number)
   {
-    return this.http.get(this.url + "/user" + `/${id}`);
+    return this.http.get(this.url + `/user/${id}`);
   }
 
   //Proyectos según filtros

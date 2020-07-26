@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:"proyectos/invertidos", component: ProyectosInvertidosComponent},
   {path:"proyectos/interes", component: ProyectosInteresComponent},
   {path:"dashboard/mis_proyectos", component: MisProyectosComponent},
-  {path:"dashboard/actualizar", component: ActualizarComponent},
+  {path:"dashboard/mis_proyectos/actualizar", component: ActualizarComponent},
   {path:"register/enterprise", component: RegistroEmpresaComponent},
   {path:"register/investor", component: RegistroInversorComponent},
   {path:"dashboard/mis_proyectos/modificar", component: ModificarProyectoComponent}

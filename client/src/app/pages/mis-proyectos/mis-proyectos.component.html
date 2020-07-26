@@ -1,89 +1,28 @@
-<!--
 <div class="row proyectos">
-    <div class="col-xl-2" >
-        <app-menu-empresa></app-menu-empresa>
-    </div>
-    <div class="col-xl-10 background: var(--primary-color)" >
-        <br><h3 style="text-align: center;">Mis proyectos</h3>
-        <div id="proyectos" class="row ">
-            <div class="col-md-8 " >
-               <br><h2>Proyecto A </h2><br>
-               <h3>Descripción del proyecto</h3>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi veritatis necessitatibus deleniti beatae earum quidem! Reiciendis doloremque harum, facere distinctio, perspiciatis ducimus sed laudantium velit quaerat minus obcaecati in. Reprehenderit.</p>
-               <h5>Última actualización</h5>
-               <p>(fecha de actualización) - Asunto de actualización</p>
-            </div>
-              
-            <div class="col-md-4" >
-                <br>
-                <h5>Capital invertido: 4000/8000€</h5><br><br><br>
-                <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
-                <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
-          </div>
-        </div>
-        <div id="proyectos" class="row ">
-            <div class="col-md-8 " >
-               <br><h2>Proyecto B </h2><br>
-               <h3>Descripción del proyecto</h3>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi veritatis necessitatibus deleniti beatae earum quidem! Reiciendis doloremque harum, facere distinctio, perspiciatis ducimus sed laudantium velit quaerat minus obcaecati in. Reprehenderit.</p>
-               <h5>Última actualización</h5>
-               <p>(fecha de actualización) - Asunto de actualización</p>
-
-            </div>
-              
-            <div class="col-md-4 " >
-                <br>
-                <h5>Capital invertido: 4000/8000€</h5>
-                <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
-                <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
-          </div>
-        </div>
-        <div id="proyectos" class="row ">
-            <div class="col-md-8" >
-               <br><h2>Proyecto C </h2><br>
-               <h3>Descripción del proyecto</h3>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi veritatis necessitatibus deleniti beatae earum quidem! Reiciendis doloremque harum, facere distinctio, perspiciatis ducimus sed laudantium velit quaerat minus obcaecati in. Reprehenderit.</p>
-               <h5>Última actualización</h5>
-               <p>(fecha de actualización) - Asunto de actualización</p>
-
-            </div>
-              
-            <div class="col-md-4" >
-                <br>
-                <h5>Capital invertido: 4000/8000€</h5>
-                <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
-                <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
-          </div>
-        </div>
-  </div>
-</div>
--->
-
-<div class="row proyectos">
-  <div class="col-xl-2">
+  <div class="col-xl-2 p-sm-0">
     <app-menu-empresa></app-menu-empresa>
   </div>
-  <div class="col-xl-10 background: var(--primary-color)">
+  <div class="col-xl-10">
     <br>
     <h3 style="text-align: center;">Mis proyectos</h3>
-    <div id="proyectos" class="row ">
-        <div *ngFor="let proyecto of projectsUser; let indice = index" class="col-md-8">
-          <div class="col-md-8">
-            <br>
-            <h2>{{ proyecto.project_name }}</h2><br>
-            <h3>Descripción del proyecto</h3>
-            <p>{{ proyecto.description }}</p>
+    <div id="proyectos" class="row " *ngFor="let proyecto of projectsUser; let indice = index" >
+      <div class="col-md-8">
+          <br>
+          <h2>{{ proyecto.project_name }}</h2><br>
+          <h3>Descripción del proyecto</h3>
+          <p>{{ proyecto.description }}</p>
+          <div *ngIf="proyecto.update_">
             <h5>Última actualización</h5>
-            <p>(fecha de actualización) - Asunto de actualización</p>
+            <p>{{proyecto.update_}}</p>
           </div>
 
-          <div class="col-md-4">
-            <br>
-            <h5>Cantidad restante: {{ proyecto.description }} €</h5><br><br><br>
-            <a class="btn" routerLink="/publicar" role="button" id="btn">Editar</a>
-            <a class="btn" (click)="null" role="button" id="btn2">Actualizar</a>
-          </div>
-      </div>
+        </div>
+            <div class="col-md-4">
+              <br>
+              <h5>Cantidad restante: {{ proyecto.remaining_amount }} €</h5><br><br><br>
+              <a class="btn" [routerLink]="['/dashboard/mis_proyectos/modificar']" [queryParams]='{project_id: proyecto.project_id}' role="button" id="btn">Editar</a>
+              <a class="btn" [routerLink]="['/dashboard/mis_proyectos/actualizar']" [queryParams]='{project_id: proyecto.project_id}' role="button" id="btn2">Actualizar</a>
+            </div>
       
     </div>
   </div>
