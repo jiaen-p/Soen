@@ -26,7 +26,8 @@ export class PublicarProyectoComponent implements OnInit {
       end_date: end_date,
       project_img_url: project_img_url,
       sector: <Sectores>sector,
-      update: null
+      update: null,
+      update_:null
     }
     console.log(proyecto)
     this.empresa.publicarProyecto(proyecto).subscribe(res => {

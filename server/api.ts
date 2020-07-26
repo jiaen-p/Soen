@@ -337,7 +337,7 @@ app.get("/projects/investor/:id",
     );
 
 // Añadir proyecto favorito a un inversor
-app.post("/projects/favorites/:id",
+app.post("/projects/favorites/",
 function(req, resp)
 {
     let params = [req.body.investor_id, req.body.projects_id]
@@ -356,7 +356,7 @@ function(req, resp)
 );
 
 // borrar proyecto favorito a un inversor
-app.delete("/projects/favorites/:id", 
+app.delete("/projects/favorites/", 
 function(req, resp)
 {
     let params = [req.body.projects_id, req.body.investor_id]
@@ -373,6 +373,25 @@ function(req, resp)
     );
 }
 );
+
+// Obtener proyectos invertidos asociados a inversor
+app.get("/projects/investor/:id",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT *  FROM proyecto-inversor WHERE investor_id = ?";
+        connection.query(sql, id, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
 
 // Añadir proyecto Invertido a un inversor
 app.post("/projects/invested",
