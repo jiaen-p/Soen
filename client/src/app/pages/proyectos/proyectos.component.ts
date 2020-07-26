@@ -21,7 +21,7 @@ export class ProyectosComponent implements OnInit {
   public projects: Proyecto[]
   public project: Proyecto
 
-  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
+  constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
     this.proyectos = this.apiService.getProyectos()
 
   }

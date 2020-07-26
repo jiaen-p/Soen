@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     this.apiService.getTotalProjects().subscribe((data:number = 0) =>
     {
       this.total_projects = data[0][0];
-      console.log(this.total_projects)
+      // console.log(this.total_projects)
     }
     )
   }

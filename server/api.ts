@@ -210,7 +210,7 @@ app.put("/user",
 app.get("/projects",
     function(req, resp)
     {
-        let sql = "SELECT * FROM proyectos";
+        let sql = "SELECT * FROM Proyectos";
         connection.query(sql, function (err, result)
             {
                 if(err){
