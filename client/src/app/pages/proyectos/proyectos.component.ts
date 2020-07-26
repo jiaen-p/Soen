@@ -21,7 +21,7 @@ export class ProyectosComponent implements OnInit {
   public projects: Proyecto[]
   public project: Proyecto
 
-  constructor(private router:Router, private usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
+  constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
     this.proyectos = this.apiService.getProyectos()
 
   }
@@ -69,16 +69,20 @@ export class ProyectosComponent implements OnInit {
         if (sector) {
           if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (sector && sector == data[i].sector) && (date && new Date(date) >= new Date(data[i].end_date))) {
             this.filtrado.push(data[i]);
+            this.filtrado;
           }
-        } else {
-          if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
+        } else if((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
             this.filtrado.push(data[i]);
-          }
+            this.filtrado;
+        }else{
+            this.filtrado = this.projects;
         }
-      } console.log(this.filtrado)
+      } 
+      console.log(this.filtrado);
+      this.filtradoPorRango = this.filtrado;
     })
   }
-
+  
   filterForName()
   {
       if(this.search){
@@ -97,38 +101,17 @@ export class ProyectosComponent implements OnInit {
       }
   }
 
-  ngOnInit(): void {
-    this.allProjects();
-  }
-
-  filtrar(sector:string = null, max:number = null, min:number = null, end_date:string = null){
-    // Object.assign(this.filtrado,this.proyectos)
-    // comprobamos si el filtro está vacio o no
-    // if(sector || max || min || fecha){
-    //   // barremos el array de filtrado para filtrar aquellos que no cumplen con la condicion
-    //   let borrar:Proyecto[] = []
-    //   this.filtrado.forEach(proyecto => {
-    //     if ((min && proyecto.total_amount < Number(min))  || (max && proyecto.total_amount > Number(max)) || (sector && sector != proyecto.sector) || (fecha && new Date(fecha) > proyecto.end_date)){
-    //     } else {
-    //       borrar.push(proyecto)
-    //     }
-    //   })
-    //   // actualizar array
-    //   this.filtrado = borrar
-    // } else {
-    //   // recuperar el array inicial
-    //   Object.assign(this.filtrado, this.proyectos.proyectos)
-    // }
-    // Object.assign(this.filtradoPorRango, this.filtrado)
-  }
-
   // comprobar si es usuario
   masInfo(id:number){
     if(this.usuario.empresa || this.usuario.inversor){
-       this.router.navigate(['/proyectos/proyecto'], { queryParams: { id: id} })
+       this.router.navigate(['/proyectos/proyecto'], { queryParams: { project_id: id} })
      } else {
      this.router.navigate(['/register'])
     }
     
+  }
+
+  ngOnInit(): void {
+    this.allProjects();
   }
 }
