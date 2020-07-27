@@ -50,11 +50,8 @@ import { EmpleosComponent } from './pages/empleos/empleos.component';
     RegistroEmpresaComponent,
     RegistroInversorComponent,
     ModificarProyectoComponent,
-<<<<<<< HEAD
-    AboutUsComponent
-=======
+    AboutUsComponent,
     EmpleosComponent
->>>>>>> cris
 
   ],
   imports: [
