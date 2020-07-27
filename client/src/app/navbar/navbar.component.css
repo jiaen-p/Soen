@@ -71,6 +71,19 @@ ul li a:hover{
     color: var(--secondary-color);
 }
 
+.caja{
+    width: 100px;
+    height: 100px;
+}
+
+.img img {
+    border-radius: 50%;
+    width: 100px;
+    justify-self: right;
+    padding: 0;
+    border: 1px solid var(--secondary-color);
+}
+
 /* @media (min-width: 768px) {
     .modal-lg .modal-dialog {
       width: 750px;
@@ -141,13 +154,7 @@ ul li a:hover{
 
 /* --------- con user */
 
-.img img{
-    border-radius: 50%;
-    width: 80px;
-    justify-self: right;
-    padding: 0;
-    border: 1px solid var(--secondary-color);
-}
+
 @media (min-width: 1140px){
     .login-signup{
         position: absolute;
