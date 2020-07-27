@@ -31,6 +31,12 @@ export class ProyectosService {
     return this.http.get(this.url + "/total");
   }
 
+   // Total de dinero invertido en cada proyecto de la tabla proyectos
+   getTotalInvested()
+   {
+     return this.http.get(this.url + "/totalinvested");
+   }
+
   //Proyectos por id usuario
   getProyectoUser(id:Number)
   {

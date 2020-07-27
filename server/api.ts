@@ -207,6 +207,25 @@ app.put("/user",
     }
     );
 
+// Total inversores
+
+app.get("/inversores/total",
+    function(req, resp)
+    {
+        let sql = "SELECT SUM(investor_id) FROM Inversores";
+        connection.query(sql, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
+
 // Obtener proyectos
 app.get("/projects",
     function(req, resp)
@@ -231,6 +250,23 @@ app.get("/projects/total",
     function(req, resp)
     {
         let sql = "SELECT SUM(project_id) FROM Proyectos";
+        connection.query(sql, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+    );
+
+app.get("/projects/totalinvested",
+    function(req, resp)
+    {
+        let sql = "select SUM(total_amount) - SUM(remaining_amount) from Proyectos";
         connection.query(sql, function (err, result)
             {
                 if(err){

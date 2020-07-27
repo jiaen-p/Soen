@@ -3,6 +3,7 @@ import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { Proyecto } from 'src/app/models/proyecto';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
+import { InversorService } from 'src/app/shared/inversor.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class HomeComponent implements OnInit {
   public projects_featured: Proyecto[] = []
-  public total_projects: number
+  public total_projects
+  public total_investor
+  public total_invested
 
-  constructor(public apiService: ProyectosService, private router:Router, private usuario: UsuarioService) { 
+  constructor(private inversor: InversorService, public apiService: ProyectosService, private router:Router, private usuario: UsuarioService) { 
    
   }
   
@@ -26,15 +29,35 @@ export class HomeComponent implements OnInit {
   }
 
   totalProjects(){
-    this.apiService.getTotalProjects().subscribe((data:number = 0) =>
+    this.apiService.getTotalProjects().subscribe((data: any[]) =>
     {
-      this.total_projects = data[0][0];
-      // console.log(this.total_projects)
+      this.total_projects = Object.values(data[0])
+      
+    }
+    )
+  }
+
+  totalInvested(){
+    this.apiService.getTotalInvested().subscribe((data: any[]) =>
+    {
+      this.total_invested = Object.values(data[0])
+      console.log(data)
+      
+    }
+    )
+  }
+
+  totalInversores(){
+    this.inversor.getTotalInvestors().subscribe((data: any[]) =>
+    {
+      console.log(data)
+      this.total_investor = Object.values(data[0])
+      console.log(this.total_investor)
+      
     }
     )
   }
   
-
   conocerMas(id:number){
     console.log(id)
     if(this.usuario.user_id){
@@ -47,6 +70,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.featuredProjects();
     this.totalProjects();
+    this.totalInvested();
+    this.totalInversores();
   }
 
 }

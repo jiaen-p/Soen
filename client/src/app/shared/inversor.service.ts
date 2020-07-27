@@ -11,6 +11,7 @@ export class InversorService {
   private urlInvested =  "http://localhost:4000/projects/invested"
   private urlInvertido = "http://localhost:4000/projects/investor"
   private urlFavoritos = "http://localhost:4000/projects/favorites"
+  private urlInversores = "http://localhost:4000/inversores"
   
   constructor(private http: HttpClient, private usuario:UsuarioService) { }
 
@@ -21,6 +22,12 @@ export class InversorService {
   //GET Invertir
   getProyectosInvertido(){
     return this.http.get(this.urlInvertido + "/" + this.usuario.inversor.investor_id)
+  }
+
+  // Total inversores
+  getTotalInvestors()
+  {
+    return this.http.get(this.urlInversores + "/total");
   }
 
   // Agregar Invertir
