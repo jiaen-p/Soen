@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from '../../shared/inversor.service'
 import { Empresa } from 'src/app/models/empresa';
+
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
@@ -53,35 +54,37 @@ export class ProyectosComponent implements OnInit {
   }
 
   
-  filter(sector: string = null, max: number = null, min: number = null, date: string = null) {
-    this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) => {
-      if (!max) {
-        max = 99999999999;
-      }
-      if (!min) {
-        min = 0;
-      }
-      if (!date) {
-        date = "2999/12/31";
-      }
-      this.filtrado = [];
-      for (let i = 0; i < data.length; i++) {
-        if (sector) {
-          if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (sector && sector == data[i].sector) && (date && new Date(date) >= new Date(data[i].end_date))) {
-            this.filtrado.push(data[i]);
-            this.filtrado;
-          }
-        } else if((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
-            this.filtrado.push(data[i]);
-            this.filtrado;
-        }else{
-            this.filtrado = this.projects;
-        }
-      } 
-      console.log(this.filtrado);
-      this.filtradoPorRango = this.filtrado;
-    })
-  }
+ filter(sector: string = null, max: number = null, min: number = null, date: string = null) {
+   this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) => {
+     if (!max) {
+       max = 99999999999;
+     }
+     if (!min) {
+       min = 0;
+     }
+     if (!date) {
+       date = "2999/12/31";
+     }
+     this.filtrado = [];
+     for (let i = 0; i < data.length; i++) {
+       if (sector) {
+         if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (sector && sector == data[i].sector) && (date && new Date(date) >= new Date(data[i].end_date))) {
+           this.filtrado.push(data[i]);
+           this.filtrado;
+         }
+       } else if((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
+           this.filtrado.push(data[i]);
+           this.filtrado;
+       }else{
+           this.filtrado = this.projects;
+       }
+     } 
+     console.log(this.filtrado);
+     this.filtradoPorRango = this.filtrado;
+   })
+ }
+
+
   
   filterForName()
   {

@@ -26,6 +26,7 @@ import { RegistroEmpresaComponent } from './pages/registro-empresa/registro-empr
 import { RegistroInversorComponent } from './pages/registro-inversor/registro-inversor.component';
 import { ModificarProyectoComponent } from './pages/modificar-proyecto/modificar-proyecto.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { EmpleosComponent } from './pages/empleos/empleos.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,11 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
     RegistroEmpresaComponent,
     RegistroInversorComponent,
     ModificarProyectoComponent,
+<<<<<<< HEAD
     AboutUsComponent
+=======
+    EmpleosComponent
+>>>>>>> cris
 
   ],
   imports: [

@@ -682,4 +682,61 @@ app.delete("/conversation",
     }
     );
 
+// Obtener lista de empleos
+app.get("/jobs",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT *  FROM Empleos";
+        connection.query(sql, id, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+);
+
+// Obtener informacion de un empleo por su id
+app.get("/jobs/:id",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT *  FROM Empleos WHERE job_id = ?";
+        connection.query(sql, id, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+);
+
+// Obtener empleos de una empresa
+app.get("/jobs/company/:id",
+    function(req, resp)
+    {
+        let id = req.params.id;
+        let sql = "SELECT *  FROM Empleos WHERE company_id = ?";
+        connection.query(sql, id, function (err, result)
+            {
+                if(err){
+                    console.log(err); 
+                    resp.sendStatus(500);
+                } else{
+                    resp.send(result);
+                }
+            }
+        ); 
+    }
+);
+
 app.listen(4000, console.log("Servidor funcionando en puerto 4000"));
