@@ -1,0 +1,52 @@
+<div class="container-fluid">
+
+  <h1> EMPLEOS ACTIVOS</h1>
+  <!-- Resumen de empleo -->
+  <div *ngIf="jobs!=null">
+    <div *ngFor="let job of jobs">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card example-1" style="height: 18rem;">
+            <div class="card-header">{{job.company_name}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{job.title}}</h5>
+              <p class="card-text">{{job.description.slice(0,90)}} ...</p>
+              <h6 class="card-detalles">{{job.salary}} € || {{job.contract}} || {{job.sector}}</h6>
+            </div>
+            <button (click)="oneJob()" class="btn-ampliar">Ampliar información</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ampliacion de empleo -->
+    <div class="col-md-8 mb-6">
+      <div class="card example-1 scrollbar-frozen-dreams" style="height: 30rem;">
+        <div class="card-header">Título del puesto</div>
+        <div class="card-body">
+          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
+            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
+            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
+            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
+            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
+            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
+            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
+            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
+            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
+            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
+            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
+            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
+            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
+            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
+            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
+            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
+            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

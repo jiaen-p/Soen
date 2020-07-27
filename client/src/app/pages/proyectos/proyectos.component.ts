@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from '../../shared/inversor.service'
 import { Empresa } from 'src/app/models/empresa';
+
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
