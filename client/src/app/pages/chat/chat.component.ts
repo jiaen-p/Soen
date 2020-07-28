@@ -105,7 +105,7 @@ export class ChatComponent implements OnInit {
     return res
   }
 
-  getName(data):string{
+  getName(data, i):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
     let response = null
     if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
@@ -113,10 +113,10 @@ export class ChatComponent implements OnInit {
     }else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
       response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
     }
-    return response[0].name
+    return response[i].name
   }
 
-  getProfile(data):string{
+  getProfile(data, index:number):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
     let response =  null
     if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
@@ -124,7 +124,7 @@ export class ChatComponent implements OnInit {
     } else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
       response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
     }
-    return response[0].profile_url
+    return response[index].profile_url
   }
 
   getUpdate(){
