@@ -7,11 +7,11 @@
         <div id="conversation-list">
             <div *ngFor="let conversacion of chat.conversaciones[1], let i = index" class="conversation" [class]="conversacion_activo === conversacion.conversation_id ? 'active' : null" 
                 (click)="ver_conversacion(conversacion.conversation_id)">
-                <img [src]="getProfile(conversacion)" alt="foto perfil"/>
+                <img [src]="getProfile(conversacion, i)" alt="foto perfil"/>
                 <div class="title-text">
-                    {{getName(conversacion)}}
+                    {{getName(conversacion, i)}}
                 </div>
-                <div class="created-date" *ngIf="getDay(conversacion)">
+                <div class="created-date" *ngIf="getDay(conversacion, i)">
                     <!-- {{mensaje[0].fecha.toLocaleDateString('es-ES', {day: 'numeric', month:'short'})}} -->
                     {{getDay(conversacion).toLocaleDateString('es-ES', {day: 'numeric', month:'short'})}}
                 </div>

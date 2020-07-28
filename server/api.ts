@@ -19,7 +19,7 @@ const connection = mysql.createConnection
         host: "localhost",
         user: "root",
         password: null,
-        database: "super_proyecto",
+        database: "new",
         multipleStatements: true
     }
 );
@@ -555,9 +555,12 @@ app.post("/conversations/conv_id", (req,res) => {
                 sql = `INSERT INTO Conversaciones (sender, receiver) VALUES (?,?)`
                 params = [a,b]
                 connection.query(sql, params, (err,data)=>{
-                    if (err) throw err
-                    console.log(data.insertId)
-                    res.send(data.insertId)
+                    if (err) {
+                      console.log(err)  
+                    } else {
+                        res.send({"conversation_id": data.insertId})
+                        console.log(data)
+                    }
                 })
             }
         }
