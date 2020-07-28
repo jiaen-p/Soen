@@ -1,4 +1,5 @@
 api.js
+secrets.*
 # Logs
 logs
 *.log
