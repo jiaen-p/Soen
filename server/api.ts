@@ -1,3 +1,6 @@
+// hashing y salt de password
+const bcrypt = require('bcrypt');
+const saltRounds = 6
 // Configuración API
 
 const express = require("express");
@@ -41,37 +44,40 @@ app.post("/user/register/company",
         console.log(req.body)
         let user = req.body.user
         let compania = req.body.company
-        let params = [user.email, user.password, 'company'];
         let sql = "INSERT INTO Usuarios (email, password, role) VALUES (?, ?, ?)";
-    //    añadir si no se quiere insertar el mismo email dos veces WHERE NOT EXISTS (SELECT email FROM Usuarios WHERE email = ?)
-        connection.query(sql, params, function (err, result)
-            {
-                if(err){
-                    console.log(err);
-                    resp.sendStatus(500); 
-                } else{
-                    let paramsB = [
-                        result.insertId, compania.company_name, compania.nif, 
-                        compania.profile_url, compania.direction, compania.telefono, 
-                        compania.web_url, compania.sector, compania.descripcion_company
-                    ];
-                    let company = "INSERT INTO Empresas (user_id, company_name, nif, profile_url, direction, telephone, web_url, sector, description_company) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                    
-                    connection.query(company, paramsB, function (err, result)
-                    {
-                        if(err){
-                            console.log(err); 
-                            resp.sendStatus(500);
-                        }
-                        else
+        bcrypt.hash(user.password, saltRounds, function(err, hash) {
+            // Store hash in your password DB.
+            let params = [user.email, hash, 'company'];
+            connection.query(sql, params, function (err, result)
+                {
+                    if(err){
+                        console.log(err);
+                        resp.sendStatus(500); 
+                    } else{
+                        let paramsB = [
+                            result.insertId, compania.company_name, compania.nif, 
+                            compania.profile_url, compania.direction, compania.telefono, 
+                            compania.web_url, compania.sector, compania.descripcion_company
+                        ];
+                        let company = "INSERT INTO Empresas (user_id, company_name, nif, profile_url, direction, telephone, web_url, sector, description_company) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                        
+                        connection.query(company, paramsB, function (err, result)
                         {
-                            resp.send(result);
+                            if(err){
+                                console.log(err); 
+                                resp.sendStatus(500);
+                            }
+                            else
+                            {
+                                resp.send(result);
+                            }
                         }
-                    }
-                    );
-                }   
-            }
-        );
+                        );
+                    }   
+                }
+            );
+        });
+    //    añadir si no se quiere insertar el mismo email dos veces WHERE NOT EXISTS (SELECT email FROM Usuarios WHERE email = ?)
     }
     );
 
@@ -82,32 +88,35 @@ app.post("/user/register/investor",
         console.log(req.body)
         let user = req.body.user
         let inversor = req.body.investor
-        let params = [user.email, user.password];
         let sql = "INSERT INTO Usuarios (email, password) " + "VALUES (?, ?)";
-        connection.query(sql, params, function (err, result)
-            {
-                if(err){
-                    console.log(err); 
-                    resp.sendStatus(500);
-                } else{
-                    
-                    let paramsB = [result.insertId, inversor.name, inversor.surname, inversor.profile_url, inversor.postal_code];
-                    let investor = "INSERT INTO Inversores (user_id, name, surname, profile_url, postal_code)" + "VALUES (?, ?, ?, ?, ?)";
-                    connection.query(investor, paramsB, function (err, result)
-                    {
-                        if(err){
-                            console.log(err); 
-                            resp.sendStatus(500);
-                        }
-                        else
+        bcrypt.hash(user.password, saltRounds, function(err, hash) {
+            let params = [user.email, hash];
+            // Store hash in your password DB.
+            connection.query(sql, params, function (err, result)
+                {
+                    if(err){
+                        console.log(err); 
+                        resp.sendStatus(500);
+                    } else{
+                        
+                        let paramsB = [result.insertId, inversor.name, inversor.surname, inversor.profile_url, inversor.postal_code];
+                        let investor = "INSERT INTO Inversores (user_id, name, surname, profile_url, postal_code)" + "VALUES (?, ?, ?, ?, ?)";
+                        connection.query(investor, paramsB, function (err, result)
                         {
-                            resp.send(result);
+                            if(err){
+                                console.log(err); 
+                                resp.sendStatus(500);
+                            }
+                            else
+                            {
+                                resp.send(result);
+                            }
                         }
-                    }
-                    );
-                }   
-            }
-        );
+                        );
+                    }   
+                }
+            );
+        });
     }
     );
 
@@ -117,41 +126,47 @@ app.post("/user/login",
     {
         let email = req.body.email;
         let password = req.body.password;
-        let sql = "SELECT * FROM Usuarios WHERE email = ? AND password = ?"
+        let sql = "SELECT * FROM Usuarios WHERE email = ?"
         if(email && password){
-            connection.query(sql, [email, password], function(err, result){
+            connection.query(sql, [email], function(err, result){
                 if(err){
                     console.log(err);
+                } else if(result.length === 0){
+                    resp.sendStatus(401)
+                    console.log("usuario y contraseña no encontrado")
                 } else {
-                    if(result.length === 0){
-                        resp.sendStatus(401)
-                        console.log("usuario y contraseña no encontrado")
-                    } else {
-                        let id = result[0].user_id;
-                        let role = result[0].role;
-                        
-                        let userA = "SELECT * FROM Empresas WHERE Empresas.user_id = ?";
-                        let userB = "SELECT * FROM Inversores WHERE Inversores.user_id = ?";
-                        if(role === 'company'){
-                            connection.query(userA, [id, role], function (err, result2){
-                                if (err){
-                                    resp.sendStatus(500)
-                                } else {
-                                    resp.send(result2)
-                                }
-                            });
-                        } else if(role === 'investor'){
-                            connection.query(userB, [id, role], function (err, result2){
-                                if (err){
-                                    resp.sendStatus(500)
-                                } else {
-                                    resp.send(result2)
-                                }
-                            });
+                    bcrypt.compare(password, result[0].password, function(err, usuario) {
+                        // result == true
+                        if(usuario){
+                            let id = result[0].user_id;
+                            let role = result[0].role;
+                            
+                            let userA = "SELECT * FROM Empresas WHERE Empresas.user_id = ?";
+                            let userB = "SELECT * FROM Inversores WHERE Inversores.user_id = ?";
+                            if(role === 'company'){
+                                connection.query(userA, [id, role], function (err, result2){
+                                    if (err){
+                                        resp.sendStatus(500)
+                                    } else {
+                                        resp.send(result2)
+                                    }
+                                });
+                            } else if(role === 'investor'){
+                                connection.query(userB, [id, role], function (err, result2){
+                                    if (err){
+                                        resp.sendStatus(500)
+                                    } else {
+                                        resp.send(result2)
+                                    }
+                                });
+                            } else {
+                                resp.sendStatus(500)
+                            }
                         } else {
-                            resp.sendStatus(500)
+                            console.log("incorrecto")
+                            resp.send("contraseña incorrecta")
                         }
-                    }
+                    });
                 }
             }
             );
