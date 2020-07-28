@@ -17,6 +17,9 @@ export class ProyectosComponent implements OnInit {
   public proyectos: any;
   public filtradoPorRango: Proyecto[] = []
   public user_fav = []
+  public empresa:string;
+  public proyecto:string;
+  public busqueda:string;
   // search, vinculado directamente con el valor de la barra de busqueda
   public search:string = ''
   public projects: Proyecto[]
@@ -54,45 +57,38 @@ export class ProyectosComponent implements OnInit {
   }
 
   
- filter(sector: string = null, max: number = null, min: number = null, date: string = null) {
-   this.apiService.getFilter(sector, max, min, date).subscribe((data: any[]) => {
-     if (!max) {
-       max = 99999999999;
-     }
-     if (!min) {
-       min = 0;
-     }
-     if (!date) {
-       date = "2999/12/31";
-     }
-     this.filtrado = [];
-     for (let i = 0; i < data.length; i++) {
-       if (sector) {
-         if ((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (sector && sector == data[i].sector) && (date && new Date(date) >= new Date(data[i].end_date))) {
-           this.filtrado.push(data[i]);
-           this.filtrado;
-         }
-       } else if((data[i].total_amount >= Number(min) && data[i].total_amount <= Number(max)) && (date && new Date(date) >= new Date(data[i].end_date))) {
-           this.filtrado.push(data[i]);
-           this.filtrado;
-       }else{
-           this.filtrado = this.projects;
-       }
-     } 
-     console.log(this.filtrado);
-     this.filtradoPorRango = this.filtrado;
-   })
- }
-
-
+  filter(sector: string = null, max: number = null, min: number = null, date: string = null) {
+    let filter = [];
+    Object.assign(filter,this.projects);
+    if(sector){
+      filter = filter.filter(project => project.sector === sector);
+    }
+    if(max){
+      filter = filter.filter(project => project.total_amount < max);
+    }
+    if(min){
+      filter = filter.filter(project => project.total_amount > min);
+    }
+    if(date){
+      let fecha = new Date(date);
+      console.log(filter[0].end_date);
+      filter = filter.filter(project => new Date(project.end_date.slice(0,10)) >= fecha);
+      
+    }
+    this.filtradoPorRango = filter;
+   
+  }
   
   filterForName()
   {
-      if(this.search){
+      if(this.search != " "){
         this.filtradoPorRango = [];
-        for(var i=0; i<this.projects.length; i++)
+        for(var i=0; i<=this.projects.length-1; i++)
         {
-          if(this.projects[i].project_name.includes(this.search) ||this.projects[i].company_name.includes(this.search))
+          this.proyecto = this.projects[i].project_name.toLowerCase();
+          this.empresa = this.projects[i].company_name.toLowerCase();
+          this.busqueda = this.search.toLocaleLowerCase();
+          if(this.proyecto.includes(this.busqueda) ||this.empresa.includes(this.busqueda))
           {
             console.log(this.projects[i]);
             this.filtradoPorRango.push(this.projects[i]);
