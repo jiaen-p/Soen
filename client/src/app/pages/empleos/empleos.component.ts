@@ -31,21 +31,14 @@ export class EmpleosComponent implements OnInit {
 
   oneJob(id:number)
   {
-    this.empleo.getJob(id).subscribe((data: any[]) =>
-    {
-      this.job = data[0];
-
-    }
-    )
+    console.log(id)
+    this.job = this.jobs.find(({job_id}) => job_id === id)
   }
 
 
   ngOnInit(): void {
     this.allJobs();
-    this.router.queryParams.subscribe(params => {
-      const job_id = params['job_id'];
-      this.oneJob(this.job.job_id);
-    });
+    //this.oneJob(this.jobs[0].job_id)
   }
 
 }

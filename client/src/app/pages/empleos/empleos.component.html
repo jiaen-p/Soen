@@ -1,52 +1,74 @@
 <div class="container-fluid">
 
-  <h1> EMPLEOS ACTIVOS</h1>
-  <!-- Resumen de empleo -->
-  <div *ngIf="jobs!=null">
-    <div *ngFor="let job of jobs">
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card example-1" style="height: 18rem;">
-            <div class="card-header">{{job.company_name}}</div>
+    <div class="row filtro">
+      <form class="form-inline col-md-2 ">
+        <input class="form-control" value="Buscar" type="search" placeholder="Buscar" aria-label="Search">
+      </form>
+      <select class="custom-select col-md-3 seccion " #experiencia>
+          <option selected value="" disabled>Experiencia</option>
+          <option value="sin">Sin experiencia</option>
+          <option value="uno">Entre 1 y 2 años</option>
+          <option value="tres">Entre 3 y 4 años</option>
+          <option value="cinco">Más de 4 años</option>
+      </select>
+      <br>
+      <select class="custom-select col-md-3 seccion" #contrato>
+        <option selected value="" disabled>Contrato</option>
+        <option value="temporal">Temporal</option>
+        <option value="obra">Obra y servicio</option>
+        <option value="indefinido">Indefinido</option>
+        <option value="practicas">Prácticas</option>
+      </select>
+      <br>
+      <select class="custom-select col-md-3 seccion" #jornada>
+        <option selected value="" disabled>Jornada</option>
+        <option value="Fin-tech">Completa</option>
+        <option value="Inteligencia artificial">Parcial</option>
+        <option value="Transporte">Fines de semana</option>
+      </select>
+    
+      <a class="btn btn-primary col-md-0.5 buscar">Filtrar</a>
+    </div>
+
+  <div *ngIf="jobs">
+
+    <div class="row">
+
+      <!-- Resumen de empleo -->
+      <div class="empleos col-md-4 mb-4">
+        <div *ngFor="let job of jobs">
+          <div class="card example-1" style="height: 15rem;">
+            <div class="card-header">{{job.company_name}} || <br> {{job.title}}</div>
             <div class="card-body">
-              <h5 class="card-title">{{job.title}}</h5>
-              <p class="card-text">{{job.description.slice(0,90)}} ...</p>
-              <h6 class="card-detalles">{{job.salary}} € || {{job.contract}} || {{job.sector}}</h6>
+              <p class="card-text">{{job.description.slice(0,50)}} ...</p>
+              <h6 class="card-detalles">{{job.salary}}€ || {{job.contract}} || {{job.sector}}</h6>
             </div>
-            <button (click)="oneJob()" class="btn-ampliar">Ampliar información</button>
+            <button (click)="oneJob(job.job_id)" class="btn-ampliar">Ampliar información</button>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Ampliacion de empleo -->
-    <div class="col-md-8 mb-6">
-      <div class="card example-1 scrollbar-frozen-dreams" style="height: 30rem;">
-        <div class="card-header">Título del puesto</div>
-        <div class="card-body">
-          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
-            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
-            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
-            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
-            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
-            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
-            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
-            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
-            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
-            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
-            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
-            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
-            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
-          <p>Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out
-            qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan
-            mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim
-            qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic.
-            Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.</p>
+      <!-- Ampliacion de empleo -->
+
+      <div class="col-md-8 mb-6 ">
+        <div *ngIf="job">
+          <div class="card example-1 scrollbar-frozen-dreams" style="height: 40rem;">
+            <div class="card-header">{{job.title}}</div>
+            <div class="card-body">
+              <p>{{job.company_name}}</p>
+              <p>{{job.description}}</p>
+              <p>{{job.requeriments}}</p>
+              <p>{{job.sector}}</p>
+              <p>{{job.working_day}}</p>
+              <p>{{job.contract}}</p>
+              <p>{{job.salary}}</p>
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
 
   </div>
 </div>
+
