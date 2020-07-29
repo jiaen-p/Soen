@@ -8,7 +8,7 @@ export class Empleo {
     public working_day: string
     public contract: string
     public salary: number
-    public requeriments: string
+    public requirements: string
     public experience: string
     
 }

@@ -11,7 +11,7 @@ import { EmpresaService } from 'src/app/shared/empresa.service';
 })
 export class ModificarProyectoComponent implements OnInit {
   // quitar 3 poner null cuando funcione
-  private project_id: number = 3 
+  private project_id: number = null 
   public project: Proyecto = new Proyecto()
   constructor(private proyecto:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, public router:Router) { }
 

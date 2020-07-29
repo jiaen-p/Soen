@@ -5,6 +5,7 @@ import { Contracts } from 'src/app/models/contract.enum';
 import { WorkingDays } from 'src/app/models/working-day.enum'
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
+import { EmpleoService } from 'src/app/shared/empleo.service';
 
 
 @Component({
@@ -15,13 +16,13 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 export class PublicarEmpleoComponent implements OnInit {
 
 
-  constructor(private router:Router, private usuario:UsuarioService) { }
+  constructor(private router:Router, private usuario:UsuarioService, private empleo: EmpleoService) { }
 
-  save( title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string){
+  save( title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string, experiencia:string){
     let empleo = new Empleo()
     empleo = {
       job_id: null, 
-      company_id: null,
+      company_id: this.usuario.empresa.company_id,
       company_name:this.usuario.empresa.company_name, 
       title: title, 
       sector: <Sectores>sector, 
@@ -29,11 +30,14 @@ export class PublicarEmpleoComponent implements OnInit {
       working_day: <WorkingDays>working_day,
       contract: <Contracts>contract,
       salary: salary,
-      requeriments: requeriments,
-      experience: null
+      requirements: requeriments,
+      experience: experiencia
     }
     console.log(empleo)
-      //this.router.navigate(['/dashboard'])
+    this.empleo.postJob(empleo).subscribe(res => {
+      this.router.navigate(['/dashboard'])
+    })
+    
   }
   ngOnInit(): void {
   }

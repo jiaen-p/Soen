@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { EmpleoService } from 'src/app/shared/empleo.service';
+import { Empleo } from 'src/app/models/empleo';
 
 @Component({
   selector: 'app-modificar-empleo',
@@ -8,14 +10,23 @@ import { Router } from '@angular/router';
 })
 export class ModificarEmpleoComponent implements OnInit {
 
-  constructor(public router:Router) { }
+  constructor(private route:ActivatedRoute, public router:Router, public job: EmpleoService) { }
+  private job_id: number = null;
+  public empleo: Empleo = new Empleo();
+
 
   modificar(){
-    //this.empresa.modificarProyecto(this.project).subscribe()
-    this.router.navigate(['/dashboard'])
+    this.job.putJob(this.empleo).subscribe()
+    this.router.navigate(['/dashboard/mis_empleos'])
   }
 
   ngOnInit(): void {
-  }
+    this.route.queryParams.subscribe(params => {
+      this.job_id = params['job_id'];
+      this.job.getJob(this.job_id).subscribe(data => {
+        this.empleo = data[0]
+      })
+  })
+}
 
 }
