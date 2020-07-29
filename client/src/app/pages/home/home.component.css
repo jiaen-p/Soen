@@ -27,7 +27,7 @@
 }
 
 .why{
-    margin: 60px auto;
+    margin: auto;
     max-width: 1400px;
 }
 
@@ -216,17 +216,13 @@ h2{
     text-align: center;
 }
 
-/* .icon-eur{
-    float: left;
-} */
-
 .card-title{
     margin-bottom: 20px;
     margin-left: 0px;
 }
 
 .container_companies{
-    margin: 50px 100px;
+    margin: 50px 50px;
 }
 
 .caja-carousel{
