@@ -60,11 +60,11 @@ export class HomeComponent implements OnInit {
   
   conocerMas(id:number){
     console.log(id)
-    if(this.usuario.user_id){
-      this.router.navigate([`/proyectos/proyecto`], { queryParams: { project_id: id } })
+    if(this.usuario.empresa || this.usuario.inversor){
+      this.router.navigate(['/proyectos/proyecto'], { queryParams: { project_id: id} })
     } else {
-      this.router.navigate(["/register"])
-    }
+    this.router.navigate(['/register'])
+   }
   }
 
   ngOnInit(): void {

@@ -4,7 +4,7 @@
     <div class="row filtro">
       <form class="form-inline col-md-5 ">
         <input class="form-control" type="text" #filtro  placeholder="Sector o Puesto">
-        <a class="btn btn-primary buscar" (click)="filterSearch(filtro.value)">Filtrar</a>
+        <a class="btn buscar" (click)="filterSearch(filtro.value)">Filtrar</a>
       </form>
       <select class="custom-select col-md-2 seccion " #experiencia>
           <option selected value="" disabled>Experiencia</option>
@@ -29,7 +29,7 @@
         <option value="Fines de semana">Fines de semana</option>
       </select>
     
-      <a class="btn btn-primary col-md-0.5 buscar" (click)="filter(experiencia.value, contrato.value, jornada.value)">Filtrar</a>
+      <a class="btn col-md-0.5 buscar" (click)="filter(experiencia.value, contrato.value, jornada.value)">Filtrar</a>
     </div>
 
     <div class="row">
@@ -41,7 +41,7 @@
             <div class="card-header">{{job.company_name}} || <br> {{job.title}}</div>
             <div class="card-body">
               <p class="card-text">{{job.description.slice(0,50)}} ...</p>
-              <h6 class="card-detalles">{{job.salary}}€ || {{job.contract}} || {{job.sector}}</h6>
+              <h6 class="card-detalles">{{job.salary}} € || {{job.contract}} || {{job.sector}}</h6>
             </div>
             <button (click)="oneJob(job.job_id)" class="btn-ampliar">Ampliar información</button>
           </div>
