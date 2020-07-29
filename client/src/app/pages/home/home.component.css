@@ -27,7 +27,7 @@
 }
 
 .why{
-    margin: 60px auto;
+    margin: auto;
     max-width: 1400px;
 }
 
@@ -114,7 +114,6 @@ ul{
     margin-bottom: 30px;
 }
 
-
 #accountant div img {
     width: 100%;
     margin-bottom: 20px;
@@ -145,6 +144,7 @@ ul{
     width: 60%;
     display: inline-block;
 }
+
 
 .logo-companie{
     justify-items: center;
@@ -216,17 +216,13 @@ h2{
     text-align: center;
 }
 
-/* .icon-eur{
-    float: left;
-} */
-
 .card-title{
     margin-bottom: 20px;
     margin-left: 0px;
 }
 
 .container_companies{
-    margin: 50px 100px;
+    margin: 50px 50px;
 }
 
 .caja-carousel{

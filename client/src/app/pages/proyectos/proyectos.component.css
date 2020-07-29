@@ -9,7 +9,6 @@
     box-sizing: border-box;
     min-height: 100%;
     height: 100%;
-    /* position: fixed;  */
 
 }
 
@@ -17,8 +16,6 @@
     height: 100%;
     box-sizing: border-box;
     padding: 10px;
-    /* position: absolute; */
-    /* left: 25%; */
 }
 .proyecto{
     box-sizing: border-box;
@@ -31,8 +28,7 @@
 }
 .buscar{
     width: 100%;
-    /* position: relative;
-    bottom: calc(275px - 100vh ); */
+  
 }
 .calendario{
     text-align: center;
@@ -59,13 +55,11 @@
     right: 22px;
     top: 24px;
     cursor: pointer;
-    /* color:rgb(255, 221, 67) */
     color: var(--fourth-color);
 }
 
 @media (max-width: 768px){
     .filtro{
-        /* position: static; */
         height: auto;
         min-height: 0;
     }

@@ -21,13 +21,20 @@
     text-align: left;
     margin: 20px 0;
 }
-.btn-primary{
+.btn{
     background-color: var(--secondary-color);
-    border-color: unset;
-    color: white;
+    border-radius: 15px;
+    color: var(--primary-color);
+    border-color: transparent;
     margin: 0 15px;
-    width: 120px;
+    width: 140px;
 }
+
+.btn:hover{
+
+    color: black
+}
+
 .seguir{
     background-color: var(--fourth-color);
 }
