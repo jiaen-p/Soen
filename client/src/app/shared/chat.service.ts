@@ -12,7 +12,7 @@ export class ChatService {
   public conversaciones = null
   constructor(private http:HttpClient, public usuario: UsuarioService, private router:Router) { }
   getConversation(user_id: number){
-    return this.http.get(this.url + `/${user_id}`)
+    return this.http.get(this.url + `/${user_id}`).toPromise()
   }
   sendMessage(mensaje: string, conversation_id:number){
     let message = new Mensajes()
@@ -21,7 +21,7 @@ export class ChatService {
     return this.http.put(this.url, {mensaje: message, conversation_id: conversation_id})
   }
   deleteConversation(conversation_id: number){
-    return this.http.request("delete",this.url, {body: {conversation_id: conversation_id}})
+    return this.http.request("delete",this.url, {body: {conversation_id: conversation_id}}).toPromise()
   }
   getProjectOwner(project_id: number){
     return this.http.post(this.url + "/project", {project_id: project_id}).toPromise()

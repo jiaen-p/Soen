@@ -3,7 +3,7 @@ import { MensajesService } from '../../shared/mensajes.service'
 import { UsuarioService } from 'src/app/shared/usuario.service'
 import { ChatService } from '../../shared/chat.service'
 import { Mensajes } from 'src/app/models/mensajes';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -20,9 +20,10 @@ export class ChatComponent implements OnInit {
   public enviar_mensaje: string = ''
   public mensajes: Mensajes[][] = []
   public antes_filtrar: Mensajes[][] = []
+  public conversaciones_copy = []
 
   constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService,
-    public chat:ChatService, private route: ActivatedRoute) {  }
+    public chat:ChatService, private route: ActivatedRoute, private router:Router) {  }
 
   filtrar_chat(){
     // this.mensajes = this.antes_filtrar
@@ -51,9 +52,10 @@ export class ChatComponent implements OnInit {
   }
   
   borrarConversacion(){
-    this.chat.deleteConversation(this.conversacion_activo).subscribe( res => {
-      this.ngOnInit()
+    this.chat.deleteConversation(this.conversacion_activo).then( res => {
     })
+    .then(d => this.ngOnInit())
+    .catch(err => null)
   }
   
   ver_conversacion(data){
@@ -127,10 +129,11 @@ export class ChatComponent implements OnInit {
   }
 
   getUpdate(){
-    this.chat.getConversation(this.usuario.user_id).subscribe(data => {
+    this.chat.getConversation(this.usuario.user_id).then(data => {
       this.chat.conversaciones = data
       this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
     })
+    .catch(err => null)
   }
 
   ngOnInit(): void {
@@ -138,11 +141,12 @@ export class ChatComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       let desired_conv_id = params['conversation_id']
       if(this.usuario.user_id){
-        this.chat.getConversation(this.usuario.user_id).subscribe(data => {
+        this.chat.getConversation(this.usuario.user_id).then(data => {
           this.chat.conversaciones = data
           desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
           this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
         })
+        .catch(err => null)
       }
     })
     this.usuario.miPerfil.new_message = null

@@ -571,11 +571,17 @@ app.patch("/conversations", (req,res) => {
     })
 })
 // borrar conversacion
-// app.delete("/conversations", (req,res) => {
-//     console.log(req.body.conversation_id)
-
-//     res.send("ok")
-// })
+app.delete("/conversations", (req,res) => {
+    console.log(req.body.conversation_id)
+    let sql = `DELETE FROM Conversaciones WHERE conversation_id = ?`
+    connection.query(sql, [req.body.conversation_id], (err, data)=> {
+        if(err){
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    })
+})
 
 // Obtener user_id a partir de un project_id
 app.post("/conversations/project",
