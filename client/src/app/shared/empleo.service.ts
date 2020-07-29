@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Empleo } from '../models/empleo';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,13 @@ export class EmpleoService {
    getJobCompany(id:Number)
    {
      return this.http.get(this.url + `/company/${id}`);
+   }
+   postJob(empleo:Empleo){
+     return this.http.post(this.url, empleo)
+   }
+
+   putJob(empleo:Empleo){
+     return this.http.put(this.url, empleo)
    }
 
 

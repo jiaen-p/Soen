@@ -5,20 +5,31 @@
     <div class="col-xl-10">
       <br>
       <h3 style="text-align: center;">Mis empleos</h3>
-      <div id="empleos" class="row ">
-      <!-- *ngFor="let proyecto of projectsUser; let indice = index"  -->
+      <div id="empleos" class="row " *ngFor="let empleo of empleos; let indice = index">
+      
         <div class="col-md-8">
             <br>
-            <h2>Nombre empleo</h2><br>
-            <h3>Descripción del empleo </h3>
-            <p>Aqui va la descripcion</p>
+            <h2>{{empleo.title}}</h2>
+            <h5>{{empleo.company_name}}</h5><br>
+            <h3>Descripción del empleo:</h3>
+            <p>{{empleo.description}}</p>
+            <h5>Jornada:</h5>
+            <p>{{empleo.working_day}}</p>
+            <h5>Tipo de contrato</h5>
+            <p>{{empleo.contract}}</p>
+            <h5>Salario</h5>
+            <p>{{empleo.salary}}</p>
+            <h5>Requerimientos:</h5>
+            <p>{{empleo.requirements}}</p>
+            <h5>Experiencia:</h5>
+            <p>{{empleo.experience}}</p>
             
             </div>
   
           
               <div class="col-md-4">
                 <br>
-                <a class="btn" [routerLink]="['/dashboard/mis_empleos/modificar']" role="button" id="btn">Editar</a>
+                <a class="btn" [routerLink]="['/dashboard/mis_empleos/modificar']" [queryParams]='{job_id: empleo.job_id}' role="button" id="btn">Editar</a>
               </div>
         
       </div>
