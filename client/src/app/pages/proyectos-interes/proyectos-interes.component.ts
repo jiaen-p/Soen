@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
-import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from 'src/app/shared/inversor.service';
 import { ChatService } from 'src/app/shared/chat.service';

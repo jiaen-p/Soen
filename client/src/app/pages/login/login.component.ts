@@ -26,12 +26,13 @@ export class LoginComponent implements OnInit {
         if(res){
           // asignar el tipo de perfil con el nuevo usuario del login
           if (res[0].company_id){
-            this.usuario.empresa = res[0]
+            this.usuario.empresa = res[0][0]
           } else {
-            this.usuario.inversor = res[0]
+            this.usuario.inversor = res[0][0]
           }
-          this.usuario.perfil_url = res[0].profile_url
-          this.usuario.user_id = res[0].user_id
+          this.usuario.perfil_url = res[0][0].profile_url
+          this.usuario.user_id = res[0][0].user_id
+          this.usuario.miPerfil = res[1][0]
           this.router.navigate(["/dashboard"])
         }
       })

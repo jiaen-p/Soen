@@ -11,7 +11,7 @@ import { Inversor } from '../models/inversor';
   providedIn: 'root'
 })
 export class UsuarioService {
-  public miPerfil:Usuario = null
+  public miPerfil:User = new User()
   public user_id: number = null
   private url:string = 'http://localhost:4000/user'
   public userinfo = null

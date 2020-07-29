@@ -148,7 +148,7 @@ app.post("/user/login",
                                     if (err){
                                         resp.sendStatus(500)
                                     } else {
-                                        resp.send(result2)
+                                        resp.send([result2, result])
                                     }
                                 });
                             } else if(role === 'investor'){
@@ -156,7 +156,7 @@ app.post("/user/login",
                                     if (err){
                                         resp.sendStatus(500)
                                     } else {
-                                        resp.send(result2)
+                                        resp.send([result2, result])
                                     }
                                 });
                             } else {
@@ -543,14 +543,33 @@ app.put("/conversations", (req,res) => {
     let sql = `INSERT INTO Mensajes (message, user_id) VALUES (?,?)`
     connection.query(sql,[m.mensaje, m.user_id], (err,data) => {
         if (err) throw err
-        sql = `INSERT INTO \`Mensaje-Usuario\` (conversation_id, message_id) VALUES (?,?)`
-        connection.query(sql, [conversation_id, data.insertId], (err, data2) => {
+        sql = `INSERT INTO \`Mensaje-Usuario\` (conversation_id, message_id) VALUES (?,?);`
+        sql += `SELECT * FROM Conversaciones WHERE conversation_id = ?;`
+        connection.query(sql, [conversation_id, data.insertId, conversation_id], (err, data2) => {
             if (err) throw err
-            res.send({message_id: data.insertId})
+            let other_id = data2[1][0].sender === m.user_id ? data2[1][0].receiver : data2[1][0].sender
+            sql = `UPDATE Usuarios SET new_message = 1 WHERE user_id = ?`
+            connection.query(sql,[other_id], (err, data3)=> {
+                if (err) {
+                    console.error(err)
+                    res.sendStatus(500)
+                } else {
+                    res.send({message_id: data.insertId})
+                }
+            })
         })
     })
 })
-
+app.patch("/conversations", (req,res) => {
+    let sql = `UPDATE Usuarios SET new_message = 0 WHERE user_id = ?`
+    connection.query(sql, [req.body.user_id], (err,data) => {
+        if(err){
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    })
+})
 // borrar conversacion
 // app.delete("/conversations", (req,res) => {
 //     console.log(req.body.conversation_id)

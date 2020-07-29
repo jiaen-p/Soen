@@ -7,19 +7,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        
-        <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/invertidos'}" routerLink="/proyectos/invertidos">Proyectos invertidos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/interes'}" routerLink="/proyectos/interes">Proyectos de interés</a>
-            </li>
-            <li class="nav-item">
+          <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/invertidos'}" routerLink="/proyectos/invertidos">Proyectos invertidos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'activo':router.url==='/proyectos/interes'}" routerLink="/proyectos/interes">Proyectos de interés</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" routerLink="/proyectos">Descubrir proyectos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/chat">Chat</a>
+                <a class="nav-link" routerLink="/chat">Chat <i *ngIf="usuario.miPerfil.new_message" class="fas fa-exclamation-circle"></i></a>
               </li>
-    </ul>
+          </ul>
+        </div>
+    </nav>
 </div>

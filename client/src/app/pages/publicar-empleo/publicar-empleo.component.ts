@@ -20,7 +20,7 @@ export class PublicarEmpleoComponent implements OnInit {
   save( title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string){
     let empleo = new Empleo()
     empleo = {
-      empleo_id: null, 
+      job_id: null, 
       company_id: null,
       company_name:this.usuario.empresa.company_name, 
       title: title, 
@@ -30,6 +30,7 @@ export class PublicarEmpleoComponent implements OnInit {
       contract: <Contracts>contract,
       salary: salary,
       requeriments: requeriments,
+      experience: null
     }
     console.log(empleo)
       //this.router.navigate(['/dashboard'])

@@ -37,4 +37,7 @@ export class ChatService {
       })
     })
   }
+  resetRead(){
+    this.http.patch(this.url, {user_id: this.usuario.user_id}).toPromise().then().catch(err => null)
+  }
 }

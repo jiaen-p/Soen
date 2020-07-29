@@ -44,7 +44,6 @@ export class ChatComponent implements OnInit {
     if(this.enviar_mensaje){
       this.chat.sendMessage(this.enviar_mensaje, this.conversacion_activo)
       .subscribe(res => {
-        console.log(res)
         this.getUpdate()
         this.enviar_mensaje = ''
       })
@@ -146,5 +145,7 @@ export class ChatComponent implements OnInit {
         })
       }
     })
+    this.usuario.miPerfil.new_message = null
+    this.chat.resetRead()
   }
 }
