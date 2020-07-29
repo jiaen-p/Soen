@@ -39,7 +39,7 @@
           </div>
         </div>
       </div>
-      <!-- <p>Finaliza el {{ proyecto.end_date.slice(0,10) }}</p> -->
+      <p>Finaliza el {{ fecha.toLocaleDateString('es-ES', {day: 'numeric', month:'long', year:'numeric'}) }}</p>
       <p>{{proyecto.remaining_amount}} € financiados de {{proyecto.total_amount}} €</p>
       <a class="btn" (click)="chat.goToChat(proyecto.project_id)">Contactar</a>
       <a class="btn seguir" (click)="null">Seguir</a>

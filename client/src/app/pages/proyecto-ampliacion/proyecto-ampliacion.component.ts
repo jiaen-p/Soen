@@ -14,7 +14,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
   
   public proyecto: Proyecto  = new Proyecto()
   public project_id: number
-
+  public fecha:Date
   constructor(public route: ActivatedRoute, public _location: Location, 
     private apiService: ProyectosService, public chat:ChatService,
     private router:Router) { }
@@ -26,6 +26,7 @@ export class ProyectoAmpliacionComponent implements OnInit {
     {
           this.proyecto.project_id = data[0].project_id;
           this.proyecto = data[0];
+          this.fecha = new Date(data[0].end_date)
           console.log(this.proyecto);
     }
   )
