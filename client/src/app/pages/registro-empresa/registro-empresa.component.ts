@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Empresa } from '../../models/empresa'
-import { Sectores } from 'src/app/models/sectores.enum';
+import { Sectores, Sector } from 'src/app/models/sectores.enum';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 
@@ -11,7 +11,9 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class RegistroEmpresaComponent implements OnInit {
   private empresa: Empresa = new Empresa();
-  
+  public sector = Sector
+  public sectorType = []
+  public sectorName = []
  
   constructor(private route: ActivatedRoute, private router: Router, private usuario: UsuarioService) { }
 
@@ -41,6 +43,8 @@ export class RegistroEmpresaComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.sectorType = Object.keys(this.sector)
+    this.sectorName = Object.values(this.sector)
   }
 
 }

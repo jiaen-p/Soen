@@ -3,6 +3,7 @@ export enum Sector {
     transporte = "Transporte",
     inteligenciaArtificial = "Inteligencia artificial",
     turismo = "Turismo",
-    medioambiente= "Medioambiente"
+    medioambiente= "Medioambiente",
+    educacion="Educación"
 }
 export type Sectores = keyof typeof Sector
