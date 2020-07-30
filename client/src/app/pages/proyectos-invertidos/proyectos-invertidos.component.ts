@@ -26,6 +26,7 @@ export class ProyectosInvertidosComponent implements OnInit {
         // console.log(this.invertidos)
         this.apiService.getProyecto(this.invertidos).subscribe((data: any[]) =>{
           this.proyectosInvertidos.push(data);
+          console.log(data)
        });
       }
     });

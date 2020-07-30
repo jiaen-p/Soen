@@ -54,7 +54,9 @@ export class ProyectosInteresComponent implements OnInit {
   }
   */
   addInvertidos(idProyecto: number){
-    this.inversor.postProyectosInvertido(idProyecto).subscribe(data =>{})  
+    this.inversor.postProyectosInvertido(idProyecto).subscribe(data =>{
+      this.inversor.deleteProyectosFavoritos(idProyecto).subscribe()
+    })  
   }
 
   ngOnInit(): void {

@@ -13,8 +13,8 @@
                         <h2>{{invertidos[0].project_name}}</h2>
                         <br>
                         <p>{{invertidos[0].description}}</p>
-                        <h5>Última actualización: </h5>
-                        <p>{{invertidos[0].update_}} €</p>
+                        <h5 *ngIf="invertidos[0].update_.length != 0">Última actualización: </h5>
+                        <p *ngIf="invertidos[0].update_.length != 0">{{invertidos[0].update_}}</p>
                     </div>
                     
                     <div class="col-md-4" >

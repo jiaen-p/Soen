@@ -9,8 +9,8 @@
                 <div class="col-md-8 " >
                 <br><h2>{{interes[0].project_name}}</h2><br>
                 <p>{{interes[0].description}}</p>
-                <h5>Última actualización</h5>
-                <p>(fecha de actualización) - Asunto de actualización</p>
+                <h5 *ngIf="interes[0].update_.length != 0">Última actualización</h5>
+                <p *ngIf="interes[0].update_.length != 0">{{interes[0].update_}}</p>
 
                 </div>
                 
@@ -18,7 +18,7 @@
                     <br>
                     <a class="btn btn1" [routerLink]="['/proyectos/proyecto']" [queryParams]='{project_id:interes[0].project_id}' role="button" >Mas info</a>
                     <a class="btn btn2" (click)="chat.goToChat(interes[0].project_id)" role="button" >Contactar</a>
-                    <a class="btn btn-primary add" role="button" (click)=addInvertidos(1)>Añadir a proyectos invertidos</a>
+                    <a class="btn btn-primary add" role="button" (click)="addInvertidos(interes[0].project_id)">Añadir a proyectos invertidos</a>
             </div>
         </div>
     </div>
