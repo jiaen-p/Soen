@@ -28,7 +28,7 @@ export class UsuarioService {
 
   }
   login(user){
-    return this.http.post(this.url + "/login", user)
+    return this.http.post(this.url + "/login", user).toPromise()
   }
   logout(){
     this.miPerfil = null

@@ -44,7 +44,9 @@ export class ProyectosInvertidosComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.proyectosInvertido()
+    if(this.usuario.inversor){
+      this.proyectosInvertido()
+    }
   }
 
   // abrir conversacion
