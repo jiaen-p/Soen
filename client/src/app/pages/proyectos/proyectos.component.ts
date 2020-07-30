@@ -4,7 +4,7 @@ import { ProyectosService } from '../../shared/proyectos.service'
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from '../../shared/inversor.service'
-import { Empresa } from 'src/app/models/empresa';
+import { Sector } from 'src/app/models/sectores.enum';
 
 @Component({
   selector: 'app-proyectos',
@@ -24,6 +24,10 @@ export class ProyectosComponent implements OnInit {
   public search:string = ''
   public projects: Proyecto[]
   public project: Proyecto
+  // carga los sectores dinamicamente
+  public sector = Sector
+  public sectorType = []
+  public sectorName = []
 
   constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
     this.proyectos = this.apiService.getProyectos()
@@ -111,6 +115,8 @@ export class ProyectosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sectorType = Object.keys(this.sector)
+    this.sectorName = Object.values(this.sector)
     this.allProjects()
     this.inversor.getProyectosFavoritos().subscribe(data => { 
       this.user_fav = Object.values(data).map(x => x.project_id)

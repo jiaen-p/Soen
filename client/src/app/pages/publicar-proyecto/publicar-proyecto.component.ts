@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpresaService } from '../../shared/empresa.service'
 import { Proyecto } from 'src/app/models/proyecto';
-import { Sectores } from 'src/app/models/sectores.enum';
+import { Sectores, Sector } from 'src/app/models/sectores.enum';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./publicar-proyecto.component.css']
 })
 export class PublicarProyectoComponent implements OnInit {
-  
+  public sector = Sector
+  public sectorType = []
+  public sectorName = []
   constructor(public empresa:EmpresaService, private usuario:UsuarioService, private router:Router) { }
 
   save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string){
@@ -35,5 +37,7 @@ export class PublicarProyectoComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    this.sectorType = Object.keys(this.sector)
+    this.sectorName = Object.values(this.sector)
   }
 }

@@ -471,8 +471,8 @@ app.post("/projects",
     function(req, resp)
     {
         let project = req.body.proyecto
-        let params = [project.project_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_]
-        let sql = "INSERT INTO Proyectos (project_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        let params = [project.project_name, project.company_name, project.description, project.total_amount, project.remaining_amount, project.end_date, project.project_img_url, project.sector, project.update_]
+        let sql = "INSERT INTO Proyectos (project_name, company_name, description, total_amount, remaining_amount, end_date, project_img_url, sector, update_) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection.query(sql, params, function (err, result)
             {
                 if(err){
@@ -787,8 +787,9 @@ app.post("/jobs",
     function(req, resp)
     {
         let empleo = req.body
-        let params = [empleo.company_id, empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requeriments, empleo.experience, empleo.email]
-        let sql = "INSERT INTO Empleos (company_id, company_name, title, sector, description, working_day, contract, salary, requirements, experience, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        console.log(empleo)
+        let params = [empleo.company_id, empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requirements, empleo.experience, empleo.email]
+        let sql = "INSERT INTO Empleos (company_id, company_name, title, sector, description, working_day, contract, salary, requirements, experience, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection.query(sql, params, function (err, result)
             {
                 if(err){
@@ -805,7 +806,7 @@ app.put("/jobs",
     function(req, resp)
     {
         let empleo = req.body
-        let params = [empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requirements, empleo.experience, empleo.job_id, empleo.email]
+        let params = [empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requirements, empleo.experience, empleo.email,  empleo.job_id]
         let sql = "UPDATE Empleos SET company_name = ?, title = ?, sector = ?, description = ?, working_day = ?, contract = ?, salary = ?, requirements = ?, experience = ?, email = ? WHERE job_id = ?" ;
         connection.query(sql, params, function (err, result)
             {

@@ -7,6 +7,7 @@ import { User } from '../models/user';
 import { Empresa } from '../models/empresa';
 import { Router } from '@angular/router';
 import { Inversor } from '../models/inversor';
+import { ChatService } from './chat.service';
 @Injectable({
   providedIn: 'root'
 })

@@ -21,6 +21,7 @@ export class ChatComponent implements OnInit {
   public mensajes: Mensajes[][] = []
   public antes_filtrar: Mensajes[][] = []
   public conversaciones_copy = []
+  public nombre: string = ''
 
   constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService,
     public chat:ChatService, private route: ActivatedRoute, private router:Router) {  }
@@ -58,26 +59,27 @@ export class ChatComponent implements OnInit {
     .catch(err => null)
   }
   
-  ver_conversacion(data){
+  ver_conversacion(data, conversacion){
     this.conversacion_activo = data 
     this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === data)
+    this.nombre = this.getName(conversacion)
   }
   // 
   getConversation(){
     let result = null
-    if(this.usuario.inversor){
-      if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-        result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-      } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-        result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-      }
-    } else {
-      if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-        result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-      } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-        result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-      }
+    if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+      result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+    } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+      result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
     }
+    // if(this.usuario.inversor){
+    // } else {
+    //   if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+    //     result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+    //   } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
+    //     result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
+    //   }
+    // }
     result ? result=result.name : null
     return result
   }
@@ -106,7 +108,7 @@ export class ChatComponent implements OnInit {
     return res
   }
 
-  getName(data, i):string{
+  getName(data):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
     let response = null
     if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
@@ -114,10 +116,10 @@ export class ChatComponent implements OnInit {
     }else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
       response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
     }
-    return response[i].name
+    return response.filter(us => us.conversation_id === data.conversation_id)[0].name
   }
 
-  getProfile(data, index:number):string{
+  getProfile(data):string{
     let user =  (data.sender === this.usuario.user_id ? data.receiver : data.sender)
     let response =  null
     if (this.chat.conversaciones[3].filter(conv => conv.user_id === user).length !== 0){
@@ -125,7 +127,7 @@ export class ChatComponent implements OnInit {
     } else if (this.chat.conversaciones[2].filter(conv => conv.user_id = user).length !== 0){
       response = this.chat.conversaciones[2].filter(conv => conv.user_id = user)
     }
-    return response[index].profile_url
+    return response.filter(us => us.conversation_id === data.conversation_id)[0].profile_url
   }
 
   getUpdate(){
@@ -145,6 +147,9 @@ export class ChatComponent implements OnInit {
           this.chat.conversaciones = data
           desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
           this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
+        })
+        .then(() => {
+          this.ver_conversacion(this.conversacion_activo, this.chat.conversaciones[1][0])
         })
         .catch(null)
       }

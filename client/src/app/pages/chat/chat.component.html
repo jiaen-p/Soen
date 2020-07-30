@@ -6,10 +6,10 @@
         </div>
         <div id="conversation-list">
             <div *ngFor="let conversacion of chat.conversaciones[1], let i = index" class="conversation" [class]="conversacion_activo === conversacion.conversation_id ? 'active' : null" 
-                (click)="ver_conversacion(conversacion.conversation_id)">
-                <img [src]="getProfile(conversacion, i)" alt="foto perfil"/>
+                (click)="ver_conversacion(conversacion.conversation_id, conversacion)">
+                <img [src]="getProfile(conversacion)" alt="foto perfil"/>
                 <div class="title-text">
-                    {{getName(conversacion, i)}}
+                    {{getName(conversacion)}}
                 </div>
                 <div class="created-date" *ngIf="getDay(conversacion, i)">
                     <!-- {{mensaje[0].fecha.toLocaleDateString('es-ES', {day: 'numeric', month:'short'})}} -->
@@ -23,7 +23,7 @@
         </div>
         <!-- lado derecho -->
         <div id="chat-title">
-            <span>{{getConversation()}}</span>
+            <span>{{nombre}}</span>
             <a class="borrar" (click)="borrarConversacion()" role="button">
                 <i class="fas fa-trash-alt"></i>
             </a>

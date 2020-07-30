@@ -18,10 +18,8 @@
           </div>
           <div class="form-group">
             <select class="form-control" id="sector" #sector>
-                <option value="" disabled>Sector</option>
-                <option value="fintech">Fin tech</option>
-                <option value="transporte">Transporte</option>
-                <option value="inteligencia artificial">inteligencia artificial</option>
+                <option selected value="" disabled>Sector</option>
+                <option *ngFor="let value of sectorType, let name of sectorName" [value]="value">{{name}}</option>
               </select>
             </div>       
           <br>

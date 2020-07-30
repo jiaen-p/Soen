@@ -18,12 +18,10 @@
           </div>
           <div class="form-group">
             <select class="form-control" id="sector" #sector [(ngModel)]="project.sector" [ngModelOptions]="{standalone: true}">
-                <option value="" disabled>Sector</option>
-                <option value="fintech">Fin tech</option>
-                <option value="transporte">Transporte</option>
-                <option value="inteligencia artificial">inteligencia artificial</option>
-              </select>
-            </div>       
+              <option value="" disabled>Sector</option>
+              <option *ngFor="let value of sectorType, let name of sectorName" [value]="value">{{name}}</option>
+            </select>
+          </div>       
           <br>
         <button type="button" class="btn" id="btn" (click)="modificar()" >Submit</button>
       </form>
