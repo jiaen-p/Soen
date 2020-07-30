@@ -40,7 +40,7 @@
         </div>
       </div>
       <p>Finaliza el {{ proyecto.end_date.slice(0,10) }}</p>
-      <p>{{proyecto.remaining_amount}} € financiados de {{proyecto.total_amount}} €</p>
+      <p><strong>{{proyecto.remaining_amount}}</strong> € financiados de <strong>{{proyecto.total_amount}}</strong> €</p>
       <a class="btn" (click)="chat.goToChat(proyecto.project_id)">Contactar</a>
       <a class="btn seguir" (click)="null">Seguir</a>
     </div>
