@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { Location } from '@angular/common'
 import { ChatService } from 'src/app/shared/chat.service';
+import { InversorService } from 'src/app/shared/inversor.service';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-proyecto-ampliacion',
@@ -15,9 +17,10 @@ export class ProyectoAmpliacionComponent implements OnInit {
   public proyecto: Proyecto  = new Proyecto()
   public project_id: number
   public fecha:Date
+
   constructor(public route: ActivatedRoute, public _location: Location, 
     private apiService: ProyectosService, public chat:ChatService,
-    private router:Router) { }
+    private router:Router, private inversor: InversorService, public usuario:UsuarioService) { }
 
   // Coge el valor del id del proyecto pasado por la url y devuelve toda su información
   projectsForId(id:number)
@@ -51,5 +54,13 @@ export class ProyectoAmpliacionComponent implements OnInit {
       })
     })
   }
+
+  seguir(id){
+    this.inversor.postProyectosFavoritos(id).subscribe((res =>
+    {
+        this.router.navigate(['dashboard']);
+    }))
+ 
+   }
 
 }

@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="logo col-lg-3">
-            <img *ngIf="proyecto.project_img_url" [src]="proyecto.project_img_url" alt="random img from lorem picsum">
+            <img *ngIf=proyecto.project_img_url [src]="proyecto.project_img_url" alt="random img from lorem picsum">
           </div>
           <div class="col-lg-9 descripcion">
             <p>{{proyecto.description}}</p>
@@ -18,7 +18,7 @@
       <p *ngIf="fecha">Finaliza el {{ fecha.toLocaleDateString('es-ES', {day: 'numeric', month:'long', year:'numeric'}) }}</p>
       <p>{{proyecto.remaining_amount}} € financiados de {{proyecto.total_amount}} €</p>
       <a class="btn" (click)="chat.goToChat(proyecto.project_id)">Contactar</a>
-      <a class="btn seguir" (click)="null">Seguir</a>
+      <a *ngIf="usuario.inversor" class="btn seguir" (click)="seguir(proyecto.project_id)">Seguir</a>
     </div>
  
 </div>
