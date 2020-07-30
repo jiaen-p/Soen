@@ -25,14 +25,12 @@
             <p>{{empleo.experience}}</p>
             <h5>E-mail de contacto:</h5>
             <p>{{empleo.email}}</p>
-            
         </div>
-  
-          
-              <div class="col-md-4">
-                <br>
-                <a class="btn" [routerLink]="['/dashboard/mis_empleos/modificar']" [queryParams]='{job_id: empleo.job_id}' role="button" id="btn">Editar</a>
-              </div>
+        <div class="col-md-4">
+          <br>
+          <a class="btn" [routerLink]="['/dashboard/mis_empleos/modificar']" [queryParams]='{job_id: empleo.job_id}' role="button" id="btn">Editar</a>
+          <a class="btn">Eliminar anuncio</a>
+        </div>
         
       </div>
    
