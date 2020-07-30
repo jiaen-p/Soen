@@ -55,8 +55,8 @@ export class ProyectoAmpliacionComponent implements OnInit {
     })
   }
 
-  seguir(id){
-    this.inversor.postProyectosFavoritos(id).subscribe((res =>
+  seguir(){
+    this.inversor.postProyectosFavoritos(this.project_id).subscribe((res =>
     {
         this.router.navigate(['dashboard']);
     }))
