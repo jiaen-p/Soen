@@ -820,5 +820,15 @@ app.put("/jobs",
             }
         );             
     });
-
+app.delete("/jobs", (req,res) => {
+    let job_id = req.body.job_id
+    let sql = `DELETE FROM Empleos WHERE job_id = ?`
+    connection.query(sql, [job_id], (err,data) => {
+        if(err){
+            res.sendStatus(500)
+        } else {
+            res.sendStatus(200)
+        }
+    })
+})
 app.listen(4000, console.log("Servidor funcionando en puerto 4000"));

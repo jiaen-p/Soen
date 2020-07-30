@@ -27,6 +27,14 @@ export class MisEmpleosComponent implements OnInit {
   )
   }
 
+  eliminar(id){
+    console.log(id)
+    this.empleo.deleteJob(id)
+    .then(() => {
+      this.ngOnInit()
+    })
+    .catch(null)
+  }
   ngOnInit(): void {
     this.empleosForUser(this.usuario.empresa.company_id);
   }
