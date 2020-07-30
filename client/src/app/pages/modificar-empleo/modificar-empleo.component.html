@@ -1,6 +1,9 @@
 <div class="formulario">
     <br><h2 style="text-align: center;">Aquí puedes modificar tu empleo... </h2><br><br>
     <form>
+      <div class="form-group">
+        <input type="text" class="form-control" id="company" placeholder="Empresa" #company_name   [(ngModel)]="empleo.company_name" [ngModelOptions]="{standalone: true}">
+      </div>
         <div class="form-group">
           <input type="text" class="form-control" id="title" placeholder="Título" #title   [(ngModel)]="empleo.title" [ngModelOptions]="{standalone: true}">
         </div>
@@ -40,6 +43,9 @@
           </div>
           <div class="form-group">
             <textarea type="text" class="form-control" id="experience" placeholder="Experiencia" #experience [(ngModel)]="empleo.experience" [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="form-group">
+            <textarea type="text" class="form-control" id="email" placeholder="E-mail de contacto" #email [(ngModel)]="empleo.email" [ngModelOptions]="{standalone: true}"></textarea>
           </div>
                 
           <br>

@@ -1,11 +1,9 @@
 .object{
-    /* align-items: center; */
     justify-content: center;
 }
 #object h1{
     text-align: center;
     font-size: 5rem;
-    /* position: absolute; */
     font-weight: bolder;
 }
 @media(max-width: 550px){
@@ -48,7 +46,6 @@
 }
 
 ul{
-    /* cursor:pointer;  */
     list-style: none; 
 }
 
@@ -91,8 +88,6 @@ ul{
 }
 
 #accountant{
-    /* margin-top: 50px;
-    margin-bottom: 50px; */
     display: inline-flex;
     margin: 50px auto;
     width: 100%;
@@ -227,6 +222,5 @@ h2{
 
 .caja-carousel{
     max-width: 800px;
-    /* background-color: var(--shadow-color); */
     margin: 0 auto;
 }

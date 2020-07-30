@@ -2,6 +2,9 @@
     <br><h2 style="text-align: center;">Aquí puedes publicar tu empleo... </h2><br><br>
     <form>
         <div class="form-group">
+          <input type="text" class="form-control" id="company" placeholder="Empresa" #company_name>
+        </div>
+        <div class="form-group">
           <input type="text" class="form-control" id="title" placeholder="Título" #title>
         </div>
         <div class="form-group">
@@ -36,14 +39,17 @@
             <input type="number" class="form-control" id="salary" placeholder="Salario" #salary>
           </div>
           <div class="form-group">
-            <textarea type="text" class="form-control" id="requeriments" placeholder="Requerimientos" #requeriments></textarea>
+            <textarea type="text" class="form-control" id="requeriments" placeholder="Requisitos" #requeriments></textarea>
           </div>
           <div class="form-group">
             <textarea type="text" class="form-control" id="experience" placeholder="Experiencia" #experience></textarea>
           </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="email" placeholder="E-mail de contacto" #email>
+          </div>
                 
           <br>
-        <button type="button" class="btn" id="btn" (click)="save(title.value, sector.value, description.value, working_day.value, contract.value, salary.value, requeriments.value, experience.value)">Submit</button>
+        <button type="button" class="btn" id="btn" (click)="save(company_name.value, title.value, sector.value, description.value, working_day.value, contract.value, salary.value, requeriments.value, experience.value, email.value)">Submit</button>
       </form>
 </div>
 

@@ -18,7 +18,7 @@ export class PublicarEmpleoComponent implements OnInit {
 
   constructor(private router:Router, private usuario:UsuarioService, private empleo: EmpleoService) { }
 
-  save( title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string, experiencia:string){
+  save( title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string, experiencia:string, email: string){
     let empleo = new Empleo()
     empleo = {
       job_id: null, 
@@ -31,7 +31,8 @@ export class PublicarEmpleoComponent implements OnInit {
       contract: <Contracts>contract,
       salary: salary,
       requirements: requeriments,
-      experience: experiencia
+      experience: experiencia,
+      email: email
     }
     console.log(empleo)
     this.empleo.postJob(empleo).subscribe(res => {

@@ -203,20 +203,16 @@
 
 
 #chat-form{
-    /* align-content: center; */
     grid-gap: 15px;
     grid-area: chat-form;
     border-bottom-right-radius: 10px;
     border-top: 1px solid rgba(0, 0, 0, 0.25);
-    /* padding-left: 42px; */
     padding-right: 22px;
     outline: none;
-    /* padding: 15px; */
     border: 2px solid var(--primary-color);
     color: var(--secondary-color);
     border-radius: 6px;
     font-size: 1.4rem;
-    /* justify-content: center; */
     box-shadow: 0 1px 3px -1px rgba(0, 0, 0, 0.75);
 
 }

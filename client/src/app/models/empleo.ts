@@ -10,5 +10,6 @@ export class Empleo {
     public salary: number
     public requirements: string
     public experience: string
+    public email: string
     
 }

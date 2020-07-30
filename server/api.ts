@@ -787,8 +787,8 @@ app.post("/jobs",
     function(req, resp)
     {
         let empleo = req.body
-        let params = [empleo.company_id, empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requeriments, empleo.experience]
-        let sql = "INSERT INTO Empleos (company_id, company_name,title, sector, description, working_day, contract, salary, requirements, experience) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        let params = [empleo.company_id, empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requeriments, empleo.experience, empleo.email]
+        let sql = "INSERT INTO Empleos (company_id, company_name, title, sector, description, working_day, contract, salary, requirements, experience, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         connection.query(sql, params, function (err, result)
             {
                 if(err){
@@ -805,8 +805,8 @@ app.put("/jobs",
     function(req, resp)
     {
         let empleo = req.body
-        let params = [empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requirements, empleo.experience, empleo.job_id]
-        let sql = "UPDATE Empleos SET title = ?, sector = ?, description = ?, working_day = ?, contract = ?, salary = ?, requirements = ?, experience = ? WHERE job_id = ?" ;
+        let params = [empleo.company_name, empleo.title, empleo.sector, empleo.description, empleo.working_day, empleo.contract, empleo.salary, empleo.requirements, empleo.experience, empleo.job_id, empleo.email]
+        let sql = "UPDATE Empleos SET company_name = ?, title = ?, sector = ?, description = ?, working_day = ?, contract = ?, salary = ?, requirements = ?, experience = ?, email = ? WHERE job_id = ?" ;
         connection.query(sql, params, function (err, result)
             {
                 if(err){
