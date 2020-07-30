@@ -57,6 +57,7 @@ export class ProyectosInteresComponent implements OnInit {
     this.inversor.postProyectosInvertido(idProyecto).subscribe(data =>{
       this.inversor.deleteProyectosFavoritos(idProyecto).subscribe()
     })  
+    this.router.navigate(["/proyectos/invertidos"])
   }
 
   ngOnInit(): void {
