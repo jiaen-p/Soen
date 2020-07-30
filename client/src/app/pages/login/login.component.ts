@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.usuario.userinfo = form.value
         if(res){
           // asignar el tipo de perfil con el nuevo usuario del login
-          if (res[0].company_id){
+          if (res[0][0].company_id){
             this.usuario.empresa = res[0][0]
           } else {
             this.usuario.inversor = res[0][0]

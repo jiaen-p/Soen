@@ -2,7 +2,7 @@
     <!-- lado izquierdo -->
     <div id="chat-container">
         <div id="search-container">
-            <input type="text" placeholder="Search" [(ngModel)]='nombre_deseado' (keyup)="filtrar_chat()">
+            <!-- <input type="text" placeholder="Search" [(ngModel)]='nombre_deseado' (keyup)="filtrar_chat()"> -->
         </div>
         <div id="conversation-list">
             <div *ngFor="let conversacion of chat.conversaciones[1], let i = index" class="conversation" [class]="conversacion_activo === conversacion.conversation_id ? 'active' : null" 

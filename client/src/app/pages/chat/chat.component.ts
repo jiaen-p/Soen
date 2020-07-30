@@ -53,8 +53,8 @@ export class ChatComponent implements OnInit {
   
   borrarConversacion(){
     this.chat.deleteConversation(this.conversacion_activo).then( res => {
+      this.ngOnInit()
     })
-    .then(d => this.ngOnInit())
     .catch(err => null)
   }
   
@@ -146,7 +146,7 @@ export class ChatComponent implements OnInit {
           desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
           this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
         })
-        .catch(err => null)
+        .catch(null)
       }
     })
     this.usuario.miPerfil.new_message = null
