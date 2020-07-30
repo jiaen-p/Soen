@@ -13,14 +13,14 @@
                         <h2>{{invertidos[0].project_name}}</h2>
                         <br>
                         <p>{{invertidos[0].description}}</p>
-                        <h5 *ngIf="invertidos[0].update_.length != 0">Última actualización: </h5>
-                        <p *ngIf="invertidos[0].update_.length != 0">{{invertidos[0].update_}}</p>
+                        <h5 *ngIf="invertidos[0].update_">Última actualización: </h5>
+                        <p *ngIf="invertidos[0].update_">{{invertidos[0].update_}}</p>
                     </div>
                     
                     <div class="col-md-4" >
                         <br>
                         <h5>Capital invertido:<br> {{invertidos[0].total_amount - invertidos[0].remaining_amount}} € / {{invertidos[0].total_amount}} €</h5><br><br><br>
-                        <a class="btn" [routerLink]="['/proyectos/proyecto']" [queryParams]='{project_id:invertidos[0].project_id}' role="button" id="btn">Mas info</a>
+                        <a class="btn" [routerLink]="['/proyectos/proyecto']" [queryParams]='{project_id: invertidos[0].project_id}' role="button" id="btn">Mas info</a>
                         <a class="btn" (click)="goToConversation(invertidos[0].project_id)" role="button" id="btn2">Contactar</a>
                     </div>
                 </div>
