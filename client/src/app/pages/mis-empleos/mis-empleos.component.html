@@ -29,7 +29,7 @@
         <div class="col-md-4">
           <br>
           <a class="btn" [routerLink]="['/dashboard/mis_empleos/modificar']" [queryParams]='{job_id: empleo.job_id}' role="button" id="btn">Editar</a>
-          <a class="btn">Eliminar anuncio</a>
+          <a class="btn btn-primary borrar" (click)="eliminar(empleo.job_id)">Eliminar anuncio</a>
         </div>
         
       </div>

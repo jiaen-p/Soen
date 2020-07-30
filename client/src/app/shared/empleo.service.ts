@@ -36,5 +36,7 @@ export class EmpleoService {
      return this.http.put(this.url, empleo)
    }
 
-
+   deleteJob(id){
+     return this.http.request('delete', this.url, {body:{job_id:id}}).toPromise()
+   }
 }
