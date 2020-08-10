@@ -567,19 +567,18 @@ app.patch("/conversations", (req,res) => {
         if(err){
             res.sendStatus(500)
         } else {
-            res.sendStatus(200)
+            res.send(data)
         }
     })
 })
 // borrar conversacion
 app.delete("/conversations", (req,res) => {
-    console.log(req.body.conversation_id)
     let sql = `DELETE FROM Conversaciones WHERE conversation_id = ?`
     connection.query(sql, [req.body.conversation_id], (err, data)=> {
         if(err){
             res.sendStatus(500)
         } else {
-            res.sendStatus(200)
+            res.send(data)
         }
     })
 })
@@ -707,24 +706,6 @@ function(req, resp)
 );
 
 
-// Borrar conversación
-app.delete("/conversation",
-    function(req, resp)
-    {
-        let params = req.body.conversation_id;
-        let sql = "DELETE FROM Conversaciones WHERE conversation_id = ?";
-        connection.query(sql, params, function (err, result)
-        {  
-            if(err){
-                console.log(err); 
-                resp.sendStatus(500);
-            } else{
-                resp.send(result);
-            } 
-        }
-        );
-    }
-    );
 
 // Obtener lista de empleos
 app.get("/jobs",

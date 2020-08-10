@@ -125,7 +125,7 @@ export class ProyectosComponent implements OnInit {
           this.user_fav.forEach(f_id => {
             document.getElementById('id_proyecto_'+f_id).setAttribute("data-prefix", 'fas')
           })
-        }, 200);
+        }, 20);
       })
     }
   }

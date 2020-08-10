@@ -53,7 +53,8 @@ export class ChatComponent implements OnInit {
   }
   
   borrarConversacion(){
-    this.chat.deleteConversation(this.conversacion_activo).then( res => {
+    this.chat.deleteConversation(this.conversacion_activo)
+    .then( res => {
       this.ngOnInit()
     })
     .catch(err => null)
@@ -72,14 +73,6 @@ export class ChatComponent implements OnInit {
     } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
       result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
     }
-    // if(this.usuario.inversor){
-    // } else {
-    //   if( this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-    //     result = this.chat.conversaciones[3].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-    //   } else if (this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo).length !== 0){
-    //     result = this.chat.conversaciones[2].filter(conv => conv.conversation_id === this.conversacion_activo)[0]
-    //   }
-    // }
     result ? result=result.name : null
     return result
   }
@@ -145,15 +138,18 @@ export class ChatComponent implements OnInit {
       if(this.usuario.user_id){
         this.chat.getConversation(this.usuario.user_id).then(data => {
           this.chat.conversaciones = data
-          desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
-          this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
+          if(this.chat.conversaciones){
+            desired_conv_id ? this.conversacion_activo = Number(desired_conv_id) : this.conversacion_activo = data[0][0].conversation_id
+            this.conversacion = this.chat.conversaciones[0].filter(conv => conv.conversation_id === this.conversacion_activo)
+          }
         })
         .then(() => {
           this.ver_conversacion(this.conversacion_activo, this.chat.conversaciones[1][0])
         })
-        .catch(null)
+        .catch(err => null)
       }
     })
+    // quitar notificacion de mensaje
     this.usuario.miPerfil.new_message = null
     this.chat.resetRead()
   }
