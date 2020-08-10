@@ -1,3 +1,6 @@
+<div class="volver">
+  <a (click)="_location.back()"><i class="fas fa-arrow-circle-left"></i></a>
+</div>
 <div class="formulario">
     <br><h2 style="text-align: center;">Aquí puedes publicar tu proyecto... </h2><br><br>
     <form>
@@ -23,6 +26,6 @@
               </select>
             </div>       
           <br>
-        <button type="button" class="btn" id="btn" (click)="save(project_name.value, description.value, total_amount.value, end_date.value,  project_img_url.value, sector.value)">Submit</button>
+        <button type="button" class="btn" id="btn" (click)="save(project_name.value, description.value, total_amount.value, end_date.value,  project_img_url.value, sector.value)">Publicar</button>
       </form>
 </div>

@@ -4,6 +4,8 @@ import { UsuarioService } from 'src/app/shared/usuario.service'
 import { ChatService } from '../../shared/chat.service'
 import { Mensajes } from 'src/app/models/mensajes';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -24,9 +26,13 @@ export class ChatComponent implements OnInit {
   public nombre: string = ''
 
   constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService,
+<<<<<<< HEAD
     public chat:ChatService, private route: ActivatedRoute, private router:Router) {  }
     
     
+=======
+    public chat:ChatService, private route: ActivatedRoute, private router:Router, public _location: Location) {  }
+>>>>>>> cris
 
   filtrar_chat(){
     // this.mensajes = this.antes_filtrar

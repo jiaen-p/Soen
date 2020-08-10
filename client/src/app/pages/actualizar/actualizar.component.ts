@@ -3,6 +3,7 @@ import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import { EmpresaService } from 'src/app/shared/empresa.service';
+import { Location } from '@angular/common'
 
 @Component({
   selector: 'app-actualizar',
@@ -12,7 +13,7 @@ import { EmpresaService } from 'src/app/shared/empresa.service';
 export class ActualizarComponent implements OnInit {
   private project_id: number
   public project:Proyecto = new Proyecto()
-  constructor(public proyectos:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, private router:Router) { }
+  constructor(public proyectos:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, private router:Router, public _location: Location) { }
 //  update__
   actualizar(actualizar:string){
     this.project.update = actualizar

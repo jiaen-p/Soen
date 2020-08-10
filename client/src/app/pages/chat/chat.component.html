@@ -9,6 +9,9 @@
     </div>
     <div class="col-xl-10" >
 <div class="container-fluid box" *ngIf="chat.conversaciones">
+    <div class="volver">
+        <a (click)="_location.back()"><i class="fas fa-arrow-circle-left"></i></a>
+    </div>
     <!-- lado izquierdo -->
     <div id="chat-container">
         <div id="search-container">

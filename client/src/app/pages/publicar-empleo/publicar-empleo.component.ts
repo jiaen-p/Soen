@@ -6,6 +6,7 @@ import { WorkingDays } from 'src/app/models/working-day.enum'
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { EmpleoService } from 'src/app/shared/empleo.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class PublicarEmpleoComponent implements OnInit {
   public sectorType = []
   public sectorName = []
 
-  constructor(private router:Router, private usuario:UsuarioService, private empleo: EmpleoService) { }
+  constructor(private router:Router, private usuario:UsuarioService, private empleo: EmpleoService, public _location: Location) { }
 
   save( company_name:string, title: string, sector: string, description:string, working_day: string, contract:string, salary: number, requeriments:string, experiencia:string, email: string){
     let empleo = new Empleo()
