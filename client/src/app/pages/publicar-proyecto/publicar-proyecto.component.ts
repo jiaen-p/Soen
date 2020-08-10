@@ -4,6 +4,7 @@ import { Proyecto } from 'src/app/models/proyecto';
 import { Sectores, Sector } from 'src/app/models/sectores.enum';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-publicar-proyecto',
@@ -14,7 +15,7 @@ export class PublicarProyectoComponent implements OnInit {
   public sector = Sector
   public sectorType = []
   public sectorName = []
-  constructor(public empresa:EmpresaService, private usuario:UsuarioService, private router:Router) { }
+  constructor(public empresa:EmpresaService, private usuario:UsuarioService, private router:Router, public _location: Location) { }
 
   save( project_name: string, description: string, total_amount:number, end_date: Date, project_img_url:string, sector: string){
     let proyecto = new Proyecto()

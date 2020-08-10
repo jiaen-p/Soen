@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { UsuarioService } from 'src/app/shared/usuario.service';
-import { Proyecto } from '../../models/proyecto'
+import { Proyecto } from '../../models/proyecto';
+
 
 @Component({
   selector: 'app-mis-proyectos',

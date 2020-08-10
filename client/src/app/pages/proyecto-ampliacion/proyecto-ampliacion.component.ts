@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Proyecto } from 'src/app/models/proyecto';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectosService } from 'src/app/shared/proyectos.service';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
 import { ChatService } from 'src/app/shared/chat.service';
 import { InversorService } from 'src/app/shared/inversor.service';
 import { UsuarioService } from 'src/app/shared/usuario.service';

@@ -2,6 +2,14 @@
   margin-top: 20px;
 }
 
+.volver{
+  margin-left: 60px;
+  margin-top: 20px;
+  font-size: 2.2em;
+  color: var(--secondary-color);
+  cursor: pointer; 
+}
+
 .filtro{
   margin-bottom: 10px;
 }

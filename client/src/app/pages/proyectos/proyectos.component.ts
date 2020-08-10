@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/shared/usuario.service';
 import { InversorService } from '../../shared/inversor.service'
 import { Sector } from 'src/app/models/sectores.enum';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-proyectos',
@@ -29,7 +30,7 @@ export class ProyectosComponent implements OnInit {
   public sectorType = []
   public sectorName = []
 
-  constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService) {
+  constructor(private router:Router, public usuario:UsuarioService, private apiService: ProyectosService, private inversor: InversorService, public _location: Location) {
     this.proyectos = this.apiService.getProyectos()
 
   }
