@@ -118,8 +118,15 @@ export class ProyectosComponent implements OnInit {
     this.sectorType = Object.keys(this.sector)
     this.sectorName = Object.values(this.sector)
     this.allProjects()
-    this.inversor.getProyectosFavoritos().subscribe(data => { 
-      this.user_fav = Object.values(data).map(x => x.project_id)
-    })
+    if(this.usuario.inversor){
+      this.inversor.getProyectosFavoritos().subscribe(data => { 
+        this.user_fav = Object.values(data).map(x => x.project_id)
+        setTimeout(() => {
+          this.user_fav.forEach(f_id => {
+            document.getElementById('id_proyecto_'+f_id).setAttribute("data-prefix", 'fas')
+          })
+        }, 200);
+      })
+    }
   }
 }
