@@ -1,3 +1,13 @@
+<div class="row ">
+    <div class="col-xl-2" style=" background: var(--primary-color)" >
+        <div *ngIf="usuario.empresa === null">
+            <app-menu-inversor></app-menu-inversor>
+        </div>
+        <div *ngIf="usuario.empresa !== null">
+            <app-menu-empresa></app-menu-empresa>
+        </div>
+    </div>
+    <div class="col-xl-10" >
 <div class="container-fluid box" *ngIf="chat.conversaciones">
     <!-- lado izquierdo -->
     <div id="chat-container">
@@ -55,4 +65,6 @@
             </form>
         </div>
     </div>
+</div>
+</div>
 </div>
