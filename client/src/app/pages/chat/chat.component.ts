@@ -26,13 +26,7 @@ export class ChatComponent implements OnInit {
   public nombre: string = ''
 
   constructor(public servicio_mensajeria: MensajesService, public usuario: UsuarioService,
-<<<<<<< HEAD
-    public chat:ChatService, private route: ActivatedRoute, private router:Router) {  }
-    
-    
-=======
     public chat:ChatService, private route: ActivatedRoute, private router:Router, public _location: Location) {  }
->>>>>>> cris
 
   filtrar_chat(){
     // this.mensajes = this.antes_filtrar

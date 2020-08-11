@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmpleoService } from '../../shared/empleo.service'
 import { Empleo } from 'src/app/models/empleo';
 import { ActivatedRoute } from '@angular/router';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-empleos',
   templateUrl: './empleos.component.html',
@@ -18,7 +18,7 @@ export class EmpleosComponent implements OnInit {
   public filtrado: Empleo[] = []
 
 
-  constructor(private router: ActivatedRoute, public empleo: EmpleoService) { 
+  constructor(private router: ActivatedRoute, public empleo: EmpleoService, public _location: Location) { 
     this.empleos = this.empleo.getJobs()
   }
 
