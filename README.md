@@ -2,7 +2,7 @@
 
 ### Soen es una plataforma que tiene el objetivo de acercar inversores a las pequeñas y medianas empresas.
 
-## Requesitos
+## Requisitos
 
 - Xampp
 - Node.js
