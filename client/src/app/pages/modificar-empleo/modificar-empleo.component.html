@@ -1,6 +1,7 @@
 <div class="formulario">
     <br><h2 style="text-align: center;">Aquí puedes modificar tu empleo... </h2><br><br>
     <form *ngIf="empleo">
+      <app-go-back class="boton_atras"></app-go-back>
       <div class="form-group">
         <input type="text" class="form-control" id="company" placeholder="Empresa" #company_name   [(ngModel)]="empleo.company_name" [ngModelOptions]="{standalone: true}">
       </div>

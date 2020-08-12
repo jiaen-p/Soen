@@ -1,8 +1,5 @@
 
 <div class="row page">
-    <div class="col-md-1 col-sm-12 ">
-        <a (click)="_location.back()" class="volver"><i class="fas fa-arrow-circle-left"></i></a>
-    </div>
     <div class="col-md-3 col-sm-12 filtro">
         <form class="formulario">
             <select class="custom-select my-1 mr-sm-2 seccion" #sector>
@@ -19,10 +16,11 @@
                 <input type="date" id="fecha-fin" #date>
             </div>
             <a class="btn btn-primary buscar" (click)="filter(sector.value, max.value, min.value, date.value)">Filtrar</a>
+            <app-go-back class="boton_atras" *ngIf="usuario.user_id"></app-go-back>
         </form>
 
     </div>
-    <div class="col-md-8 col-sm-12 proyectos">
+    <div class="col-md-9 col-sm-12 proyectos">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-search"></i></span>

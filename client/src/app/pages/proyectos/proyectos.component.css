@@ -4,12 +4,10 @@
     margin-top: 10px;
 }
 
-.volver{
-    left: 50px;
-    position: absolute;
-    font-size: 2.2em;
-    color: var(--secondary-color);
-    cursor: pointer; 
+.boton_atras{
+    /* position: absolute; */
+    /* top: -40px; */
+    /* bottom: 0px; */
 }
 
 .filtro{
@@ -17,7 +15,6 @@
     box-sizing: border-box;
     min-height: 100%;
     height: 100%;
-
 }
 
 .proyectos{
@@ -46,6 +43,7 @@
 }
 .formulario{
     height: 100%;
+    position: relative;
 }
 .btn{
     background-color: var(--secondary-color);
