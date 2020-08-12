@@ -15,4 +15,9 @@ form{
 
 .formulario{
     margin-bottom: 50px;
+    position: relative;
+}
+.boton_atras{
+    position: absolute;
+    top: 20px;
 }

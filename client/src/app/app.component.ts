@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'client';
+  title = 'Soen';
+  constructor(private titleService:Title){
+    titleService.setTitle(this.title)
+  }
   scrollTop(){
     window.scroll(0,0)
   }

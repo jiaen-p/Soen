@@ -1,28 +1,29 @@
 <div class="formulario">
-    <br><h2 style="text-align: center;">Aquí puedes modificar tu proyecto... </h2><br><br>
-    <form>
-        <div class="form-group">
-          <input type="text" class="form-control" id="project_name" placeholder="Nombre" #project_name  [(ngModel)]="project.project_name" [ngModelOptions]="{standalone: true}">
-        </div>
-          <div class="form-group">
-            <input type="number" class="form-control" id="total_amount" placeholder="Capital total" #total_amount  [(ngModel)]="project.total_amount" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <input type="date" class="form-control" id="end_date" placeholder="Fecha límite" #end_date  [(ngModel)]="project.end_date" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <textarea type="text" class="form-control" id="description" placeholder="Descripción" #description  [(ngModel)]="project.description" [ngModelOptions]="{standalone: true}"></textarea>
-          </div>
-          <div class="form-group">
-            <input type="text" class="form-control" id="project_img_url" placeholder="URL de imagen" #project_img_url  [(ngModel)]="project.project_img_url" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="form-group">
-            <select class="form-control" id="sector" #sector [(ngModel)]="project.sector" [ngModelOptions]="{standalone: true}">
-              <option value="" disabled>Sector</option>
-              <option *ngFor="let value of sectorType, let name of sectorName" [value]="value">{{name}}</option>
-            </select>
-          </div>       
-          <br>
-        <button type="button" class="btn" id="btn" (click)="modificar()" >Submit</button>
-      </form>
+  <br><h2 style="text-align: center;">Aquí puedes modificar tu proyecto... </h2><br><br>
+  <form>
+    <app-go-back class="boton_atras"></app-go-back>
+    <div class="form-group">
+      <input type="text" class="form-control" id="project_name" placeholder="Nombre" #project_name  [(ngModel)]="project.project_name" [ngModelOptions]="{standalone: true}">
+    </div>
+      <div class="form-group">
+        <input type="number" class="form-control" id="total_amount" placeholder="Capital total" #total_amount  [(ngModel)]="project.total_amount" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <input type="date" class="form-control" id="end_date" placeholder="Fecha límite" #end_date  [(ngModel)]="project.end_date" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <textarea type="text" class="form-control" id="description" placeholder="Descripción" #description  [(ngModel)]="project.description" [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="project_img_url" placeholder="URL de imagen" #project_img_url  [(ngModel)]="project.project_img_url" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <select class="form-control" id="sector" #sector [(ngModel)]="project.sector" [ngModelOptions]="{standalone: true}">
+          <option value="" disabled>Sector</option>
+          <option *ngFor="let value of sectorType, let name of sectorName" [value]="value">{{name}}</option>
+        </select>
+      </div>       
+      <br>
+    <button type="button" class="btn" id="btn" (click)="modificar()" >Submit</button>
+  </form>
 </div>

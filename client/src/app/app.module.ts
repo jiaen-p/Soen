@@ -30,6 +30,7 @@ import { EmpleosComponent } from './pages/empleos/empleos.component';
 import { PublicarEmpleoComponent } from './pages/publicar-empleo/publicar-empleo.component';
 import { MisEmpleosComponent } from './pages/mis-empleos/mis-empleos.component';
 import { ModificarEmpleoComponent } from './pages/modificar-empleo/modificar-empleo.component';
+import { GoBackComponent } from './pages/go-back/go-back.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ModificarEmpleoComponent } from './pages/modificar-empleo/modificar-emp
     EmpleosComponent,
     PublicarEmpleoComponent,
     MisEmpleosComponent,
-    ModificarEmpleoComponent
+    ModificarEmpleoComponent,
+    GoBackComponent
 
   ],
   imports: [
