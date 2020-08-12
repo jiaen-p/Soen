@@ -7,19 +7,19 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link"  routerLink="/publicar">Publicar proyecto</a>
+              <a class="nav-link" routerLink="/publicar">Publicar proyecto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link activo" routerLink="/dashboard/mis_proyectos">Mis proyectos</a>
+              <a class="nav-link" [ngClass]="{'activo':router.url==='/dashboard/mis_proyectos'}" routerLink="/dashboard/mis_proyectos">Mis proyectos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link"  routerLink="/publicar_empleo">Publicar empleo</a>
+              <a class="nav-link" routerLink="/publicar_empleo">Publicar empleo</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/dashboard/mis_empleos">Mis empleos</a>
+              <a class="nav-link" [ngClass]="{'activo':router.url==='/dashboard/mis_empleos'}" routerLink="/dashboard/mis_empleos">Mis empleos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/chat">Chat <i *ngIf="usuario.miPerfil.new_message" class="fas fa-exclamation-circle"></i></a>
+              <a class="nav-link" [ngClass]="{'activo':router.url==='/chat'}" routerLink="/chat">Chat <i *ngIf="usuario.miPerfil.new_message" class="fas fa-exclamation-circle"></i></a>
             </li>
           </ul>
         </div>
