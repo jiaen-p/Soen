@@ -241,11 +241,6 @@
 .box{
     margin-bottom: 50px;
 }
-
-.volver{
-    left: 50px;
-    position: absolute;
-    font-size: 2.2em;
-    color: var(--secondary-color);
-    cursor: pointer; 
+.menu{
+    margin-left: 20px;
 }
