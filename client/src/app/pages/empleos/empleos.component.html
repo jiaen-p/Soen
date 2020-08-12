@@ -1,11 +1,9 @@
-<div class="volver">
-  <a (click)="_location.back()"><i class="fas fa-arrow-circle-left"></i></a>
-</div>
 <div class="container-fluid">
-
-      <!-- Filtro -->
-    <div class="row filtro">
-      <form class="form-inline col-md-5 ">
+  
+  <!-- Filtro -->
+  <div class="row filtro">
+    <form class="form-inline col-md-5 ">
+      <app-go-back *ngIf="usuario.user_id"></app-go-back>
         <input class="form-control" type="text" #filtro  placeholder="Sector o Puesto">
         <a class="btn buscar" (click)="filterSearch(filtro.value)">Filtrar</a>
       </form>
@@ -31,7 +29,6 @@
         <option value="Parcial">Parcial</option>
         <option value="Fines de semana">Fines de semana</option>
       </select>
-    
       <a class="btn col-md-0.5 buscar" (click)="filter(experiencia.value, contrato.value, jornada.value)">Filtrar</a>
     </div>
 

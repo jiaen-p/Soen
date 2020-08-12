@@ -82,6 +82,7 @@ ul li a:hover{
     justify-self: right;
     padding: 0;
     border: 1px solid var(--secondary-color);
+    object-fit: cover;
 }
 
 /* --------- con user */
