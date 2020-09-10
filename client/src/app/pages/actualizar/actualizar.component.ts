@@ -3,7 +3,7 @@ import { ProyectosService } from 'src/app/shared/proyectos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Proyecto } from 'src/app/models/proyecto';
 import { EmpresaService } from 'src/app/shared/empresa.service';
-import { Location } from '@angular/common'
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-actualizar',
@@ -11,42 +11,42 @@ import { Location } from '@angular/common'
   styleUrls: ['./actualizar.component.css']
 })
 export class ActualizarComponent implements OnInit {
-  private project_id: number
-  public project:Proyecto = new Proyecto()
-  constructor(public proyectos:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, private router:Router, public _location: Location) { }
+  private project_id: number;
+  public project: Proyecto = new Proyecto();
+  constructor(public proyectos: ProyectosService, private route: ActivatedRoute, private empresa: EmpresaService, private router: Router, public _location: Location) { }
 //  update__
-  actualizar(actualizar:string){
-    this.project.update = actualizar
+  actualizar(actualizar: string){
+    this.project.update = actualizar;
     this.empresa.modificarProyecto(this.project).subscribe(res => {
-      this.navegar()
-    })
+      this.navegar();
+    });
   }
 // actualizar acquared amount
   financiacion(financiacion: string){
-    this.project.remaining_amount -= Number(financiacion)
+    this.project.remaining_amount -= Number(financiacion);
     this.empresa.modificarProyecto(this.project).subscribe(res => {
-      this.navegar()
-    })
+      this.navegar();
+    });
   }
 
   objetivos(){
     this.project.remaining_amount = 0;
     this.empresa.modificarProyecto(this.project).subscribe(res => {
-      this.navegar()
-    })
+      this.navegar();
+    });
   }
 
   private navegar(){
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/dashboard']);
   }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.project_id = params['project_id']
+      this.project_id = params.project_id;
       this.proyectos.getProyecto(this.project_id).subscribe(data => {
-        this.project = data[0]
-      })
-    })
+        this.project = data[0];
+      });
+    });
   }
 
 }

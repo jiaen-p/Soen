@@ -16,24 +16,24 @@ export class MisEmpleosComponent implements OnInit {
 
   constructor(public router: Router, public empleo: EmpleoService, public usuario: UsuarioService) { }
 
-  empleosForUser(id:number)
+  empleosForUser(id: number)
   {
-    
+
     this.empleo.getJobCompany(id).subscribe((data: any[]) =>
     {
       this.empleos = data;
-      console.log(this.empleos)
+      console.log(this.empleos);
     }
-  )
+  );
   }
 
   eliminar(id){
-    console.log(id)
+    console.log(id);
     this.empleo.deleteJob(id)
     .then(() => {
-      this.ngOnInit()
+      this.ngOnInit();
     })
-    .catch(null)
+    .catch(null);
   }
   ngOnInit(): void {
     this.empleosForUser(this.usuario.empresa.company_id);

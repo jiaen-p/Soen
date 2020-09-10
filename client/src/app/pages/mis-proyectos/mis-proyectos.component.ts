@@ -13,17 +13,17 @@ import { Proyecto } from '../../models/proyecto';
 })
 export class MisProyectosComponent implements OnInit {
 
-  public projectsUser: Proyecto[]
+  public projectsUser: Proyecto[];
 
-  constructor(public router: Router, private apiService: ProyectosService, public usuario:UsuarioService) {}
+  constructor(public router: Router, private apiService: ProyectosService, public usuario: UsuarioService) {}
 
-  projectsForUser(id:number)
+  projectsForUser(id: number)
   {
     this.apiService.getProyectoUser(id).subscribe((data: any[]) =>
     {
       this.projectsUser = data;
     }
-  )
+  );
   }
 
   ngOnInit(): void {

@@ -10,21 +10,21 @@ import { ChatService } from '../shared/chat.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public img_url: string = null
-  constructor(public usuario:UsuarioService, private router:Router, private chat:ChatService) { 
-    
+  public img_url: string = null;
+  constructor(public usuario: UsuarioService, private router: Router, private chat: ChatService) {
+
   }
 
   ngOnInit(): void {
   }
 
   logout(){
-    this.usuario.miPerfil = null
-    this.usuario.perfil_url = null
-    this.usuario.empresa = null
-    this.usuario.inversor = null
-    this.usuario.user_id = null
-    this.chat.conversaciones = null
-    this.router.navigate(["/"])
+    this.usuario.miPerfil = null;
+    this.usuario.perfil_url = null;
+    this.usuario.empresa = null;
+    this.usuario.inversor = null;
+    this.usuario.user_id = null;
+    this.chat.conversaciones = null;
+    this.router.navigate(['/']);
   }
 }

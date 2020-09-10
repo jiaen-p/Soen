@@ -10,11 +10,11 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class MenuInversorComponent implements OnInit {
 
-  constructor(public router: Router, public usuario:UsuarioService) { }
+  constructor(public router: Router, public usuario: UsuarioService) { }
 
 
   ngOnInit(): void {
-    
+
   }
 
 }

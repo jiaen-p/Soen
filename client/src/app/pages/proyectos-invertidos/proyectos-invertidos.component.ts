@@ -13,18 +13,18 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class ProyectosInvertidosComponent implements OnInit {
 
-  public projects: Proyecto[]
+  public projects: Proyecto[];
   public invertidos: number;
-  public proyectosInvertidos:any[] = [];
+  public proyectosInvertidos: any[] = [];
 
-  constructor(public router:Router, private apiService: ProyectosService, public chat: ChatService, private usuario: UsuarioService, private inversor: InversorService) { }
+  constructor(public router: Router, private apiService: ProyectosService, public chat: ChatService, private usuario: UsuarioService, private inversor: InversorService) { }
 
   proyectosInvertido(){
-    this.inversor.getProyectosInvertido().subscribe((data: any[]) =>{
-      for(let index = 0;index <= data.length-1;index++){
+    this.inversor.getProyectosInvertido().subscribe((data: any[]) => {
+      for (let index = 0; index <= data.length - 1; index++){
         this.invertidos = data[index].project_id;
         // console.log(this.invertidos)
-        this.apiService.getProyecto(this.invertidos).subscribe((data: any[]) =>{
+        this.apiService.getProyecto(this.invertidos).subscribe((data: any[]) => {
           this.proyectosInvertidos.push(data);
        });
       }
@@ -32,24 +32,24 @@ export class ProyectosInvertidosComponent implements OnInit {
   }
 
   // Coge los proyectos asociados al usuario por su id
-  projectsForUser(id:number)
+  projectsForUser(id: number)
   {
     this.apiService.getProyectoUser(id).subscribe((data: any[]) =>
     {
       this.projects = data;
     }
-  )
+  );
   }
 
 
   ngOnInit(): void {
-    if(this.usuario.inversor){
-      this.proyectosInvertido()
+    if (this.usuario.inversor){
+      this.proyectosInvertido();
     }
   }
 
   // abrir conversacion
   goToConversation(project_id){
-    this.chat.goToChat(project_id)
+    this.chat.goToChat(project_id);
   }
 }

@@ -7,7 +7,7 @@ import { Empleo } from '../models/empleo';
 })
 export class EmpleoService {
 
-  private url = "http://localhost:4000/jobs"
+  private url = 'http://localhost:4000/jobs';
 
   constructor(private http: HttpClient) { }
 
@@ -18,25 +18,25 @@ export class EmpleoService {
   }
 
   // Información de un empelo por su id
-  getJob(id:Number)
+  getJob(id: Number)
   {
     return this.http.get(this.url + `/${id}`);
   }
 
-   //Jobs por id empresa
-   getJobCompany(id:Number)
+   // Jobs por id empresa
+   getJobCompany(id: Number)
    {
      return this.http.get(this.url + `/company/${id}`);
    }
-   postJob(empleo:Empleo){
-     return this.http.post(this.url, empleo)
+   postJob(empleo: Empleo){
+     return this.http.post(this.url, empleo);
    }
 
-   putJob(empleo:Empleo){
-     return this.http.put(this.url, empleo)
+   putJob(empleo: Empleo){
+     return this.http.put(this.url, empleo);
    }
 
    deleteJob(id){
-     return this.http.request('delete', this.url, {body:{job_id:id}}).toPromise()
+     return this.http.request('delete', this.url, {body: {job_id: id}}).toPromise();
    }
 }

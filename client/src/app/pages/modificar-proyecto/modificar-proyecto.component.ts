@@ -12,27 +12,27 @@ import { Sector } from 'src/app/models/sectores.enum';
 })
 export class ModificarProyectoComponent implements OnInit {
   // quitar 3 poner null cuando funcione
-  private project_id: number = null 
-  public project: Proyecto = new Proyecto()
-  public sector = Sector
-  public sectorType = []
-  public sectorName = []
-  constructor(private proyecto:ProyectosService, private route:ActivatedRoute, private empresa:EmpresaService, public router:Router) { }
+  private project_id: number = null;
+  public project: Proyecto = new Proyecto();
+  public sector = Sector;
+  public sectorType = [];
+  public sectorName = [];
+  constructor(private proyecto: ProyectosService, private route: ActivatedRoute, private empresa: EmpresaService, public router: Router) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.project_id = params['project_id'];
+      this.project_id = params.project_id;
       this.proyecto.getProyecto(this.project_id).subscribe(res => {
-        this.project = res[0]
-        this.project.end_date = res[0].end_date.slice(0,10)
-      })
+        this.project = res[0];
+        this.project.end_date = res[0].end_date.slice(0, 10);
+      });
     });
-    this.sectorType = Object.keys(this.sector)
-    this.sectorName = Object.values(this.sector)
+    this.sectorType = Object.keys(this.sector);
+    this.sectorName = Object.values(this.sector);
   }
 
   modificar(){
-    this.empresa.modificarProyecto(this.project).subscribe()
-    this.router.navigate(['/dashboard'])
+    this.empresa.modificarProyecto(this.project).subscribe();
+    this.router.navigate(['/dashboard']);
   }
 }

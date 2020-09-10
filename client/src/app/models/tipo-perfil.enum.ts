@@ -1,5 +1,5 @@
 export enum TipoPerfil {
-    empresa = "empresa",
-    inversor = "inversor"
+    empresa = 'empresa',
+    inversor = 'inversor'
 }
-export type Perfil = keyof typeof TipoPerfil
+export type Perfil = keyof typeof TipoPerfil;

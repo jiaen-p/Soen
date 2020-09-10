@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpleoService } from '../../shared/empleo.service'
+import { EmpleoService } from '../../shared/empleo.service';
 import { Empleo } from 'src/app/models/empleo';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -11,16 +11,16 @@ import { UsuarioService } from 'src/app/shared/usuario.service';
 })
 export class EmpleosComponent implements OnInit {
 
-  public jobs: Empleo[] = []
-  public empleos: any
-  public filtrados: Empleo[] = []
-  public job: Empleo
-  public search:string = "";
-  public filtrado: Empleo[] = []
+  public jobs: Empleo[] = [];
+  public empleos: any;
+  public filtrados: Empleo[] = [];
+  public job: Empleo;
+  public search = '';
+  public filtrado: Empleo[] = [];
 
 
-  constructor(private router: ActivatedRoute, public empleo: EmpleoService, public usuario:UsuarioService) { 
-    this.empleos = this.empleo.getJobs()
+  constructor(private router: ActivatedRoute, public empleo: EmpleoService, public usuario: UsuarioService) {
+    this.empleos = this.empleo.getJobs();
   }
 
   allJobs()
@@ -30,25 +30,25 @@ export class EmpleosComponent implements OnInit {
       this.jobs = data;
       Object.assign(this.filtrados, this.jobs);
     }
-    )
+    );
   }
 
   // Información de un proyecto recuperando el id
-  oneJob(id:number)
+  oneJob(id: number)
   {
-    console.log(id)
-    this.job = this.jobs.find(({job_id}) => job_id === id)
+    console.log(id);
+    this.job = this.jobs.find(({job_id}) => job_id === id);
   }
 
   // filtra por sector o titulo del anuncio para el input de buscar
   filterSearch(filtro)
   {
     this.search = filtro;
-    if(this.search){
+    if (this.search){
       this.filtrados = [];
-      for(var i=0; i<this.jobs.length; i++)
+      for (let i = 0; i < this.jobs.length; i++)
       {
-        if(this.jobs[i].sector.includes(this.search) ||this.jobs[i].title.includes(this.search))
+        if (this.jobs[i].sector.includes(this.search) || this.jobs[i].title.includes(this.search))
         {
           console.log(this.jobs[i]);
           this.filtrados.push(this.jobs[i]);
@@ -65,17 +65,17 @@ export class EmpleosComponent implements OnInit {
       this.filtrado = [];
       let filtrado = this.jobs;
 
-      if(experiencia){
-        filtrado = filtrado.filter(job => job.experience === experiencia) 
+      if (experiencia){
+        filtrado = filtrado.filter(job => job.experience === experiencia);
       }
-      if(contrato){
-        filtrado = filtrado.filter(job => job.contract === contrato) 
+      if (contrato){
+        filtrado = filtrado.filter(job => job.contract === contrato);
       }
-      if(jornada){
-        filtrado = filtrado.filter(job => job.working_day === jornada) 
+      if (jornada){
+        filtrado = filtrado.filter(job => job.working_day === jornada);
       }
       this.filtrados = filtrado;
-      console.log(this.filtrado)
+      console.log(this.filtrado);
   }
 
   ngOnInit(): void {

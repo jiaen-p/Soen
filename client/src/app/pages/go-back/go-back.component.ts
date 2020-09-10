@@ -8,7 +8,7 @@ import { Location } from '@angular/common';
 })
 export class GoBackComponent implements OnInit {
 
-  constructor(public _location:Location) { }
+  constructor(public _location: Location) { }
 
   ngOnInit(): void {
   }

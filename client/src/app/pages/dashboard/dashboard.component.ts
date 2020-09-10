@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor(public usuario: UsuarioService, private router: Router) { 
+  constructor(public usuario: UsuarioService, private router: Router) {
   }
 
   ngOnInit(): void {
-    if(this.usuario.empresa){
-      this.router.navigate(['/dashboard/mis_proyectos'])
+    if (this.usuario.empresa){
+      this.router.navigate(['/dashboard/mis_proyectos']);
     } else {
-      this.router.navigate(['proyectos/invertidos'])
+      this.router.navigate(['proyectos/invertidos']);
     }
   }
 

@@ -11,28 +11,28 @@ import { Sector } from 'src/app/models/sectores.enum';
 })
 export class ModificarEmpleoComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute, public router:Router, public job: EmpleoService) { }
+  constructor(private route: ActivatedRoute, public router: Router, public job: EmpleoService) { }
   private job_id: number = null;
   public empleo: Empleo = new Empleo();
-  public sector = Sector
-  public sectorType = []
-  public sectorName = []
+  public sector = Sector;
+  public sectorType = [];
+  public sectorName = [];
 
   modificar(){
-    this.job.putJob(this.empleo).subscribe()
-    console.log(this.empleo)
-    this.router.navigate(['/dashboard/mis_empleos'])
+    this.job.putJob(this.empleo).subscribe();
+    console.log(this.empleo);
+    this.router.navigate(['/dashboard/mis_empleos']);
   }
 
   ngOnInit(): void {
-    this.sectorType = Object.keys(this.sector)
-    this.sectorName = Object.values(this.sector)
+    this.sectorType = Object.keys(this.sector);
+    this.sectorName = Object.values(this.sector);
     this.route.queryParams.subscribe(params => {
-      this.job_id = params['job_id'];
+      this.job_id = params.job_id;
       this.job.getJob(this.job_id).subscribe(data => {
-        this.empleo = data[0]
-      })
-  })
+        this.empleo = data[0];
+      });
+  });
 }
 
 }

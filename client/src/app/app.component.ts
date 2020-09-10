@@ -8,10 +8,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
   title = 'Soen';
-  constructor(private titleService:Title){
-    titleService.setTitle(this.title)
+  constructor(private titleService: Title){
+    titleService.setTitle(this.title);
   }
   scrollTop(){
-    window.scroll(0,0)
+    window.scroll(0, 0);
   }
 }

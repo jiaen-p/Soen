@@ -13,31 +13,31 @@ import { ChatService } from 'src/app/shared/chat.service';
 })
 export class ProyectosInteresComponent implements OnInit {
 
-  public fav: Proyecto
+  public fav: Proyecto;
   public favs: Proyecto[];
   public proyectosInteres: any[] = [];
   public favoritos: number;
 
 
-  constructor(public router:Router, private apiService: ProyectosService, private usuario:UsuarioService, private inversor:InversorService, public chat:ChatService) { }
+  constructor(public router: Router, private apiService: ProyectosService, private usuario: UsuarioService, private inversor: InversorService, public chat: ChatService) { }
 
   proyectosFavoritos(){
-   this.inversor.getProyectosFavoritos().subscribe((data: any[]) =>{
+   this.inversor.getProyectosFavoritos().subscribe((data: any[]) => {
 
-    for(let index = 0;index <= data.length-1;index++){
-      
+    for (let index = 0; index <= data.length - 1; index++){
+
       this.favoritos = data[index].project_id;
-      console.log(this.favoritos)
-      this.apiService.getProyecto(this.favoritos).subscribe((data: any[]) =>{
+      console.log(this.favoritos);
+      this.apiService.getProyecto(this.favoritos).subscribe((data: any[]) => {
 
         this.proyectosInteres.push(data);
-        
+
       });
     }});
-  console.log(this.proyectosInteres);
+   console.log(this.proyectosInteres);
 
   }
-  
+
 
 
   // Coge el id del inversor y devuelve favoritos asociados
@@ -50,18 +50,18 @@ export class ProyectosInteresComponent implements OnInit {
         console.log(this.fav = data[i]);
       }
     }
-    ) 
+    )
   }
   */
   addInvertidos(idProyecto: number){
-    this.inversor.postProyectosInvertido(idProyecto).subscribe(data =>{
-      this.inversor.deleteProyectosFavoritos(idProyecto).subscribe()
-    })  
-    this.router.navigate(["/proyectos/invertidos"])
+    this.inversor.postProyectosInvertido(idProyecto).subscribe(data => {
+      this.inversor.deleteProyectosFavoritos(idProyecto).subscribe();
+    });
+    this.router.navigate(['/proyectos/invertidos']);
   }
 
   ngOnInit(): void {
-    this.proyectosFavoritos()
+    this.proyectosFavoritos();
   }
 
 }
